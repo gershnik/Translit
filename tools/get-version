@@ -1,0 +1,25 @@
+#! /usr/bin/env -S python3 -u
+
+# Copyright (c) 2023, Eugene Gershnik
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+import re
+import sys
+from pathlib import Path
+
+mydir = Path(__file__).parent
+
+exp = re.compile(r'\s*MARKETING_VERSION\s*=\s*(\d+(?:.\d+)*)\s*')
+
+with open(mydir.parent / 'Version.xcconfig', 'r') as verFile:
+    for line in verFile:
+        m = re.match(exp, line)
+        if m:
+            print(m[1])
+            sys.exit(0)
+
+sys.exit(1)
+
+        
+
+

@@ -1,0 +1,16 @@
+// Copyright (c) 2023, Eugene Gershnik
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Project.xcconfig"
+
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+GCC_OPTIMIZATION_LEVEL = s
+LLVM_LTO = YES
+GCC_PREPROCESSOR_DEFINITIONS = NDEBUG=1 $(inherited)
+ENABLE_NS_ASSERTIONS = NO
+
+
+MTL_ENABLE_DEBUG_INFO = NO

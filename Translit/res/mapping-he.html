@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0px;
+            font-family: Helvetica;
+            background-color: white;
+        }
+        table{
+            table-layout: auto;
+            margin: 0px;
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        tr {
+            margin: 0px;
+        }
+        table.main td {
+            margin: 0px;
+            border: 1px solid #E5E5E5;
+            white-space: nowrap;
+        }
+        
+        table.multi td {
+            margin: 0px;
+            border: 0px;
+            white-space: nowrap;
+        }
+        
+        tr.headerRow {
+            font-weight:bold;
+        }
+        tr.contentRow {
+            background-color: #F0F0F0
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <div style="width:100%">
+        <table class="main">
+            <tr class="headerRow">
+                <td>א</td>
+                <td>ב</td>
+                <td>ג</td>
+                <td>ד</td>
+                <td>ה</td>
+                <td>ו</td>
+                <td>ז</td>
+                <td>ח</td>
+                <td>ט</td>
+                <td>י</td>
+                <td>כ</td>
+                <td>ך</td>
+                <td>ל</td>
+                <td>מ</td>
+                <td>ם</td>
+            </tr>
+            <tr class="contentRow">
+                <td>a</td>
+                <td>b</td>
+                <td>g</td>
+                <td>d</td>
+                <td>h</td>
+                <td><table class="multi"><tr><td>o</td></tr><tr><td>u</td></tr></table></td>
+                <td>z</td>
+                <td>x</td>
+                <td>T</td>
+                <td><table class="multi"><tr><td>i</td></tr><tr><td>j</td></tr></table></td>
+                <td>k</td>
+                <td>K</td>
+                <td>l</td>
+                <td>m</td>
+                <td>M</td>
+            </tr>
+        </table>
+        <br />
+        <table class="main">
+            <tr class="headerRow">
+                <td>נ</td>
+                <td>ן</td>
+                <td>ס</td>
+                <td>ע</td>
+                <td>פ</td>
+                <td>ף</td>
+                <td>צ</td>
+                <td>ץ</td>
+                <td>ק</td>
+                <td>ר</td>
+                <td>ש</td>
+                <td>ת</td>
+            </tr>
+            <tr class="contentRow">
+                <td>n</td>
+                <td>N</td>
+                <td>s</td>
+                <td>y</td>
+                <td><table class="multi"><tr><td>f</td></tr><tr><td>p</td></tr></table></td>
+                <td><table class="multi"><tr><td>F</td></tr><tr><td>P</td></tr></table></td>
+                <td>c</td>
+                <td>C</td>
+                <td>q</td>
+                <td>r</td>
+                <td>w</td>
+                <td>t</td>
+            </tr>
+        </table>
+        <br/>
+    </div>
+</body>
+</html>

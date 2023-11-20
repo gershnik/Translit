@@ -1,0 +1,88 @@
+#! /usr/bin/env -S python3 -u
+
+# Copyright (c) 2023, Eugene Gershnik
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+import sys
+import tarfile
+import shutil
+from pathlib import Path
+from urllib.request import urlretrieve
+
+components = {
+    'sys_string': {
+        'ver': '2.13',
+        'url': 'https://github.com/gershnik/sys_string/releases/download/v{ver}/sys_string-{ver}.tar.gz',
+        'dir': 'sys_string',
+        'verFile': 'VERSION'
+    }
+}
+
+
+mydir = Path(sys.argv[0]).parent
+externalDir = mydir / 'External'
+
+externalDir.mkdir(parents=True, exist_ok=True)
+
+def verToList(ver):
+    return [int(i) for i in ver.split('.')]
+    
+def getVersionFromFile(path):
+    existingVer = None
+    if path.is_file():
+        existingVer = verToList(path.read_text().rstrip())
+    return existingVer
+
+
+def fetchUrl(name, component):
+    directory = externalDir / component['dir']
+    upToDate = False
+    
+    if component.get('verFile'):
+        verFile = directory / component['verFile']
+        requiredVer = verToList(component['ver'])
+        existingVer = getVersionFromFile(verFile)
+        if existingVer == requiredVer:
+            upToDate = True
+    else:
+        print(f"Dont know how to detect version of {name}", file=sys.stderr)
+        sys.exit(1)
+
+    if not upToDate:
+        print(f'{name} not up to date, required {requiredVer}, existing {existingVer}')
+        shutil.rmtree(directory, ignore_errors=True)
+        if directory.exists():
+            print(f'Unable to remove {name} directory', file=sys.stderr);
+            sys.exit(1)
+        directory.mkdir()
+        url = component['url'].format(ver = component['ver'])
+        path, headers = urlretrieve(url)
+        try:
+            with tarfile.open(path, "r") as tar:
+                tar.extractall(externalDir)
+            print(f'Installed {name}')
+        finally:
+            Path(path).unlink()
+    else:
+        print(f'{name} is up to date')
+
+
+localXcconfig = mydir / 'Local.xcconfig'
+
+if not localXcconfig.exists():
+    localXcconfig.write_text('''
+// Local configuration settings. Do not commit to source control
+//
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+//
+// To create signed and notarized installer from Xcode do this:
+//TRANSLIT_SIGN_PACKAGE=true
+//NOTARIZE_USER=...
+//NOTARIZE_PWD=...
+//CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO
+'''.lstrip())
+
+for name, component in components.items():
+    if component.get('url'):
+        fetchUrl('sys_string', components['sys_string'])

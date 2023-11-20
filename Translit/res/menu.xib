@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="5f0-f6-7LC" id="iyy-yX-YfJ"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="5f0-f6-7LC" customClass="AppDelegate">
+            <connections>
+                <outlet property="_menu" destination="0Dp-3p-IEu" id="wQK-Io-t5w"/>
+            </connections>
+        </customObject>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <menu id="0Dp-3p-IEu">
+            <items>
+                <menuItem title="Show Mappings" tag="2" id="j70-QZ-CC5">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="About Translit" tag="1" id="Vj8-vt-yH7"/>
+            </items>
+            <point key="canvasLocation" x="-126.5" y="-28.5"/>
+        </menu>
+    </objects>
+</document>

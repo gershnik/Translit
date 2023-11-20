@@ -1,0 +1,66 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+  push:
+      tags:
+        - 'v*'
+
+jobs:
+  main:
+    runs-on: macOS-13
+    permissions: write-all
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Get Version
+      shell: bash
+      run: |
+        version=`tools/get-version`
+        echo Version: $version
+        echo "GH_BUILD_VERSION=$version" >> $GITHUB_ENV
+    
+    - name: Fetch dependencies
+      shell: bash
+      run: ./fetch
+      
+    - name: Build
+      shell: bash
+      env:
+        CERTIFICATES_P12: ${{ secrets.CERTIFICATES_P12 }}
+        CERTIFICATES_PWD: ${{ secrets.CERTIFICATES_PWD }}
+        KEYCHAIN_PWD: ${{ secrets.KEYCHAIN_PWD }}
+        NOTARIZE_USER: ${{ secrets.NOTARIZE_USER }}
+        NOTARIZE_PWD: ${{ secrets.NOTARIZE_PWD }}
+      run: |
+        tools/set-github-keychain
+        xcodebuild build \
+                   -workspace Translit.xcworkspace \
+                   -scheme Installer \
+                   -derivedDataPath DerivedData \
+                   TRANSLIT_SIGN_PACKAGE=true \
+                   CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO
+                   
+    - name: Upload Symbols
+      shell: bash
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        aws s3 cp DerivedData/Build/Products/Release/Translit-${{ env.GH_BUILD_VERSION }}.dSYM.tgz \
+                               s3://translit-symbols/Translit-${{ env.GH_BUILD_VERSION }}.dSYM.tgz
+      
+    - name: Make release
+      uses: softprops/action-gh-release@v1
+      with:
+        draft: true
+        prerelease: false
+        name: ${{ env.GH_BUILD_VERSION }}
+        body: ...edit me...
+        files: DerivedData/Build/Products/Release/Translit-${{ env.GH_BUILD_VERSION }}.pkg
+
+      
+    
+

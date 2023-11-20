@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--
+    Copyright (c) 2023, Eugene Gershnik
+    SPDX-License-Identifier: GPL-3.0-or-later
+-->
+<installer-gui-script minSpecVersion="2">
+    <title>Translit Input Method</title>
+    <organization>io.github.gershnik</organization>
+    <volume-check script="true">
+        <allowed-os-versions>
+            <os-version min="10.13"/>
+        </allowed-os-versions>
+    </volume-check>
+    <domains enable_localSystem="true" enable_currentUserHome="true"/>
+    <options customize="never" require-scripts="false" rootVolumeOnly="true" hostArchitectures="arm64,x86_64" />
+    <!-- Define documents displayed at various steps -->
+    <welcome    file="welcome.html"    mime-type="text/html" />
+    <license    file="license.html"    mime-type="text/html" />
+    <conclusion file="conclusion.html" mime-type="text/html" />
+    <!-- List all component packages -->
+    <pkg-ref id="{IDENTIFIER}" version="{VERSION}">output.pkg</pkg-ref>
+    <pkg-ref id="{IDENTIFIER}">
+       <must-close>
+          <app id="{IDENTIFIER}"/>
+          <app id="com.apple.systempreferences"/>
+       </must-close>
+    </pkg-ref>
+    <!-- List them again here. They can now be organized as a hierarchy if you want. -->
+    <choices-outline>
+        <line choice="{IDENTIFIER}"/>
+    </choices-outline>
+    <!-- Define each choice above -->
+    <choice
+        id="{IDENTIFIER}"
+        visible="false"
+        title="Translit Input Method"
+        description="Translit Input Method"
+        start_selected="true">
+      <pkg-ref id="{IDENTIFIER}"/>
+    </choice>
+</installer-gui-script>

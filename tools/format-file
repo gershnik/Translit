@@ -1,0 +1,24 @@
+#! /usr/bin/env -S python3 -u
+
+# Copyright (c) 2023, Eugene Gershnik
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+import os
+import argparse
+from pathlib import Path
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('src', type=Path)
+parser.add_argument('dst', type=Path)
+
+args = parser.parse_args()
+
+src: Path = args.src
+dst: Path = args.dst
+
+srcText = src.read_text()
+dstText = srcText.format_map(os.environ)
+dst.write_text(dstText)
+
+    

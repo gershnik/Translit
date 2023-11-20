@@ -1,0 +1,26 @@
+// Copyright (c) 2023, Eugene Gershnik
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "sys_string-Exports.xcconfig"
+
+
+PRODUCT_BUNDLE_IDENTIFIER = $(ROOT_BUNDLE_IDENTIFIER)
+PRODUCT_NAME = $(TARGET_NAME)
+INFOPLIST_FILE = Translit/generated/Info.plist
+LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/../Frameworks
+//CODE_SIGN_STYLE = Manual
+//PROVISIONING_PROFILE_SPECIFIER =
+ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+COMBINE_HIDPI_IMAGES = YES
+SWIFT_EMIT_LOC_STRINGS = YES
+
+HEADER_SEARCH_PATHS = $(inherited) $(SYS_STRING_HEADER_SEARCH_PATHS)
+GCC_PREFIX_HEADER = Translit/src/pch.h
+
+
+
+

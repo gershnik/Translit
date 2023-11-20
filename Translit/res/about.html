@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2023, Eugene Gershnik
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width = device-width">
+        <style>
+            body {
+                margin: 5px;
+                font-family:-apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <table style="border: 0px;margin: 0px;">
+        <tr>
+        <td>
+            <img width=64 height=64 src="%ICONURL%">
+        </td>
+        <td style="vertical-align: top;margin-left:10px">
+            <div style="font-size: 30px;font-weight=bold;">Translit</div>
+            <div style="font-size: 12px;">Version: %VERSION%</div>
+            <p style="font-size: 8px;">%COPYRIGHT%</p>
+        </td>
+        </tr>
+        </table>
+        <div style="visibility:%COMMAND_VISIBILITY%">
+            <p>
+            More information and updates can be found at the <a href="https://github.com/gershnik/Translit">Github homepage</a>
+            </p>
+            <p>
+            To uninstall this application execute the following commands in the Terminal
+            </p>
+            <div style="background-color:#f0f0f0;padding-top:4px;padding-bottom: 4px">
+                <code style="font-size: 12px;font-weight:bold">%COMMAND%</code>
+            </div>
+        </div>
+    </body>
+</html>

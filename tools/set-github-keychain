@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Copyright (c) 2023, Eugene Gershnik
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+set -e
+set -u
+
+echo $CERTIFICATES_P12 | base64 --decode > certificates.p12
+security create-keychain -p $KEYCHAIN_PWD build.keychain
+security default-keychain -s build.keychain
+security unlock-keychain -p $KEYCHAIN_PWD build.keychain
+security set-keychain-settings -u
+security import certificates.p12 -k build.keychain -P $CERTIFICATES_PWD -T /usr/bin/productsign -T /usr/bin/codesign
+security set-key-partition-list -S apple-tool:,apple:,productsign:,codesign: -s -k $KEYCHAIN_PWD build.keychain
+

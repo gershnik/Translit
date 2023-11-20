@@ -1,0 +1,17 @@
+// Copyright (c) 2023, Eugene Gershnik
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "sys_string-Exports.xcconfig"
+
+PRODUCT_NAME = $(TARGET_NAME)
+PRODUCT_BUNDLE_IDENTIFIER = $(ROOT_BUNDLE_IDENTIFIER).tests
+GENERATE_INFOPLIST_FILE = YES
+SWIFT_EMIT_LOC_STRINGS = NO
+HEADER_SEARCH_PATHS = $(inherited) $(SYS_STRING_HEADER_SEARCH_PATHS)
+GCC_PREFIX_HEADER = Translit/src/pch.h
+GCC_PREPROCESSOR_DEFINITIONS = TRANSLIT_TESTING=1 $(inherited)
+//TEST_HOST = $(BUILT_PRODUCTS_DIR)/Translit.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Translit
+//BUNDLE_LOADER = $(TEST_HOST)

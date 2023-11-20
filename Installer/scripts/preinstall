@@ -1,0 +1,7 @@
+#! /bin/bash
+
+# Copyright (c) 2023, Eugene Gershnik
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+set -e
+#nothing to do here for now

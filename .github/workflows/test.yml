@@ -1,0 +1,64 @@
+name: Test
+
+on: 
+  push:
+    branches: 
+      - '*'
+      - '*/**'
+    paths-ignore:
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - '.gitignore'
+      - 'LICENSE'
+      - '.github/workflows/publish.yml'
+      - 'tools/create-release'
+      
+env:
+  DEVELOPER_DIR: /Applications/Xcode_15.0.app
+      
+jobs:
+  main:
+    runs-on: macOS-13
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Get Version
+      shell: bash
+      run: |
+        version=`tools/get-version`
+        echo Version: $version
+        echo "GH_BUILD_VERSION=$version" >> $GITHUB_ENV
+    
+    - name: Fetch dependencies
+      shell: bash
+      run: ./fetch
+  
+    - name: Test
+      shell: bash
+      run: xcodebuild test -workspace Translit.xcworkspace -scheme Translit -derivedDataPath DerivedData
+    
+    - name: Build
+      shell: bash
+      env:
+        CERTIFICATES_P12: ${{ secrets.CERTIFICATES_P12 }}
+        CERTIFICATES_PWD: ${{ secrets.CERTIFICATES_PWD }}
+        KEYCHAIN_PWD: ${{ secrets.KEYCHAIN_PWD }}
+        NOTARIZE_USER: ${{ secrets.NOTARIZE_USER }}
+        NOTARIZE_PWD: ${{ secrets.NOTARIZE_PWD }}
+      run: |
+        tools/set-github-keychain
+        xcodebuild build \
+                   -workspace Translit.xcworkspace \
+                   -scheme Installer \
+                   -derivedDataPath DerivedData \
+                   TRANSLIT_SIGN_PACKAGE=true CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO
+                   
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v3
+      with:
+        name: Translit-${{ env.GH_BUILD_VERSION }}.pkg
+        path: DerivedData/Build/Products/Release/Translit-${{ env.GH_BUILD_VERSION }}.pkg
+        retention-days: 3
+
