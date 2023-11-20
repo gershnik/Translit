@@ -20,7 +20,7 @@ static auto getAppLocation() -> AppLocation {
                                                           appropriateForURL:nil
                                                                      create:false
                                                                       error:nil];
-    auto parent = NSBundle.mainBundle.bundleURL.URLByDeletingLastPathComponent;
+    auto parent = NSBundle.mainBundle.bundleURL.URLByStandardizingPath.URLByDeletingLastPathComponent;
     if ([userInputMethods isEqualTo:parent])
         return AppLocation::User;
     if ([systemInputMethods isEqualTo:parent])
@@ -35,7 +35,7 @@ static auto registerOurselves() -> int {
     }
     
     auto bundle = NSBundle.mainBundle;
-    auto url = bundle.bundleURL;
+    auto url = bundle.bundleURL.URLByStandardizingPath;
     OSStatus res = TISRegisterInputSource((__bridge CFURLRef)url);
     if (res != noErr) {
         fprintf(stderr, "Unable to register input source: OSStatus %d\n", res);
@@ -63,7 +63,7 @@ static auto uninstallOurselves() -> int {
         }
         
         auto bundle = NSBundle.mainBundle;
-        auto url = bundle.bundleURL;
+        auto url = bundle.bundleURL.URLByStandardizingPath;
         auto * bundleId = bundle.bundleIdentifier;
             
         auto props = @{
@@ -90,7 +90,7 @@ static auto uninstallOurselves() -> int {
         
         auto runningInstances = [NSRunningApplication runningApplicationsWithBundleIdentifier:bundleId];
         for (NSRunningApplication * app in runningInstances) {
-            if ([app.bundleURL isEqualTo:url]) {
+            if ([app.bundleURL.URLByStandardizingPath isEqualTo:url]) {
                 auto pid = app.processIdentifier;
                 if (pid > 0 && pid != getpid()) {
                     fprintf(stdout, "Terminating Translit process %d\n", pid);

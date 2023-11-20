@@ -38,7 +38,7 @@
                                                           appropriateForURL:nil
                                                                      create:false
                                                                       error:nil];
-    auto parent = NSBundle.mainBundle.bundleURL.URLByDeletingLastPathComponent;
+    auto parent = NSBundle.mainBundle.bundleURL.URLByStandardizingPath.URLByDeletingLastPathComponent;
     
     sys_string dir, sudo;
     if ([userInputMethods isEqualTo:parent]) {
