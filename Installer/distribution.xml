@@ -18,11 +18,10 @@
     <license    file="license.html"    mime-type="text/html" />
     <conclusion file="conclusion.html" mime-type="text/html" />
     <!-- List all component packages -->
-    <pkg-ref id="{IDENTIFIER}" version="{VERSION}">output.pkg</pkg-ref>
+    <pkg-ref id="{IDENTIFIER}" version="{VERSION}" onConclusion="RequireLogout">output.pkg</pkg-ref>
     <pkg-ref id="{IDENTIFIER}">
        <must-close>
           <app id="{IDENTIFIER}"/>
-          <app id="com.apple.systempreferences"/>
        </must-close>
     </pkg-ref>
     <!-- List them again here. They can now be organized as a hierarchy if you want. -->

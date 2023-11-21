@@ -28,121 +28,143 @@ static auto getAppLocation() -> AppLocation {
     return AppLocation::Other;
 }
 
-static auto registerOurselves() -> int {
-    if (getAppLocation() == AppLocation::Other) {
-        fprintf(stderr, "This application is not installed\n");
-        return EXIT_FAILURE;
+static auto execute(NSString * exe, NSArray<NSString *> * args, bool sudo = false) -> std::pair<int, int> {
+    
+    posix_spawn_file_actions_t fileActions;
+    posix_spawn_file_actions_init(&fileActions);
+    posix_spawn_file_actions_addinherit_np(&fileActions, STDIN_FILENO);
+    posix_spawn_file_actions_addinherit_np(&fileActions, STDOUT_FILENO);
+    posix_spawn_file_actions_addinherit_np(&fileActions, STDERR_FILENO);
+    posix_spawnattr_t attr;
+    posix_spawnattr_init(&attr);
+    posix_spawnattr_setflags(&attr, POSIX_SPAWN_CLOEXEC_DEFAULT | POSIX_SPAWN_SETSIGDEF);
+    
+    auto exeUrl = [NSURL fileURLWithPath:exe].URLByStandardizingPath;
+    std::string path;
+    std::vector<std::string> extras;
+    if (!sudo) {
+        path = exeUrl.fileSystemRepresentation;
+        extras.assign({exeUrl.lastPathComponent.UTF8String});
+    } else {
+        path = "/usr/bin/sudo";
+        extras.assign({"sudo", exeUrl.fileSystemRepresentation});
     }
     
-    auto bundle = NSBundle.mainBundle;
-    auto url = bundle.bundleURL.URLByStandardizingPath;
-    OSStatus res = TISRegisterInputSource((__bridge CFURLRef)url);
-    if (res != noErr) {
-        fprintf(stderr, "Unable to register input source: OSStatus %d\n", res);
-        return EXIT_FAILURE;
+    std::vector<const char *> rawArgs;
+    rawArgs.reserve(extras.size() + args.count + 1);
+    for(auto & extra: extras)
+        rawArgs.push_back(extra.c_str());
+    for(NSString * arg in args)
+        rawArgs.push_back(arg.UTF8String);
+    rawArgs.push_back(nullptr);
+    
+    pid_t pid;
+    int spawnRes = posix_spawn(&pid, path.c_str(), &fileActions, &attr, (char **)rawArgs.data(), nullptr);
+    int err = errno;
+    posix_spawn_file_actions_destroy(&fileActions);
+    posix_spawnattr_destroy(&attr);
+    if (spawnRes) {
+        return {err, 0};
     }
-    //in case we were already running
-    [NSDistributedNotificationCenter.defaultCenter postNotificationName:@"AppleLanguagePreferencesChangedNotification" object:nil];
-    return EXIT_SUCCESS;
+    int stat;
+    pid_t res = waitpid(pid, &stat, 0);
+    if (res < 0) {
+        return {errno, 0};
+    }
+    assert(res == pid);
+    if (WIFEXITED(stat))
+        return {0, WEXITSTATUS(stat)};
+    
+    return {0, 128 + WTERMSIG(stat)};
+}
+
+static auto sendAppleEventToSystemProcess(AEEventID eventToSend) -> OSStatus
+{
+    static const ProcessSerialNumber kPSNOfSystemProcess = { 0, kSystemProcess };
+    struct TargetDescHolder {
+        AEAddressDesc targetDesc;
+        bool needToDispose = false;
+        
+        ~TargetDescHolder() {
+            if (needToDispose)
+                AEDisposeDesc(&targetDesc);
+        }
+    } targetDescHolder;
+    
+    if (auto error = AECreateDesc(typeProcessSerialNumber, &kPSNOfSystemProcess,
+                                  sizeof(kPSNOfSystemProcess), &targetDescHolder.targetDesc);
+        error != noErr) {
+        return error;
+    }
+    targetDescHolder.needToDispose = true;
+    
+    AppleEvent appleEventToSend = {typeNull, nullptr};
+    if (auto error = AECreateAppleEvent(kCoreEventClass, eventToSend, &targetDescHolder.targetDesc,
+                                        kAutoGenerateReturnID, kAnyTransactionID, &appleEventToSend);
+        error != noErr) {
+        return error;
+    }
+
+    AppleEvent eventReply = {typeNull, nullptr};
+    return AESend(&appleEventToSend, &eventReply, kAENoReply,
+                  kAENormalPriority, kAEDefaultTimeout, NULL, NULL);
+
 }
 
 static auto uninstallOurselves() -> int {
     
-    dispatch_async(dispatch_get_main_queue(),^{
-        auto appLocation = getAppLocation();
-        if (appLocation == AppLocation::Other) {
-            fprintf(stderr, "This application is not installed\n");
-            exit(EXIT_FAILURE);
-        }
+    auto appLocation = getAppLocation();
+    if (appLocation == AppLocation::Other) {
+        fprintf(stderr, "This application is not installed\n");
+        exit(EXIT_FAILURE);
+    }
+    
+    auto bundle = NSBundle.mainBundle;
+    auto url = bundle.bundleURL.URLByStandardizingPath;
+    auto * bundleId = bundle.bundleIdentifier;
         
-        if (appLocation == AppLocation::System) {
-            if (getuid() != 0) {
-                fprintf(stderr, "You must be root to uninstall this application\n");
-                exit(EXIT_FAILURE);
-            }
-        }
-        
-        auto bundle = NSBundle.mainBundle;
-        auto url = bundle.bundleURL.URLByStandardizingPath;
-        auto * bundleId = bundle.bundleIdentifier;
-            
-        auto props = @{
-            (__bridge NSString*)kTISPropertyBundleID : bundleId,
-            (__bridge NSString*)kTISPropertyInputSourceType: (__bridge NSString*)kTISTypeKeyboardInputMode
-        };
-        NSArray * sources = (__bridge_transfer NSArray *)TISCreateInputSourceList((__bridge CFDictionaryRef)props, false);
-        for(NSObject * src in sources) {
-            auto cfSrc = (__bridge TISInputSourceRef)src;
-            auto enabled = (CFBooleanRef)TISGetInputSourceProperty(cfSrc, kTISPropertyInputSourceIsEnabled);
-            if (enabled != kCFBooleanTrue)
-                continue;
-            OSStatus res = TISDisableInputSource(cfSrc);
-            if (res != noErr) {
-                auto typeId = (__bridge NSString *)(CFStringRef)TISGetInputSourceProperty(cfSrc, kTISPropertyInputSourceID);
-                fprintf(stderr, "Unable to disable input source %s: OSStatus %d\n", typeId.UTF8String, res);
-            }
-        }
-        
-        auto nc = NSDistributedNotificationCenter.defaultCenter;
-        [nc postNotificationName:@"AppleEnabledInputSourcesChangedNotification" object:nil];
-        [nc postNotificationName:@"com.apple.Carbon.TISNotifyEnabledKeyboardInputSourcesChanged" object:nil];
-        
-        
-        auto runningInstances = [NSRunningApplication runningApplicationsWithBundleIdentifier:bundleId];
-        for (NSRunningApplication * app in runningInstances) {
-            if ([app.bundleURL.URLByStandardizingPath isEqualTo:url]) {
-                auto pid = app.processIdentifier;
-                if (pid > 0 && pid != getpid()) {
-                    fprintf(stdout, "Terminating Translit process %d\n", pid);
-                    kill(pid, SIGKILL);
-                    break;
-                }
-            }
-        }
-        
-        fprintf(stdout, "Moving %s to trash\n", url.fileSystemRepresentation);
-        NSError * err;
-        if (![NSFileManager.defaultManager trashItemAtURL:url resultingItemURL:nil error:&err]) {
-            fprintf(stderr, "Unable to trash: code %ld, %s\n", long(err.code), err.description.UTF8String);
-            exit(EXIT_FAILURE);
-        }
-        
-        
-        [nc postNotificationName:@"AppleLanguagePreferencesChangedNotification" object:nil];
-        
-        auto args = @[@"pkgutil", @"--forget", bundleId];
-        if (appLocation == AppLocation::User) {
-            auto volArg = [@"--volume=" stringByAppendingString:NSHomeDirectory()];
-            args = [args arrayByAddingObject:volArg];
-        }
-        [NSTask launchedTaskWithExecutableURL:[NSURL fileURLWithPath:@"/usr/sbin/pkgutil"]
-                                    arguments:args
-                                        error:&err
-                           terminationHandler:^(NSTask * task) {
-            if (task.terminationStatus != 0)
-                exit(EXIT_FAILURE);
-            
-            printf("Translit has been successfully uninstalled. It is recommended you log off and log back on (or restart) to ensure System Settings retains no spurious record of it.\n");
-            
-            exit(EXIT_SUCCESS);
-        }];
-        
+    {
+        printf("Removing %s\n", url.fileSystemRepresentation);
+        auto [err, stat] = execute(@"/bin/rm", @[@"-rf", @( url.fileSystemRepresentation )],
+                                   appLocation == AppLocation::System);
         if (err) {
-            fprintf(stderr, "Unable to launch pkgutil: code %ld, %s\n", long(err.code), err.description.UTF8String);
-            exit(EXIT_FAILURE);
+            fprintf(stderr, "Unable to remove application bundle, code: %d\n", err);
+            return EXIT_FAILURE;
         }
-    });
-    [NSRunLoop.mainRunLoop run];
+        if (stat) {
+            fprintf(stderr, "Removal failed with exit code %d\n", stat);
+            return EXIT_FAILURE;
+        }
+    }
     
+            
+    {
+        printf("Removing installed package info (if any)...\n");
+        auto args = @[@"--forget", bundleId];
+        if (appLocation == AppLocation::User)
+            args = [args arrayByAddingObject:[@"--volume=" stringByAppendingString:NSHomeDirectory()]];
+        auto [err, stat] = execute(@"/usr/sbin/pkgutil", args, appLocation == AppLocation::System);
+        if (err) {
+            fprintf(stderr, "Unable to launch pkgutil: code %d\n", err);
+        }
+        if (stat) {
+            fprintf(stderr, "pkgutil failed with exit code %d\n", stat);
+        }
+    }
     
+    if (auto err = sendAppleEventToSystemProcess(kAELogOut); err != noErr) {
+        fprintf(stderr, "Unable to request logout: OSStatus %ld\n", long(err));
+    }
+            
+    printf("Translit has been successfully uninstalled.\n"
+           "You must log off and log back on (or restart) to fully remove it from the system\n");
+                
     return EXIT_SUCCESS;
 }
 
 auto main(int argc, const char * argv[]) -> int {
     for(int i = 0; i < argc; ++i) {
-        if (strcasecmp(argv[i], "--register") == 0) {
-            return registerOurselves();
-        } else if (strcasecmp(argv[i], "--uninstall") == 0) {
+        if (strcasecmp(argv[i], "--uninstall") == 0) {
             return uninstallOurselves();
         }
     }

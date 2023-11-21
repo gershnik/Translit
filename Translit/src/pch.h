@@ -16,6 +16,8 @@
 #include <signal.h>
 #include <stdio.h>
 
+#include <spawn.h>
+
 #ifdef __OBJC__
 #import <Cocoa/Cocoa.h>
 #import <InputMethodKit/InputMethodKit.h>

@@ -89,7 +89,7 @@ with open(packagesdir/'component.plist', "wb") as dest:
 subprocess.run(['pkgbuild', 
                 '--root',       str(rootdir),
                 '--component-plist', str(packagesdir/'component.plist'),
-                '--scripts',    str(mydir / 'scripts'),
+                #'--scripts',    str(mydir / 'scripts'),
                 '--identifier', IDENTIFIER, 
                 '--version',    VERSION,
                 '--ownership',  'recommended',

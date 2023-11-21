@@ -40,18 +40,16 @@
                                                                       error:nil];
     auto parent = NSBundle.mainBundle.bundleURL.URLByStandardizingPath.URLByDeletingLastPathComponent;
     
-    sys_string dir, sudo;
+    sys_string dir;
     if ([userInputMethods isEqualTo:parent]) {
         dir = sys_string(userInputMethods.fileSystemRepresentation);
-        sudo = S("");
     } else if ([systemInputMethods isEqualTo:parent]) {
         dir = sys_string(systemInputMethods.fileSystemRepresentation);
-        sudo = S("sudo ");
     }
     
     if (!dir.empty()) {
         sys_string subPath = sys_string(bundle.executablePath).remove_prefix(sys_string(dir + S("/")));
-        auto command = [NSString stringWithFormat:@"cd \"%@\"<br/>%@%@ --uninstall", dir.ns_str(), sudo.ns_str(), subPath.ns_str()];
+        auto command = [NSString stringWithFormat:@"cd \"%@\"<br/>%@ --uninstall", dir.ns_str(), subPath.ns_str()];
         html = [html stringByReplacingOccurrencesOfString:@"%COMMAND_VISIBILITY%" withString:@"visible"];
         html = [html stringByReplacingOccurrencesOfString:@"%COMMAND%" withString:command];
     } else {

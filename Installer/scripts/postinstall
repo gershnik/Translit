@@ -4,6 +4,4 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 set -e
-
-"$2/Library/Input Methods/Translit.app/Contents/MacOS/Translit" --register || echo failed registration
-
+#nothing to do here for now

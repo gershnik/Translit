@@ -40,7 +40,8 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
 - Distributed as signed and notarized installer - you don't need to build it yourself (but you can if you want to).
 - Reliable (mostly) installation and uninstallation on recent versions of macOS.<br/> 
   Starting roughly with macOS Ventura, Apple has introduced various bugs into its keyboard input sources architecture 
-  that make adding and removing them unreliable. The installer for this application tries to work around most issues.
+  that make adding and removing them unreliable, error prone and require log off. The installer and uninstaller for this
+  application makes the whole process reliable and simple for the user.
 - Not using punctuation like `'` or `#` for transliteration.<br/>
   When typing normally on macOS (as opposed to some 
   designated transliteration app) switching between input modes is more complicated - you cannot just press `ESC` like
@@ -55,8 +56,9 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
   
 * Navigate to [Releases][releases] page and download `Translit-x.y.pkg` package installer. 
 * Run it and install the app
-* After installation finishes launch `System Preferences ⇒ Keyboard` (there will be a convenient link on the last 
-  installer screen to do that)
+* You will be prompted to log off at the end of the installation. This is unfortunately necessary. Apple provides
+  no way to avoid this.
+* After you log back in launch `System Preferences ⇒ Keyboard`
 * In the `Text Input` section press `Edit...` button for `Input Sources`<br/>
   <img src="doc/Edit.png" width="500px">
 * Press the `+` button to add an input source<br/>
@@ -99,13 +101,16 @@ To completely uninstall Translit issue the following commands in Terminal
 ~/Library/Input\ Methods/Translit.app/Contents/MacOS/Translit --uninstall
 ```
 
-* If you installed Translit for everybody
+* If you installed Translit for all users
 
 ```bash
 /Library/Input\ Methods/Translit.app/Contents/MacOS/Translit --uninstall
 ```
 
 You can also see the exact command for your installation in `About Translit` menu with a translit mode selected.
+
+Just like with installation, you will be prompted for a logoff at the end. This, unfortunately, is also necesary due
+to Apple's bugs. 
 
 ## Mappings
 
