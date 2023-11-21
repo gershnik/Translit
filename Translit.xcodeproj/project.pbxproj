@@ -32,6 +32,7 @@
 		442D25B42B0A2E1B00204800 /* Transliterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445D1E602AFE364900FA1C07 /* Transliterator.cpp */; };
 		442D25BF2B0B2D6600204800 /* TestCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 442D25BE2B0B2D6600204800 /* TestCommon.mm */; };
 		442D25CA2B0B93D500204800 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 442D25C82B0B93D500204800 /* InfoPlist.strings */; };
+		442D25CC2B0CC97100204800 /* Uninstall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 442D25CB2B0CC97100204800 /* Uninstall.mm */; };
 		445D1E4C2AFE2C6C00FA1C07 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */; };
 		445D1E4E2AFE2C6F00FA1C07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 445D1E4D2AFE2C6F00FA1C07 /* Assets.xcassets */; };
 		445D1E532AFE2C6F00FA1C07 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 445D1E522AFE2C6F00FA1C07 /* main.mm */; };
@@ -113,6 +114,8 @@
 		442D25C12B0B8C6C00204800 /* format-file */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = "format-file"; sourceTree = "<group>"; };
 		442D25C62B0B93A500204800 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		442D25C92B0B93D500204800 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		442D25CB2B0CC97100204800 /* Uninstall.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Uninstall.mm; sourceTree = "<group>"; };
+		442D25CD2B0CC9C200204800 /* Uninstall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uninstall.h; sourceTree = "<group>"; };
 		445D1E472AFE2C6C00FA1C07 /* Translit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Translit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		445D1E4A2AFE2C6C00FA1C07 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -326,6 +329,8 @@
 			isa = PBXGroup;
 			children = (
 				445D1E522AFE2C6F00FA1C07 /* main.mm */,
+				442D25CD2B0CC9C200204800 /* Uninstall.h */,
+				442D25CB2B0CC97100204800 /* Uninstall.mm */,
 				445D1E4A2AFE2C6C00FA1C07 /* AppDelegate.h */,
 				445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */,
 				44C675C62B034E17003A5BDE /* MenuProtocol.h */,
@@ -672,6 +677,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				442D25CC2B0CC97100204800 /* Uninstall.mm in Sources */,
 				442D25AC2B08339F00204800 /* AboutWindowController.mm in Sources */,
 				44C675812B021410003A5BDE /* TransliteratorRegistry.cpp in Sources */,
 				445D1E532AFE2C6F00FA1C07 /* main.mm in Sources */,
