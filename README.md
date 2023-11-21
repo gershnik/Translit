@@ -1,7 +1,7 @@
 #  Translit
 
-![macOS](https://img.shields.io/badge/macOS-10.13_and_above-brightgreen?style=flat&logo=apple&logoColor=F0F0F0&labelColor=black)
-[![License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg)](https://opensource.org/license/gpl-3-0/)
+![macOS](https://img.shields.io/badge/macOS-10.13_and_above-blue?style=flat&logo=apple&logoColor=F0F0F0&labelColor=black)
+[![License](https://img.shields.io/badge/license-GPLv3-red.svg)](https://opensource.org/license/gpl-3-0/)
 [![Tests](https://github.com/gershnik/Translit/actions/workflows/test.yml/badge.svg)](https://github.com/gershnik/Translit/actions/workflows/test.yml)
 
 <!-- Links -->
@@ -59,10 +59,10 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
 * You will be prompted to log off at the end of the installation. This is unfortunately necessary. Apple provides
   no way to avoid this.
 * After you log back in launch `System Preferences ⇒ Keyboard`
-* In the `Text Input` section press `Edit...` button for `Input Sources`<br/>
-  <img src="doc/Edit.png" width="500px">
-* Press the `+` button to add an input source<br/>
-  <img src="doc/Plus.png" width="500px">
+* In the `Text Input` section press `Edit...` button for `Input Sources`<br/><br/>
+  <img src="doc/Edit.png" width="500px"><br/>
+* Press the `+` button to add an input source<br/><br/>
+  <img src="doc/Plus.png" width="500px"><br/>
 * Navigate to `Russian` or `Hebrew` language and select `Russian Translit` or `Hebrew Translit` as desired. If you wish 
   to use both press the `+` again after adding one.
 
