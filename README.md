@@ -1,6 +1,6 @@
 #  Translit
 
-![macOS](https://img.shields.io/badge/-macOS-black?style=flat&logo=apple&logoColor=F0F0F0)
+![macOS](https://img.shields.io/badge/macOS-10.13_or_above-brightgreen?style=flat&logo=apple&logoColor=F0F0F0&labelColor=black)
 [![License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg)](https://opensource.org/license/gpl-3-0/)
 [![Tests](https://github.com/gershnik/Translit/actions/workflows/test.yml/badge.svg)](https://github.com/gershnik/Translit/actions/workflows/test.yml)
 
@@ -38,7 +38,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
 - Supports multiple languages: currently Russian and Hebrew with an easy way to add more if desired - just ask.
 - Supports modern macOS versions
 - Distributed as signed and notarized installer - you don't need to build it yourself (but you can if you want to).
-- Reliable (mostly) installation and uninstallation on recent versions of macOS.<br/> 
+- Reliable installation and uninstallation on recent versions of macOS.<br/> 
   Starting roughly with macOS Ventura, Apple has introduced various bugs into its keyboard input sources architecture 
   that make adding and removing them unreliable, error prone and require log off. The installer and uninstaller for this
   application makes the whole process reliable and simple for the user.
