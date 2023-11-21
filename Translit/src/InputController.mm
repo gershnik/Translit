@@ -76,6 +76,7 @@
         _mappingsController = [[MappingsWindowController alloc] initWithWindowNibName:@"mappings"];
     _mappingsController.language = _currentLanguage;
     [_mappingsController showWindow:self];
+    [_mappingsController.window orderFrontRegardless];
 }
 
 
