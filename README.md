@@ -35,7 +35,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
 ## Features
 
 - Type normally in any window without copy/pasting from a separate app/browser
-- Supports multiple languages: currently Russian and Hebrew with an easy way to add more if desired - just ask.
+- Supports multiple languages: currently Russian and Hebrew with an easy way to add more if desired.
 - Supports modern macOS versions
 - Distributed as signed and notarized installer - you don't need to build it yourself (but you can if you want to).
 - Reliable installation and uninstallation on recent versions of macOS.<br/> 
