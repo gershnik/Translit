@@ -1,7 +1,7 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "Transliterator.h"
+#include "Transliterator.hpp"
 
 
 void Transliterator::append(const sys_string & str) {

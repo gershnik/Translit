@@ -1,11 +1,11 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "Transliterator.h"
-#include "TransliteratorRegistry.h"
-#include "AppDelegate.h"
-#include "MenuProtocol.h"
-#include "MappingsWindowController.h"
+#include "Transliterator.hpp"
+#include "TransliteratorRegistry.hpp"
+#include "AppDelegate.hpp"
+#include "MenuProtocol.hpp"
+#include "MappingsWindowController.hpp"
 
 
 @interface InputController : IMKInputController<MenuProtocol>

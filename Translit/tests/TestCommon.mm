@@ -1,7 +1,7 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#import "TestCommon.h"
+#import "TestCommon.hpp"
 
 @implementation Result {
     ResultPayload _payload;

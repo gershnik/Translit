@@ -1,8 +1,8 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef TRANSLIT_HEADER_TABLE_RU_H_INCLUDED
-#define TRANSLIT_HEADER_TABLE_RU_H_INCLUDED
+#ifndef TRANSLIT_HEADER_TABLE_RU_HPP_INCLUDED
+#define TRANSLIT_HEADER_TABLE_RU_HPP_INCLUDED
 
 constexpr std::pair<char16_t, const char16_t *> g_tableRu[] = {
     {u'А', u"A"},  //1

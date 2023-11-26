@@ -1,9 +1,9 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "TransliteratorRegistry.h"
-#include "TableRU.h"
-#include "TableHE.h"
+#include "TransliteratorRegistry.hpp"
+#include "TableRU.hpp"
+#include "TableHE.hpp"
 
 static std::map<sys_string, Transliterator> g_transliterators {
     { S("ru"), Transliterator(g_tableRu) },

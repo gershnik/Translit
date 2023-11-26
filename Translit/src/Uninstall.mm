@@ -1,6 +1,8 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#include "Uninstall.hpp"
+
 
 enum class AppLocation {
     System,

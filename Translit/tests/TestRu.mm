@@ -1,8 +1,8 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "../src/TransliteratorRegistry.h"
-#include "TestCommon.h"
+#include "../src/TransliteratorRegistry.hpp"
+#include "TestCommon.hpp"
 
 
 using namespace std::literals::string_view_literals;

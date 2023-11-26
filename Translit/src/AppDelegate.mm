@@ -1,8 +1,8 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#import "AppDelegate.h"
-#include "MenuProtocol.h"
+#import "AppDelegate.hpp"
+#import "MenuProtocol.hpp"
 
 @interface AppDelegate () {
     NSWindow * _window;

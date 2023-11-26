@@ -3,8 +3,8 @@
 
 #import <XCTest/XCTest.h>
 
-#include "../src/StateMachine.h"
-#include "../src/TableRU.h"
+#include "../src/StateMachine.hpp"
+#include "../src/TableRU.hpp"
 
 @interface TestStateMachine : XCTestCase
 

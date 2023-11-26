@@ -1,7 +1,7 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#import "MappingsWindowController.h"
+#import "MappingsWindowController.hpp"
 
 
 @interface MappingsWindowController () {

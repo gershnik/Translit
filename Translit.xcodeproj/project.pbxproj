@@ -72,7 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		442D25802B044EE000204800 /* MappingsWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MappingsWindowController.h; sourceTree = "<group>"; };
+		442D25802B044EE000204800 /* MappingsWindowController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MappingsWindowController.hpp; sourceTree = "<group>"; };
 		442D25812B044EE000204800 /* MappingsWindowController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MappingsWindowController.mm; sourceTree = "<group>"; };
 		442D25832B04562800204800 /* mapping-ru.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "mapping-ru.pdf"; sourceTree = "<group>"; };
 		442D25852B04A50C00204800 /* mapping-he.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "mapping-he.pdf"; sourceTree = "<group>"; };
@@ -96,8 +96,8 @@
 		442D25A52B0627A100204800 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		442D25A62B062EBA00204800 /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 		442D25A72B06349800204800 /* Installer.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Installer.xcconfig; sourceTree = "<group>"; };
-		442D25A92B07BFB600204800 /* pch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pch.h; sourceTree = "<group>"; };
-		442D25AA2B08339F00204800 /* AboutWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
+		442D25A92B07BFB600204800 /* pch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pch.hpp; sourceTree = "<group>"; };
+		442D25AA2B08339F00204800 /* AboutWindowController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AboutWindowController.hpp; sourceTree = "<group>"; };
 		442D25AB2B08339F00204800 /* AboutWindowController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AboutWindowController.mm; sourceTree = "<group>"; };
 		442D25AD2B088B5700204800 /* about.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		442D25B12B089F2F00204800 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -108,33 +108,33 @@
 		442D25BA2B0AD32400204800 /* publish.yml */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = text.yaml; path = publish.yml; sourceTree = "<group>"; tabWidth = 2; };
 		442D25BB2B0ADC3A00204800 /* create-release */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = "create-release"; sourceTree = "<group>"; };
 		442D25BC2B0ADCB200204800 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
-		442D25BD2B0B2D2C00204800 /* TestCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
+		442D25BD2B0B2D2C00204800 /* TestCommon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestCommon.hpp; sourceTree = "<group>"; };
 		442D25BE2B0B2D6600204800 /* TestCommon.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestCommon.mm; sourceTree = "<group>"; };
 		442D25C02B0B308000204800 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		442D25C12B0B8C6C00204800 /* format-file */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = "format-file"; sourceTree = "<group>"; };
 		442D25C62B0B93A500204800 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		442D25C92B0B93D500204800 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		442D25CB2B0CC97100204800 /* Uninstall.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Uninstall.mm; sourceTree = "<group>"; };
-		442D25CD2B0CC9C200204800 /* Uninstall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uninstall.h; sourceTree = "<group>"; };
+		442D25CD2B0CC9C200204800 /* Uninstall.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Uninstall.hpp; sourceTree = "<group>"; };
 		445D1E472AFE2C6C00FA1C07 /* Translit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Translit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		445D1E4A2AFE2C6C00FA1C07 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		445D1E4A2AFE2C6C00FA1C07 /* AppDelegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AppDelegate.hpp; sourceTree = "<group>"; };
 		445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		445D1E4D2AFE2C6F00FA1C07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		445D1E522AFE2C6F00FA1C07 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		445D1E5E2AFE35AA00FA1C07 /* InputController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = InputController.mm; sourceTree = "<group>"; };
 		445D1E602AFE364900FA1C07 /* Transliterator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Transliterator.cpp; sourceTree = "<group>"; };
-		445D1E612AFE364900FA1C07 /* Transliterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transliterator.h; sourceTree = "<group>"; };
+		445D1E612AFE364900FA1C07 /* Transliterator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Transliterator.hpp; sourceTree = "<group>"; };
 		445D1E652AFFA1F700FA1C07 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
 		445D1E712AFFFAB800FA1C07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		445D1E732AFFFAE600FA1C07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		446DBB8E2B00BD53000B76EC /* TranslitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TranslitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4475AD302B11EEE4008DA122 /* StateMachine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StateMachine.h; sourceTree = "<group>"; };
+		4475AD302B11EEE4008DA122 /* StateMachine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StateMachine.hpp; sourceTree = "<group>"; };
 		4475AD312B11F97F008DA122 /* TestStateMachine.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestStateMachine.mm; sourceTree = "<group>"; };
 		4475AD332B131F80008DA122 /* Main.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Main.xctestplan; sourceTree = "<group>"; };
 		4475AD342B132242008DA122 /* Perf.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Perf.xctestplan; sourceTree = "<group>"; };
-		44C6757E2B01B4FD003A5BDE /* TableRU.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableRU.h; sourceTree = "<group>"; };
+		44C6757E2B01B4FD003A5BDE /* TableRU.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TableRU.hpp; sourceTree = "<group>"; };
 		44C6757F2B021410003A5BDE /* TransliteratorRegistry.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TransliteratorRegistry.cpp; sourceTree = "<group>"; };
-		44C675802B021410003A5BDE /* TransliteratorRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransliteratorRegistry.h; sourceTree = "<group>"; };
+		44C675802B021410003A5BDE /* TransliteratorRegistry.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TransliteratorRegistry.hpp; sourceTree = "<group>"; };
 		44C675832B02153F003A5BDE /* TestRu.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRu.mm; sourceTree = "<group>"; };
 		44C675892B0218E1003A5BDE /* libsys_string.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsys_string.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C675902B0219DA003A5BDE /* unicode_mappings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unicode_mappings.cpp; sourceTree = "<group>"; };
@@ -166,11 +166,11 @@
 		44C675B22B021A3E003A5BDE /* utf_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf_view.h; sourceTree = "<group>"; };
 		44C675B52B021B0F003A5BDE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		44C675B72B025FEB003A5BDE /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		44C675B92B02635A003A5BDE /* TableHE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableHE.h; sourceTree = "<group>"; };
+		44C675B92B02635A003A5BDE /* TableHE.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TableHE.hpp; sourceTree = "<group>"; };
 		44C675BA2B026F43003A5BDE /* preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = preferences.xib; sourceTree = "<group>"; };
 		44C675BC2B028225003A5BDE /* menu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = menu.xib; sourceTree = "<group>"; };
 		44C675BE2B028713003A5BDE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		44C675C62B034E17003A5BDE /* MenuProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuProtocol.h; sourceTree = "<group>"; };
+		44C675C62B034E17003A5BDE /* MenuProtocol.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MenuProtocol.hpp; sourceTree = "<group>"; };
 		44C675C72B03515B003A5BDE /* mappings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mappings.xib; sourceTree = "<group>"; };
 		44C675CA2B03E176003A5BDE /* ru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ru.png; sourceTree = "<group>"; };
 		44C675CC2B040B87003A5BDE /* he.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = he.png; sourceTree = "<group>"; };
@@ -331,24 +331,24 @@
 			isa = PBXGroup;
 			children = (
 				445D1E522AFE2C6F00FA1C07 /* main.mm */,
-				442D25CD2B0CC9C200204800 /* Uninstall.h */,
+				442D25CD2B0CC9C200204800 /* Uninstall.hpp */,
 				442D25CB2B0CC97100204800 /* Uninstall.mm */,
-				445D1E4A2AFE2C6C00FA1C07 /* AppDelegate.h */,
+				445D1E4A2AFE2C6C00FA1C07 /* AppDelegate.hpp */,
 				445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */,
-				44C675C62B034E17003A5BDE /* MenuProtocol.h */,
+				44C675C62B034E17003A5BDE /* MenuProtocol.hpp */,
 				445D1E5E2AFE35AA00FA1C07 /* InputController.mm */,
-				4475AD302B11EEE4008DA122 /* StateMachine.h */,
+				4475AD302B11EEE4008DA122 /* StateMachine.hpp */,
 				445D1E602AFE364900FA1C07 /* Transliterator.cpp */,
-				445D1E612AFE364900FA1C07 /* Transliterator.h */,
+				445D1E612AFE364900FA1C07 /* Transliterator.hpp */,
 				44C6757F2B021410003A5BDE /* TransliteratorRegistry.cpp */,
-				44C675802B021410003A5BDE /* TransliteratorRegistry.h */,
-				44C6757E2B01B4FD003A5BDE /* TableRU.h */,
-				44C675B92B02635A003A5BDE /* TableHE.h */,
-				442D25802B044EE000204800 /* MappingsWindowController.h */,
+				44C675802B021410003A5BDE /* TransliteratorRegistry.hpp */,
+				44C6757E2B01B4FD003A5BDE /* TableRU.hpp */,
+				44C675B92B02635A003A5BDE /* TableHE.hpp */,
+				442D25802B044EE000204800 /* MappingsWindowController.hpp */,
 				442D25812B044EE000204800 /* MappingsWindowController.mm */,
-				442D25AA2B08339F00204800 /* AboutWindowController.h */,
+				442D25AA2B08339F00204800 /* AboutWindowController.hpp */,
 				442D25AB2B08339F00204800 /* AboutWindowController.mm */,
-				442D25A92B07BFB600204800 /* pch.h */,
+				442D25A92B07BFB600204800 /* pch.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -358,7 +358,7 @@
 			children = (
 				4475AD312B11F97F008DA122 /* TestStateMachine.mm */,
 				44C675832B02153F003A5BDE /* TestRu.mm */,
-				442D25BD2B0B2D2C00204800 /* TestCommon.h */,
+				442D25BD2B0B2D2C00204800 /* TestCommon.hpp */,
 				442D25BE2B0B2D6600204800 /* TestCommon.mm */,
 				4475AD332B131F80008DA122 /* Main.xctestplan */,
 				4475AD342B132242008DA122 /* Perf.xctestplan */,

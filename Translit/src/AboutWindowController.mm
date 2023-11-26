@@ -1,8 +1,7 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#import "AboutWindowController.h"
-#include "Util.h"
+#import "AboutWindowController.hpp"
 
 @interface AboutWindowController () <WKNavigationDelegate> {
     IBOutlet WKWebView * _text;
