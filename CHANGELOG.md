@@ -5,10 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+### Changed
+- Internal code improvements. No impact on end users experience.
+
 ## [1.0] - 2023-11-21
 
 ### Added
-
 - Initial version
 
 
