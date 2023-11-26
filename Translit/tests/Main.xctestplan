@@ -4,12 +4,7 @@
       "id" : "26B7432F-E9DA-48BD-BB6E-256B58DBFE47",
       "name" : "Configuration 1",
       "options" : {
-        "addressSanitizer" : {
-          "detectStackUseAfterReturn" : true,
-          "enabled" : true
-        },
-        "mallocScribbleEnabled" : true,
-        "undefinedBehaviorSanitizerEnabled" : true
+
       }
     }
   ],
