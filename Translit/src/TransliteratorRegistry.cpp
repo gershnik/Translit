@@ -6,8 +6,8 @@
 #include "TableHE.h"
 
 static std::map<sys_string, Transliterator> g_transliterators {
-    { S("ru"), Transliterator::from(g_tableRu) },
-    { S("he"), Transliterator::from(g_tableHe) }
+    { S("ru"), Transliterator(g_tableRu) },
+    { S("he"), Transliterator(g_tableHe) }
 };
 
 

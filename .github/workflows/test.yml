@@ -37,7 +37,7 @@ jobs:
   
     - name: Test
       shell: bash
-      run: xcodebuild test -workspace Translit.xcworkspace -scheme Translit -testPlan Main -derivedDataPath DerivedData
+      run: xcodebuild test -workspace Translit.xcworkspace -scheme Translit -config Release -testPlan Main -derivedDataPath DerivedData
     
     - name: Build
       shell: bash

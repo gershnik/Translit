@@ -24,7 +24,6 @@
   "testTargets" : [
     {
       "skippedTests" : [
-        "TestMiniTrie\/testPerformance",
         "TestStateMachine\/testPerformance"
       ],
       "target" : {

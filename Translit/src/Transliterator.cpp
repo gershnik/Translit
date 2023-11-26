@@ -13,19 +13,10 @@ void Transliterator::append(const sys_string & str) {
     const auto end = m_prefix.end();
     auto completed = begin;
     for (auto start = begin ; start != end; ) {
-#ifdef TRANSLIT_USE_TRIE
-        auto res = m_trie.prefixMatch(start, end);
-        if (res.index != m_trie.noMatch) {
-#else
         auto res = m_sm.prefixMatch(start, end);
         if (res.successful) {
-#endif
             m_matchedSomething = true;
-#ifdef TRANSLIT_USE_TRIE
-            m_translit += m_replacements[res.index];
-#else
             m_translit += res.payload;
-#endif
             //if the result is not definite we don't know if a longer match is possible so bail out
             if (!res.definite)
                 break;
