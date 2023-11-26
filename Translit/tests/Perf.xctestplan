@@ -1,0 +1,34 @@
+{
+  "configurations" : [
+    {
+      "id" : "5AF5AD13-21F5-40E2-9C55-318E5C373D8F",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Translit.xcodeproj",
+      "identifier" : "445D1E462AFE2C6C00FA1C07",
+      "name" : "Translit"
+    },
+    "testTimeoutsEnabled" : true,
+    "uiTestingScreenshotsLifetime" : "keepNever"
+  },
+  "testTargets" : [
+    {
+      "selectedTests" : [
+        "TestMiniTrie\/testPerformance",
+        "TestStateMachine\/testPerformance"
+      ],
+      "target" : {
+        "containerPath" : "container:Translit.xcodeproj",
+        "identifier" : "446DBB8D2B00BD53000B76EC",
+        "name" : "TranslitTests"
+      }
+    }
+  ],
+  "version" : 1
+}

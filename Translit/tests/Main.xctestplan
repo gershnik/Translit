@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "26B7432F-E9DA-48BD-BB6E-256B58DBFE47",
+      "name" : "Configuration 1",
+      "options" : {
+        "addressSanitizer" : {
+          "detectStackUseAfterReturn" : true,
+          "enabled" : true
+        },
+        "mallocScribbleEnabled" : true,
+        "undefinedBehaviorSanitizerEnabled" : true
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Translit.xcodeproj",
+      "identifier" : "445D1E462AFE2C6C00FA1C07",
+      "name" : "Translit"
+    },
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "TestMiniTrie\/testPerformance",
+        "TestStateMachine\/testPerformance"
+      ],
+      "target" : {
+        "containerPath" : "container:Translit.xcodeproj",
+        "identifier" : "446DBB8D2B00BD53000B76EC",
+        "name" : "TranslitTests"
+      }
+    }
+  ],
+  "version" : 1
+}

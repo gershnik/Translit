@@ -4,14 +4,22 @@
 #ifndef TRANSLIT_HEADER_TRANSLITERATOR_H_INCLUDED
 #define TRANSLIT_HEADER_TRANSLITERATOR_H_INCLUDED
 
-#include "MiniTrie.h"
+#ifdef TRANSLIT_USE_TRIE
+    #include "MiniTrie.h"
+#else
+    #include "StateMachine.h"
+#endif
 
 
 class Transliterator {
 public:
     using SizeType = unsigned short;
 private:
-    using Trie = MiniTrie<char16_t, SizeType>;
+    #ifdef TRANSLIT_USE_TRIE
+        using Trie = MiniTrie<char16_t, SizeType>;
+    #else
+        using StateMachineType = StateMachine<char16_t, SizeType>;
+    #endif
 public:
     Transliterator() = default;
     
@@ -20,6 +28,7 @@ public:
     requires(std::is_convertible_v<std::tuple_element_t<0, std::ranges::range_value_t<Range>>, char16_t> &&
              std::is_convertible_v<std::tuple_element_t<1, std::ranges::range_value_t<Range>>, const char16_t *>) {
         
+#ifdef TRANSLIT_USE_TRIE
         std::vector<char16_t> replacements;
         Trie::Builder trieBuilder;
         
@@ -33,6 +42,9 @@ public:
             trieBuilder.add(src, idx);
         }
         return Transliterator(std::move(replacements), trieBuilder.build());
+#else
+        return Transliterator(StateMachineType(range));
+#endif
     }
     
     void append(const sys_string & str);
@@ -59,6 +71,7 @@ public:
     }
     
 private:
+#ifdef TRANSLIT_USE_TRIE
     Transliterator(std::vector<char16_t> && replacements, Trie && trie):
         m_replacements(std::move(replacements)),
         m_trie(std::move(trie))
@@ -67,10 +80,19 @@ private:
 //            std::cout << m_trie;
 //        #endif
     }
+#else
+    Transliterator(StateMachineType && sm):
+        m_sm(std::move(sm))
+    {}
+#endif
     
 private:
+#ifdef TRANSLIT_USE_TRIE
     std::vector<char16_t> m_replacements;
     Trie m_trie;
+#else
+    StateMachineType m_sm;
+#endif
     
     std::u16string m_prefix;
     std::u16string m_translit;

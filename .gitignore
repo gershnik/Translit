@@ -4,4 +4,4 @@ DerivedData
 External
 Local.xcconfig
 Translit/generated
-
+Translit/tests/PerfData

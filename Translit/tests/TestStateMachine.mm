@@ -3,14 +3,14 @@
 
 #import <XCTest/XCTest.h>
 
-#include "../src/MiniTrie.h"
+#include "../src/StateMachine.h"
 #include "../src/TableRU.h"
 
-@interface TestMiniTrie : XCTestCase
+@interface TestStateMachine : XCTestCase
 
 @end
 
-@implementation TestMiniTrie
+@implementation TestStateMachine
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -21,36 +21,38 @@
 }
 
 - (void)testEmpty {
-    MiniTrie<char> trie{};
+    StateMachine<char, uint8_t, uint8_t> sm;
     {
         const char * const str = "";
-        auto res = trie.prefixMatch(str, str + strlen(str));
-        XCTAssertEqual(res.index, trie.noMatch);
+        auto res = sm.prefixMatch(str, str + strlen(str));
+        XCTAssertEqual(res.successful, false);
         XCTAssertEqual(res.definite, true);
         XCTAssertEqual(res.next, str);
     }
     {
         const char * const str = "a";
-        auto res = trie.prefixMatch(str, str + strlen(str));
-        XCTAssertEqual(res.index, trie.noMatch);
+        auto res = sm.prefixMatch(str, str + strlen(str));
+        XCTAssertEqual(res.successful, false);
         XCTAssertEqual(res.definite, true);
         XCTAssertEqual(res.next, str);
     }
 }
 
 - (void)testOnlyEmptyString {
-    auto trie = MiniTrie<char>::from({""});
+    StateMachine<char, uint8_t, uint8_t> sm({{0, ""}});
     {
         const char * const str = "";
-        auto res = trie.prefixMatch(str, str + strlen(str));
-        XCTAssertEqual(res.index, 0);
+        auto res = sm.prefixMatch(str, str + strlen(str));
+        XCTAssertEqual(res.successful, true);
+        XCTAssertEqual(res.payload, 0);
         XCTAssertEqual(res.definite, true);
         XCTAssertEqual(res.next, str);
     }
     {
         const char * str = "a";
-        auto res = trie.prefixMatch(str, str + strlen(str));
-        XCTAssertEqual(res.index, 0);
+        auto res = sm.prefixMatch(str, str + strlen(str));
+        XCTAssertEqual(res.successful, true);
+        XCTAssertEqual(res.payload, 0);
         XCTAssertEqual(res.definite, true);
         XCTAssertEqual(res.next, str);
     }
@@ -59,64 +61,75 @@
 - (void)testDisjointStrings {
     {
         
-        auto trie = MiniTrie<char>::from({"b", "c", "a"});
+        StateMachine<char, uint8_t, uint8_t> sm({{0, "b"}, {1, "c"}, {2, "a"}});
         {
             const char * const str = "";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, trie.noMatch);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, false);
             XCTAssertEqual(res.definite, false);
             XCTAssertEqual(res.next, str);
         }
         {
             const char * const str = "a";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, 2);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, true);
+            XCTAssertEqual(res.payload, 2);
             XCTAssertEqual(res.definite, true);
             XCTAssertEqual(res.next, str + strlen(str));
         }
         {
             const char * const str = "b";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, 0);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, true);
+            XCTAssertEqual(res.payload, 0);
             XCTAssertEqual(res.definite, true);
             XCTAssertEqual(res.next, str + strlen(str));
         }
         {
             const char * const str = "c";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, 1);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, true);
+            XCTAssertEqual(res.payload, 1);
             XCTAssertEqual(res.definite, true);
             XCTAssertEqual(res.next, str + strlen(str));
+        }
+        {
+            const char * const str = " ";
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, false);
+            XCTAssertEqual(res.definite, true);
+            XCTAssertEqual(res.next, str);
         }
     }
     
     {
-        auto trie = MiniTrie<char>::from({"ef", "cd", "ab"});
+        StateMachine<char, uint8_t, uint8_t> sm({{0, "ef"}, {1, "cd"}, {2, "ab"}});
         {
             const char * const str = "";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, trie.noMatch);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, false);
             XCTAssertEqual(res.definite, false);
             XCTAssertEqual(res.next, str);
         }
         {
             const char * const str = "a";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, trie.noMatch);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, false);
             XCTAssertEqual(res.definite, false);
             XCTAssertEqual(res.next, str);
         }
         {
             const char * const str = "b";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, trie.noMatch);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, false);
             XCTAssertEqual(res.definite, true);
             XCTAssertEqual(res.next, str);
         }
         {
             const char * const str = "cd";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, 1);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, true);
+            XCTAssertEqual(res.payload, 1);
             XCTAssertEqual(res.definite, true);
             XCTAssertEqual(res.next, str + strlen(str));
         }
@@ -126,56 +139,62 @@
 
 - (void)testOverlappingStrings {
     {
-        auto trie = MiniTrie<char>::from({"b", "bcd"});
+        StateMachine<char, uint8_t, uint8_t> sm({{0, "b"}, {1, "bcd"}});
         {
             const char * const str = "b";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, 0);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, true);
+            XCTAssertEqual(res.payload, 0);
             XCTAssertEqual(res.definite, false);
             XCTAssertEqual(res.next, str + 1);
         }
         {
             const char * const str = "bc";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, 0);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, true);
+            XCTAssertEqual(res.payload, 0);
             XCTAssertEqual(res.definite, false);
             XCTAssertEqual(res.next, str + 1);
         }
         {
             const char * const str = "bcd";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, 1);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, true);
+            XCTAssertEqual(res.payload, 1);
             XCTAssertEqual(res.definite, true);
             XCTAssertEqual(res.next, str + 3);
         }
     }
     {
-        auto trie = MiniTrie<char>::from({"bc", "bd", "bdd"});
+        StateMachine<char, uint8_t, uint8_t> sm({{0, "bc"}, {1, "bd"}, {2, "bdd"}});
         {
             const char * const str = "b";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, trie.noMatch);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, false);
             XCTAssertEqual(res.definite, false);
             XCTAssertEqual(res.next, str);
         }
         {
             const char * const str = "bc";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, 0);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, true);
+            XCTAssertEqual(res.payload, 0);
             XCTAssertEqual(res.definite, true);
             XCTAssertEqual(res.next, str + 2);
         }
         {
             const char * const str = "bd";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, 1);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, true);
+            XCTAssertEqual(res.payload, 1);
             XCTAssertEqual(res.definite, false);
             XCTAssertEqual(res.next, str + 2);
         }
         {
             const char * const str = "bdd";
-            auto res = trie.prefixMatch(str, str + strlen(str));
-            XCTAssertEqual(res.index, 2);
+            auto res = sm.prefixMatch(str, str + strlen(str));
+            XCTAssertEqual(res.successful, true);
+            XCTAssertEqual(res.payload, 2);
             XCTAssertEqual(res.definite, true);
             XCTAssertEqual(res.next, str + 3);
         }
@@ -188,20 +207,7 @@
     auto str = sys_string((NSString *)[NSString stringWithContentsOfURL:dataUrl encoding:NSUTF8StringEncoding error:&err]);
     XCTAssertNil(err);
 
-    using Trie = MiniTrie<char16_t, unsigned short>;
-    
-    std::vector<char16_t> replacements;
-    auto trie = [&] () {
-        Trie::Builder trieBuilder;
-        replacements.reserve(std::ranges::size(g_tableRu));
-        trieBuilder.reserve(std::ranges::size(g_tableRu));
-        for(auto & [trans, src]: g_tableRu) {
-            auto idx = replacements.size();
-            replacements.push_back(trans);
-            trieBuilder.add(src, idx);
-        }
-        return trieBuilder.build();
-    }();
+    StateMachine<char16_t, unsigned short> sm(g_tableRu);
     
     __block volatile char16_t sink;
     __block intptr_t diff = 0;
@@ -212,11 +218,11 @@
         auto end = acess.end();
         auto completed = begin;
         for (auto start = begin ; start != end; ) {
-            auto res = trie.prefixMatch(start, end);
-            if (res.index != Trie::noMatch) {
+            auto res = sm.prefixMatch(start, end);
+            if (res.successful) {
                 //m_matchedSomething = true;
-                //m_translit += m_replacements[res.index];
-                sink = replacements[res.index];
+                //m_translit += res.payload;
+                sink = res.payload;
                 //if the result is not definite we don't know if a longer match is possible so bail out
                 if (!res.definite)
                     break;

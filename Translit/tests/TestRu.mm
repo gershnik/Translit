@@ -52,4 +52,22 @@ using namespace std::literals::string_view_literals;
     XCTAssertTranslit(*_tr, u"ж"sv, 1, true);
 }
 
+- (void)testTripleInterrupted {
+    _tr->append(S("s"));
+    XCTAssertTranslit(*_tr, u"с"sv, 0, true);
+    _tr->append(S("h"));
+    XCTAssertTranslit(*_tr, u"ш"sv, 0, true);
+    _tr->append(S(" "));
+    XCTAssertTranslit(*_tr, u"ш "sv, 2, true);
+}
+
+- (void)testTriple {
+    _tr->append(S("s"));
+    XCTAssertTranslit(*_tr, u"с"sv, 0, true);
+    _tr->append(S("h"));
+    XCTAssertTranslit(*_tr, u"ш"sv, 0, true);
+    _tr->append(S("h"));
+    XCTAssertTranslit(*_tr, u"щ"sv, 1, true);
+}
+
 @end
