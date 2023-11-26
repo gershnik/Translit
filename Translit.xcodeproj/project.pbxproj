@@ -72,7 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		442D25802B044EE000204800 /* MappingsWindowController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MappingsWindowController.hpp; sourceTree = "<group>"; };
+		442D25802B044EE000204800 /* MappingsWindowController.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = MappingsWindowController.hpp; sourceTree = "<group>"; };
 		442D25812B044EE000204800 /* MappingsWindowController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MappingsWindowController.mm; sourceTree = "<group>"; };
 		442D25832B04562800204800 /* mapping-ru.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "mapping-ru.pdf"; sourceTree = "<group>"; };
 		442D25852B04A50C00204800 /* mapping-he.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "mapping-he.pdf"; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		442D25A62B062EBA00204800 /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 		442D25A72B06349800204800 /* Installer.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Installer.xcconfig; sourceTree = "<group>"; };
 		442D25A92B07BFB600204800 /* pch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pch.hpp; sourceTree = "<group>"; };
-		442D25AA2B08339F00204800 /* AboutWindowController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AboutWindowController.hpp; sourceTree = "<group>"; };
+		442D25AA2B08339F00204800 /* AboutWindowController.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = AboutWindowController.hpp; sourceTree = "<group>"; };
 		442D25AB2B08339F00204800 /* AboutWindowController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AboutWindowController.mm; sourceTree = "<group>"; };
 		442D25AD2B088B5700204800 /* about.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		442D25B12B089F2F00204800 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -117,7 +117,7 @@
 		442D25CB2B0CC97100204800 /* Uninstall.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Uninstall.mm; sourceTree = "<group>"; };
 		442D25CD2B0CC9C200204800 /* Uninstall.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Uninstall.hpp; sourceTree = "<group>"; };
 		445D1E472AFE2C6C00FA1C07 /* Translit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Translit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		445D1E4A2AFE2C6C00FA1C07 /* AppDelegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AppDelegate.hpp; sourceTree = "<group>"; };
+		445D1E4A2AFE2C6C00FA1C07 /* AppDelegate.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = AppDelegate.hpp; sourceTree = "<group>"; };
 		445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		445D1E4D2AFE2C6F00FA1C07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		445D1E522AFE2C6F00FA1C07 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		44C675BA2B026F43003A5BDE /* preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = preferences.xib; sourceTree = "<group>"; };
 		44C675BC2B028225003A5BDE /* menu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = menu.xib; sourceTree = "<group>"; };
 		44C675BE2B028713003A5BDE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		44C675C62B034E17003A5BDE /* MenuProtocol.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MenuProtocol.hpp; sourceTree = "<group>"; };
+		44C675C62B034E17003A5BDE /* MenuProtocol.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = MenuProtocol.hpp; sourceTree = "<group>"; };
 		44C675C72B03515B003A5BDE /* mappings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mappings.xib; sourceTree = "<group>"; };
 		44C675CA2B03E176003A5BDE /* ru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ru.png; sourceTree = "<group>"; };
 		44C675CC2B040B87003A5BDE /* he.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = he.png; sourceTree = "<group>"; };
