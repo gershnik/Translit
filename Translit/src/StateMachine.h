@@ -50,28 +50,23 @@ public:
              std::is_convertible_v<std::tuple_element_t<1, std::ranges::range_value_t<Range>>, const Char *>)
     StateMachine(Range && range) {
         
+        if (std::ranges::empty(range))
+            return;
+        
         Expanded expanded;
+        
+        //Step 1: Populate inputs and map of input sequences to outcomes and "empty outcome"
         std::map<std::basic_string<Char>, OutcomeDescriptor> outcomesMap;
-        size_t terminalCount = 0;
+        size_t terminalCount = 1;
+        OutcomeDescriptor emptyOutcome{noTransition, OutcomeType::intermediate, PayloadType{}};
         
         for(auto [dst, src]: range) {
             
             if (!*src) {
-                [[maybe_unused]]
-                auto [_, inserted] = outcomesMap.emplace(std::piecewise_construct,
-                                                         std::forward_as_tuple(),
-                                                         std::forward_as_tuple(noTransition, OutcomeType::final, dst));
-                
-                assert(inserted);
-                ++terminalCount;
+                assert(emptyOutcome.type == OutcomeType::intermediate);
+                emptyOutcome.type = OutcomeType::final;
+                emptyOutcome.payload = dst;
                 continue;
-            }
-            
-            if (outcomesMap.empty()) {
-                outcomesMap.emplace(std::piecewise_construct,
-                                    std::forward_as_tuple(),
-                                    std::forward_as_tuple(noTransition, OutcomeType::intermediate, PayloadType{}));
-                ++terminalCount;
             }
             
             for(const Char * p = src; *p; ++p) {
@@ -106,14 +101,21 @@ public:
         
         assert(terminalCount < size_t(std::numeric_limits<LengthType>::max() - 1));
         
+        //Step 2: Write out empty outcome and non-intermediate outcomes. Populate outcome indices in map
+        
         expanded.outcomes.reserve(terminalCount);
         size_t stateCount = terminalCount;
+        expanded.outcomes.push_back({
+            emptyOutcome.payload,
+            emptyOutcome.type != OutcomeType::intermediate,
+            emptyOutcome.type == OutcomeType::final
+        });
         for(auto & entry: outcomesMap) {
-            if (entry.first.empty() || entry.second.type != OutcomeType::intermediate) {
+            if (entry.second.type != OutcomeType::intermediate) {
                 entry.second.idx = static_cast<LengthType>(expanded.outcomes.size());
                 expanded.outcomes.push_back({
                     entry.second.payload,
-                    entry.second.type != OutcomeType::intermediate,
+                    true,
                     entry.second.type == OutcomeType::final
                 });
             } else {
@@ -121,7 +123,9 @@ public:
                 assert(stateCount < size_t(std::numeric_limits<LengthType>::max() - 1));
             }
         }
-        assert(stateCount == outcomesMap.size());
+        assert(stateCount - 1 == outcomesMap.size());
+        
+        //Step 3: Populate transitions table using input and outcome indices
         
         expanded.transitions.resize(stateCount * expanded.inputs.size(), -1);
         
@@ -149,6 +153,8 @@ public:
                 currentState = nextState;
             }
         }
+        
+        //Step 4: Compact everything into one memory block
         
         m_inputsEnd = expanded.inputs.size() * sizeof(expanded.inputs[0]);
         m_transitionsStart = alignSize(m_inputsEnd, __alignof(expanded.transitions[0]));
