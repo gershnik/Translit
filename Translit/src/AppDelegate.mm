@@ -17,8 +17,8 @@
     if (NSMenuItem * preferences = [_menu itemWithTag:1]) {
         [preferences setAction:@selector(showPreferences:)];
     }
-    if (NSMenuItem * bloop = [_menu itemWithTag:2]) {
-        [bloop setAction:@selector(displayMappings:)];
+    if (NSMenuItem * displayMappings = [_menu itemWithTag:2]) {
+        [displayMappings setAction:@selector(displayMappings:)];
     }
 }
 
@@ -29,7 +29,6 @@ static void bundleWatchCallback(ConstFSEventStreamRef streamRef,
                                 const FSEventStreamEventFlags * eventFlags,
                                 const FSEventStreamEventId * eventIds) {
  
-    //auto paths = (__bridge NSArray<NSString *> *)(CFArrayRef)eventPaths;
     for(size_t i = 0; i < numEvents; ++i) {
         if (eventFlags[i] == kFSEventStreamEventFlagRootChanged) {
             exit(0);
