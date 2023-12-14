@@ -14,14 +14,11 @@ auto main(int argc, const char * argv[]) -> int {
     @autoreleasepool {
         auto bundle = NSBundle.mainBundle;
         NSString * connectionName = [bundle objectForInfoDictionaryKey:@"InputMethodConnectionName"];
+        [[maybe_unused]]
         auto server = [[IMKServer alloc] initWithName:connectionName
                                      bundleIdentifier:bundle.bundleIdentifier];
         NSString * mainNib = [bundle objectForInfoDictionaryKey:@"NSMainNibFile"];
         [bundle loadNibNamed:mainNib owner:NSApp topLevelObjects:nil];
-        [[maybe_unused]]
-        auto candidates = [[IMKCandidates alloc] initWithServer:server
-                                                      panelType:kIMKSingleColumnScrollingCandidatePanel
-                                                      styleType:kIMKMain];
         [NSApp run];
     }
 }
