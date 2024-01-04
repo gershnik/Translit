@@ -9,6 +9,7 @@
     }
   ],
   "defaultOptions" : {
+    "codeCoverage" : false,
     "targetForVariableExpansion" : {
       "containerPath" : "container:Translit.xcodeproj",
       "identifier" : "445D1E462AFE2C6C00FA1C07",
@@ -20,7 +21,7 @@
   "testTargets" : [
     {
       "selectedTests" : [
-        "TestStateMachine\/testPerformance"
+        "TestPerf\/testPerformance"
       ],
       "target" : {
         "containerPath" : "container:Translit.xcodeproj",

@@ -39,9 +39,9 @@
 		445D1E5F2AFE35AA00FA1C07 /* InputController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 445D1E5E2AFE35AA00FA1C07 /* InputController.mm */; };
 		445D1E622AFE364900FA1C07 /* Transliterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445D1E602AFE364900FA1C07 /* Transliterator.cpp */; };
 		445D1E662AFFA1F700FA1C07 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445D1E652AFFA1F700FA1C07 /* InputMethodKit.framework */; };
-		4475AD322B11F97F008DA122 /* TestStateMachine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4475AD312B11F97F008DA122 /* TestStateMachine.mm */; };
-		44C675812B021410003A5BDE /* TransliteratorRegistry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44C6757F2B021410003A5BDE /* TransliteratorRegistry.cpp */; };
-		44C675822B021410003A5BDE /* TransliteratorRegistry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44C6757F2B021410003A5BDE /* TransliteratorRegistry.cpp */; };
+		4475AD322B11F97F008DA122 /* TestPrefixMapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4475AD312B11F97F008DA122 /* TestPrefixMapper.mm */; };
+		44B947CF2B4698E500B68C7E /* TestPerf.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44B947CE2B4698E500B68C7E /* TestPerf.mm */; };
+		44B947D12B469B4C00B68C7E /* TestMapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44B947D02B469B4C00B68C7E /* TestMapper.mm */; };
 		44C675842B02153F003A5BDE /* TestRu.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44C675832B02153F003A5BDE /* TestRu.mm */; };
 		44C675922B0219E9003A5BDE /* unicode_mappings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44C675902B0219DA003A5BDE /* unicode_mappings.cpp */; };
 		44C675B32B021AE9003A5BDE /* libsys_string.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C675892B0218E1003A5BDE /* libsys_string.a */; };
@@ -128,13 +128,14 @@
 		445D1E712AFFFAB800FA1C07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		445D1E732AFFFAE600FA1C07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		446DBB8E2B00BD53000B76EC /* TranslitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TranslitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4475AD302B11EEE4008DA122 /* StateMachine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StateMachine.hpp; sourceTree = "<group>"; };
-		4475AD312B11F97F008DA122 /* TestStateMachine.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestStateMachine.mm; sourceTree = "<group>"; };
+		4475AD302B11EEE4008DA122 /* Mapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mapper.hpp; sourceTree = "<group>"; };
+		4475AD312B11F97F008DA122 /* TestPrefixMapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestPrefixMapper.mm; sourceTree = "<group>"; };
 		4475AD332B131F80008DA122 /* Main.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Main.xctestplan; sourceTree = "<group>"; };
 		4475AD342B132242008DA122 /* Perf.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Perf.xctestplan; sourceTree = "<group>"; };
+		449738F62B44FA4300C7FAA9 /* MultiMatch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MultiMatch.hpp; sourceTree = "<group>"; };
+		44B947CE2B4698E500B68C7E /* TestPerf.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestPerf.mm; sourceTree = "<group>"; };
+		44B947D02B469B4C00B68C7E /* TestMapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestMapper.mm; sourceTree = "<group>"; };
 		44C6757E2B01B4FD003A5BDE /* TableRU.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TableRU.hpp; sourceTree = "<group>"; };
-		44C6757F2B021410003A5BDE /* TransliteratorRegistry.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TransliteratorRegistry.cpp; sourceTree = "<group>"; };
-		44C675802B021410003A5BDE /* TransliteratorRegistry.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TransliteratorRegistry.hpp; sourceTree = "<group>"; };
 		44C675832B02153F003A5BDE /* TestRu.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRu.mm; sourceTree = "<group>"; };
 		44C675892B0218E1003A5BDE /* libsys_string.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsys_string.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C675902B0219DA003A5BDE /* unicode_mappings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unicode_mappings.cpp; sourceTree = "<group>"; };
@@ -337,11 +338,10 @@
 				445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */,
 				44C675C62B034E17003A5BDE /* MenuProtocol.hpp */,
 				445D1E5E2AFE35AA00FA1C07 /* InputController.mm */,
-				4475AD302B11EEE4008DA122 /* StateMachine.hpp */,
+				4475AD302B11EEE4008DA122 /* Mapper.hpp */,
+				449738F62B44FA4300C7FAA9 /* MultiMatch.hpp */,
 				445D1E602AFE364900FA1C07 /* Transliterator.cpp */,
 				445D1E612AFE364900FA1C07 /* Transliterator.hpp */,
-				44C6757F2B021410003A5BDE /* TransliteratorRegistry.cpp */,
-				44C675802B021410003A5BDE /* TransliteratorRegistry.hpp */,
 				44C6757E2B01B4FD003A5BDE /* TableRU.hpp */,
 				44C675B92B02635A003A5BDE /* TableHE.hpp */,
 				442D25802B044EE000204800 /* MappingsWindowController.hpp */,
@@ -356,8 +356,10 @@
 		446DBB8F2B00BD53000B76EC /* tests */ = {
 			isa = PBXGroup;
 			children = (
-				4475AD312B11F97F008DA122 /* TestStateMachine.mm */,
+				4475AD312B11F97F008DA122 /* TestPrefixMapper.mm */,
+				44B947D02B469B4C00B68C7E /* TestMapper.mm */,
 				44C675832B02153F003A5BDE /* TestRu.mm */,
+				44B947CE2B4698E500B68C7E /* TestPerf.mm */,
 				442D25BD2B0B2D2C00204800 /* TestCommon.hpp */,
 				442D25BE2B0B2D6600204800 /* TestCommon.mm */,
 				4475AD332B131F80008DA122 /* Main.xctestplan */,
@@ -683,7 +685,6 @@
 			files = (
 				442D25CC2B0CC97100204800 /* Uninstall.mm in Sources */,
 				442D25AC2B08339F00204800 /* AboutWindowController.mm in Sources */,
-				44C675812B021410003A5BDE /* TransliteratorRegistry.cpp in Sources */,
 				445D1E532AFE2C6F00FA1C07 /* main.mm in Sources */,
 				442D25822B044EE000204800 /* MappingsWindowController.mm in Sources */,
 				445D1E622AFE364900FA1C07 /* Transliterator.cpp in Sources */,
@@ -696,9 +697,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44C675822B021410003A5BDE /* TransliteratorRegistry.cpp in Sources */,
-				4475AD322B11F97F008DA122 /* TestStateMachine.mm in Sources */,
+				4475AD322B11F97F008DA122 /* TestPrefixMapper.mm in Sources */,
 				442D25B42B0A2E1B00204800 /* Transliterator.cpp in Sources */,
+				44B947D12B469B4C00B68C7E /* TestMapper.mm in Sources */,
+				44B947CF2B4698E500B68C7E /* TestPerf.mm in Sources */,
 				44C675842B02153F003A5BDE /* TestRu.mm in Sources */,
 				442D25BF2B0B2D6600204800 /* TestCommon.mm in Sources */,
 			);

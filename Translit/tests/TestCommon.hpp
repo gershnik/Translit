@@ -11,7 +11,7 @@
 struct ResultPayload {
     ResultPayload() = default;
     ResultPayload(std::u16string_view all_,
-                  Transliterator::SizeType completedSize_,
+                  size_t completedSize_,
                   bool matchedSomething_):
         all(all_),
         completedSize(completedSize_),
@@ -19,7 +19,7 @@ struct ResultPayload {
     {}
     
     std::u16string_view all;
-    Transliterator::SizeType completedSize;
+    size_t completedSize;
     bool matchedSomething;
     
     friend bool operator==(const ResultPayload &, const ResultPayload &) = default;

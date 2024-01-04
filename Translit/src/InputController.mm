@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "Transliterator.hpp"
-#include "TransliteratorRegistry.hpp"
 #include "AppDelegate.hpp"
 #include "MenuProtocol.hpp"
 #include "MappingsWindowController.hpp"
@@ -14,7 +13,7 @@
 
 
 @interface InputController() {
-    Transliterator * _transliterator;
+    std::unique_ptr<Transliterator> _transliterator;
     MappingsWindowController * _mappingsController;
     NSString * _currentLanguage;
 }
@@ -29,8 +28,7 @@
     if (self)
     {
         _currentLanguage = @"ru";
-        _transliterator = &getTransliterator(_currentLanguage);
-        _transliterator->clear();
+        _transliterator = std::make_unique<Transliterator>(_currentLanguage);
     }
     
     return self;
@@ -98,8 +96,7 @@
             sys_string prefix = sys_string(NSBundle.mainBundle.bundleIdentifier) + S(".");
             _currentLanguage = val.remove_prefix(prefix).ns_str();
             os_log_info(OS_LOG_DEFAULT, "Setting language to %{public}@", _currentLanguage);
-            _transliterator = &getTransliterator(_currentLanguage);
-            _transliterator->clear();
+            _transliterator = std::make_unique<Transliterator>(_currentLanguage);
             if (_mappingsController)
                 _mappingsController.language = _currentLanguage;
         }

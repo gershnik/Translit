@@ -4,27 +4,26 @@
 #ifndef TRANSLIT_HEADER_TRANSLITERATOR_HPP_INCLUDED
 #define TRANSLIT_HEADER_TRANSLITERATOR_HPP_INCLUDED
 
-#include "StateMachine.hpp"
+#include "Mapper.hpp"
 
 class Transliterator {
-public:
-    using SizeType = unsigned short;
 private:
-    using StateMachineType = StateMachine<char16_t, SizeType>;
-public:
-    Transliterator() = default;
+    using Char = char16_t;
+    using String = std::basic_string<Char>;
+    using StringView = std::basic_string_view<Char>;
+    using Iterator = String::const_iterator;
+    using Range = std::ranges::subrange<Iterator>;
+    using MappingFunc = PrefixMappingResult<Char, Iterator> (const Range &);
     
-    template<std::ranges::range Range>
-    requires(std::is_convertible_v<std::tuple_element_t<0, std::ranges::range_value_t<Range>>, char16_t> &&
-             std::is_convertible_v<std::tuple_element_t<1, std::ranges::range_value_t<Range>>, const char16_t *>)
-    Transliterator(Range && range): m_sm(range)
+public:
+    Transliterator(const sys_string & name): m_mapper(getMapper(name))
     {}
     
     void append(const sys_string & str);
     
-    auto result() const -> std::u16string_view
+    auto result() const -> StringView
         { return m_translit; }
-    auto completedSize() const -> SizeType
+    auto completedSize() const -> size_t
         { return m_translitCompletedSize; }
     auto matchedSomething() const -> bool
         { return m_matchedSomething; }
@@ -44,12 +43,16 @@ public:
     }
     
 private:
-    StateMachineType m_sm;
+    static auto getMapper(const sys_string & name) -> MappingFunc *;
     
-    std::u16string m_prefix;
-    std::u16string m_translit;
-    SizeType m_translitCompletedSize = 0;
+private:
+    MappingFunc * m_mapper = nullPrefixMapper<Char, Range>;
+    
+    String m_prefix;
+    String m_translit;
+    size_t m_translitCompletedSize = 0;
     bool m_matchedSomething = false;
 };
+
 
 #endif

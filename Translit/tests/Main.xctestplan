@@ -9,17 +9,22 @@
     }
   ],
   "defaultOptions" : {
+    "addressSanitizer" : {
+      "detectStackUseAfterReturn" : true,
+      "enabled" : true
+    },
     "targetForVariableExpansion" : {
       "containerPath" : "container:Translit.xcodeproj",
       "identifier" : "445D1E462AFE2C6C00FA1C07",
       "name" : "Translit"
     },
-    "testTimeoutsEnabled" : true
+    "testTimeoutsEnabled" : true,
+    "undefinedBehaviorSanitizerEnabled" : true
   },
   "testTargets" : [
     {
       "skippedTests" : [
-        "TestStateMachine\/testPerformance"
+        "TestPerf"
       ],
       "target" : {
         "containerPath" : "container:Translit.xcodeproj",

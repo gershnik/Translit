@@ -1,7 +1,6 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "../src/TransliteratorRegistry.hpp"
 #include "TestCommon.hpp"
 
 
@@ -14,11 +13,11 @@ using namespace std::literals::string_view_literals;
 
 
 @implementation TestRu {
-    Transliterator * _tr;
+    std::unique_ptr<Transliterator> _tr;
 }
 
 - (void)setUp {
-    _tr = &getTransliterator(S("ru"));
+    _tr = std::make_unique<Transliterator>(S("ru"));
 }
 
 - (void)tearDown {

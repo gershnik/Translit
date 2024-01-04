@@ -2,21 +2,33 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "Transliterator.hpp"
+#include "TableRU.hpp"
+#include "TableHE.hpp"
 
+auto Transliterator::getMapper(const sys_string & name) -> MappingFunc * {
+    
+    static constexpr auto mapNameToMapper = makeMapper<sys_string::char_access,
+        nullPrefixMapper<Char, Range>,
+        Mapping{(MappingFunc *)g_mapperRu<Range>, u"ru"},
+        Mapping{(MappingFunc *)g_mapperHe<Range>, u"he"}
+    >();
+    
+    return mapNameToMapper(sys_string::char_access(name));
+}
 
 void Transliterator::append(const sys_string & str) {
     sys_string::char_access strAccess(str);
     m_prefix.append(strAccess.begin(), strAccess.end());
     m_translit.erase(m_translit.begin() + m_translitCompletedSize, m_translit.end());
     
-    const auto begin = m_prefix.begin();
-    const auto end = m_prefix.end();
+    const auto begin = m_prefix.cbegin();
+    const auto end = m_prefix.cend();
     auto completed = begin;
     for (auto start = begin ; start != end; ) {
-        auto res = m_sm.prefixMatch(start, end);
-        if (res.successful) {
+        auto res = m_mapper(std::ranges::subrange(start, end));
+        if (res.payload) {
             m_matchedSomething = true;
-            m_translit += res.payload;
+            m_translit += *res.payload;
             //if the result is not definite we don't know if a longer match is possible so bail out
             if (!res.definite)
                 break;
