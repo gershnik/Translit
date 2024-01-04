@@ -7,11 +7,17 @@
 #include <sys_string/sys_string.h>
 
 #include <memory>
+#include <array>
 #include <vector>
 #include <string>
 #include <map>
 #include <ranges>
+#include <algorithm>
 #include <utility>
+#include <type_traits>
+#include <concepts>
+#include <climits>
+#include <stdexcept>
 
 #include <signal.h>
 #include <stdio.h>

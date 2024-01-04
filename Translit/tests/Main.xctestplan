@@ -19,7 +19,7 @@
   "testTargets" : [
     {
       "skippedTests" : [
-        "TestStateMachine\/testPerformance"
+        "TestPerf"
       ],
       "target" : {
         "containerPath" : "container:Translit.xcodeproj",

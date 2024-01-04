@@ -4,102 +4,105 @@
 #ifndef TRANSLIT_HEADER_TABLE_RU_HPP_INCLUDED
 #define TRANSLIT_HEADER_TABLE_RU_HPP_INCLUDED
 
-constexpr std::pair<char16_t, const char16_t *> g_tableRu[] = {
-    {u'А', u"A"},  //1
-    {u'а', u"a"},
-    {u'Б', u"B"},  //2
-    {u'б', u"b"},
-    {u'В', u"V"},  //3
-    {u'в', u"v"},
-    {u'Г', u"G"},  //4
-    {u'г', u"g"},
-    {u'Д', u"D"},  //5
-    {u'д', u"d"},
-    {u'Е', u"E"},  //6
-    {u'е', u"e"},
-    {u'Ё', u"Ë"},  //7
-    {u'Ё', u"Ö"},
-    {u'Ё', u"JO"},
-    {u'Ё', u"Jo"},
-    {u'Ё', u"YO"},
-    {u'Ё', u"Yo"},
-    {u'ё', u"ë"},
-    {u'ё', u"ö"},
-    {u'ё', u"jo"},
-    {u'ё', u"yo"},
-    {u'Ж', u"ZH"}, //8
-    {u'Ж', u"Zh"},
-    {u'ж', u"zh"},
-    {u'З', u"Z"},  //9
-    {u'з', u"z"},
-    {u'И', u"I"},  //10
-    {u'и', u"i"},
-    {u'Й', u"J"},  //11
-    {u'й', u"j"},
-    {u'К', u"K"},  //12
-    {u'к', u"k"},
-    {u'Л', u"L"},  //13
-    {u'л', u"l"},
-    {u'М', u"M"},  //14
-    {u'м', u"m"},
-    {u'Н', u"N"},  //15
-    {u'н', u"n"},
-    {u'О', u"O"},  //16
-    {u'о', u"o"},
-    {u'П', u"P"},  //17
-    {u'п', u"p"},
-    {u'Р', u"R"},  //18
-    {u'р', u"r"},
-    {u'С', u"S"},  //19
-    {u'с', u"s"},
-    {u'Т', u"T"},  //20
-    {u'т', u"t"},
-    {u'У', u"U"},  //21
-    {u'у', u"u"},
-    {u'Ф', u"F"},  //22
-    {u'ф', u"f"},
-    {u'Х', u"H"},  //23
-    {u'Х', u"X"},
-    {u'х', u"h"},
-    {u'х', u"x"},
-    {u'Ц', u"C"},  //24
-    {u'ц', u"c"},
-    {u'Ч', u"CH"}, //25
-    {u'Ч', u"Ch"},
-    {u'ч', u"ch"},
-    {u'Ш', u"SH"}, //26
-    {u'Ш', u"Sh"},
-    {u'ш', u"sh"},
-    {u'Щ', u"W"},  //27
-    {u'Щ', u"SHH"},
-    {u'Щ', u"SHh"},
-    {u'Щ', u"Shh"},
-    {u'щ', u"w"},
-    {u'щ', u"shh"},
-    {u'Ъ', u"QQ"}, //28
-    {u'ъ', u"qq"},
-    {u'Ы', u"Y"},  //29
-    {u'ы', u"y"},
-    {u'Ь', u"Q"},  //30
-    {u'ь', u"q"},
-    {u'Э', u"Ä"},  //31
-    {u'Э', u"JE"},
-    {u'Э', u"Je"},
-    {u'э', u"je"},
-    {u'Ю', u"Ü"},  //32
-    {u'Ю', u"JU"},
-    {u'Ю', u"Ju"},
-    {u'Ю', u"YU"},
-    {u'Ю', u"Yu"},
-    {u'ю', u"ü"},
-    {u'ю', u"ju"},
-    {u'ю', u"yu"},
-    {u'Я', u"JA"}, //33
-    {u'Я', u"Ja"},
-    {u'Я', u"YA"},
-    {u'Я', u"Ya"},
-    {u'я', u"ja"},
-    {u'я', u"ya"}
-};
+#include "Mapper.hpp"
+
+template<std::ranges::forward_range Range>
+constexpr auto g_mapperRu = makePrefixMapper<Range,
+    Mapping{u'А', u"A"},  //1
+    Mapping{u'а', u"a"},
+    Mapping{u'Б', u"B"},  //2
+    Mapping{u'б', u"b"},
+    Mapping{u'В', u"V"},  //3
+    Mapping{u'в', u"v"},
+    Mapping{u'Г', u"G"},  //4
+    Mapping{u'г', u"g"},
+    Mapping{u'Д', u"D"},  //5
+    Mapping{u'д', u"d"},
+    Mapping{u'Е', u"E"},  //6
+    Mapping{u'е', u"e"},
+    Mapping{u'Ё', u"Ë"},  //7
+    Mapping{u'Ё', u"Ö"},
+    Mapping{u'Ё', u"JO"},
+    Mapping{u'Ё', u"Jo"},
+    Mapping{u'Ё', u"YO"},
+    Mapping{u'Ё', u"Yo"},
+    Mapping{u'ё', u"ë"},
+    Mapping{u'ё', u"ö"},
+    Mapping{u'ё', u"jo"},
+    Mapping{u'ё', u"yo"},
+    Mapping{u'Ж', u"ZH"}, //8
+    Mapping{u'Ж', u"Zh"},
+    Mapping{u'ж', u"zh"},
+    Mapping{u'З', u"Z"},  //9
+    Mapping{u'з', u"z"},
+    Mapping{u'И', u"I"},  //10
+    Mapping{u'и', u"i"},
+    Mapping{u'Й', u"J"},  //11
+    Mapping{u'й', u"j"},
+    Mapping{u'К', u"K"},  //12
+    Mapping{u'к', u"k"},
+    Mapping{u'Л', u"L"},  //13
+    Mapping{u'л', u"l"},
+    Mapping{u'М', u"M"},  //14
+    Mapping{u'м', u"m"},
+    Mapping{u'Н', u"N"},  //15
+    Mapping{u'н', u"n"},
+    Mapping{u'О', u"O"},  //16
+    Mapping{u'о', u"o"},
+    Mapping{u'П', u"P"},  //17
+    Mapping{u'п', u"p"},
+    Mapping{u'Р', u"R"},  //18
+    Mapping{u'р', u"r"},
+    Mapping{u'С', u"S"},  //19
+    Mapping{u'с', u"s"},
+    Mapping{u'Т', u"T"},  //20
+    Mapping{u'т', u"t"},
+    Mapping{u'У', u"U"},  //21
+    Mapping{u'у', u"u"},
+    Mapping{u'Ф', u"F"},  //22
+    Mapping{u'ф', u"f"},
+    Mapping{u'Х', u"H"},  //23
+    Mapping{u'Х', u"X"},
+    Mapping{u'х', u"h"},
+    Mapping{u'х', u"x"},
+    Mapping{u'Ц', u"C"},  //24
+    Mapping{u'ц', u"c"},
+    Mapping{u'Ч', u"CH"}, //25
+    Mapping{u'Ч', u"Ch"},
+    Mapping{u'ч', u"ch"},
+    Mapping{u'Ш', u"SH"}, //26
+    Mapping{u'Ш', u"Sh"},
+    Mapping{u'ш', u"sh"},
+    Mapping{u'Щ', u"W"},  //27
+    Mapping{u'Щ', u"SHH"},
+    Mapping{u'Щ', u"SHh"},
+    Mapping{u'Щ', u"Shh"},
+    Mapping{u'щ', u"w"},
+    Mapping{u'щ', u"shh"},
+    Mapping{u'Ъ', u"QQ"}, //28
+    Mapping{u'ъ', u"qq"},
+    Mapping{u'Ы', u"Y"},  //29
+    Mapping{u'ы', u"y"},
+    Mapping{u'Ь', u"Q"},  //30
+    Mapping{u'ь', u"q"},
+    Mapping{u'Э', u"Ä"},  //31
+    Mapping{u'Э', u"JE"},
+    Mapping{u'Э', u"Je"},
+    Mapping{u'э', u"je"},
+    Mapping{u'Ю', u"Ü"},  //32
+    Mapping{u'Ю', u"JU"},
+    Mapping{u'Ю', u"Ju"},
+    Mapping{u'Ю', u"YU"},
+    Mapping{u'Ю', u"Yu"},
+    Mapping{u'ю', u"ü"},
+    Mapping{u'ю', u"ju"},
+    Mapping{u'ю', u"yu"},
+    Mapping{u'Я', u"JA"}, //33
+    Mapping{u'Я', u"Ja"},
+    Mapping{u'Я', u"YA"},
+    Mapping{u'Я', u"Ya"},
+    Mapping{u'я', u"ja"},
+    Mapping{u'я', u"ya"}
+>();
 
 #endif
