@@ -16,6 +16,8 @@
 #include <utility>
 #include <type_traits>
 #include <concepts>
+#include <climits>
+#include <stdexcept>
 
 #include <signal.h>
 #include <stdio.h>

@@ -9,7 +9,10 @@
 #include <ranges>
 #include <algorithm>
 #include <array>
+#include <vector>
 #include <string_view>
+#include <climits>
+#include <stdexcept>
 
 template<class Char, size_t N>
 struct CTString {
@@ -42,7 +45,7 @@ template<CTString First, CTString... Rest>
 constexpr bool SameCharType = (std::is_same_v<typename decltype(First)::char_type, typename decltype(Rest)::char_type> && ...);
 
 template<CTString First>
-using CharTypeOf = decltype(First)::char_type;
+using CharTypeOf = typename decltype(First)::char_type;
 
 template<class T, size_t MaxSize>
 class StaticVector {
@@ -345,6 +348,7 @@ constexpr auto match(const Matcher & matcher, Range && r) noexcept -> size_t {
 
     #include <iostream>
     #include <iomanip>
+    #include <string>
 
     template<class Char, Impl::Sizes Sizes>
     void debugPrint(const MultiMatch<Char, Sizes> & val) {
