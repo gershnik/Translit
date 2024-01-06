@@ -1,11 +1,19 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#import <XCTest/XCTest.h>
+#include "TestCommon.hpp"
 
 #include "../src/Mapper.hpp"
 
 using namespace std::literals;
+
+#define XCTAssertPrefixMap(mapper, text, exp_payload, exp_definite, exp_next) ({ \
+    auto str = text; \
+    auto res = mapper(str); \
+    XCTAssertCppEqual(res.payload, (exp_payload)); \
+    XCTAssertCppEqual(res.definite, (exp_definite)); \
+    XCTAssertCppEqual(res.next - str.begin(), (exp_next)); \
+})
 
 @interface TestPrefixMapper : XCTestCase
 
@@ -23,111 +31,32 @@ using namespace std::literals;
 
 - (void)testEmpty {
     auto mapper = nullPrefixMapper<char16_t, std::u16string>;
-    {
-        auto str = u""s;
-        auto res = mapper(str);
-        XCTAssertEqual(res.payload, std::nullopt);
-        XCTAssertEqual(res.definite, true);
-        XCTAssertEqual(res.next, str.begin());
-    }
-    {
-        auto str = u"a"s;
-        auto res = mapper(str);
-        XCTAssertEqual(res.payload, std::nullopt);
-        XCTAssertEqual(res.definite, true);
-        XCTAssertEqual(res.next, str.begin());
-    }
+    XCTAssertPrefixMap(mapper, u""s, std::nullopt, true, 0);
+    XCTAssertPrefixMap(mapper, u"a"s, std::nullopt, true, 0);
 }
 
 - (void)testOnlyEmptyString {
     auto mapper = makePrefixMapper<std::u16string, Mapping{0, u""}>();
-    {
-        auto str = u""s;
-        auto res = mapper(str);
-        XCTAssertEqual(res.payload, 0);
-        XCTAssertEqual(res.definite, true);
-        XCTAssertEqual(res.next, str.begin());
-    }
-    {
-        auto str = u"a"s;
-        auto res = mapper(str);
-        XCTAssertEqual(res.payload, 0);
-        XCTAssertEqual(res.definite, true);
-        XCTAssertEqual(res.next, str.begin());
-    }
+    XCTAssertPrefixMap(mapper, u""s, 0, true, 0);
+    XCTAssertPrefixMap(mapper, u"a"s, 0, true, 0);
 }
 
 - (void)testDisjointStrings {
     {
-        
         auto mapper = makePrefixMapper<std::u16string, Mapping{0, u"b"}, Mapping{1, u"c"}, Mapping{2, u"a"}>();
-        {
-            auto str = u""s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, std::nullopt);
-            XCTAssertEqual(res.definite, false);
-            XCTAssertEqual(res.next, str.begin());
-        }
-        {
-            auto str = u"a"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, 2);
-            XCTAssertEqual(res.definite, true);
-            XCTAssertEqual(res.next, str.end());
-        }
-        {
-            auto str = u"b"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, 0);
-            XCTAssertEqual(res.definite, true);
-            XCTAssertEqual(res.next, str.end());
-        }
-        {
-            auto str = u"c"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, 1);
-            XCTAssertEqual(res.definite, true);
-            XCTAssertEqual(res.next, str.end());
-        }
-        {
-            auto str = u" "s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, std::nullopt);
-            XCTAssertEqual(res.definite, true);
-            XCTAssertEqual(res.next, str.begin());
-        }
+        XCTAssertPrefixMap(mapper, u""s, std::nullopt, false, 0);
+        XCTAssertPrefixMap(mapper, u"a"s, 2, true, 1);
+        XCTAssertPrefixMap(mapper, u"b"s, 0, true, 1);
+        XCTAssertPrefixMap(mapper, u"c"s, 1, true, 1);
+        XCTAssertPrefixMap(mapper, u" "s, std::nullopt, true, 0);
     }
     
     {
         auto mapper = makePrefixMapper<std::u16string, Mapping{0, u"ef"}, Mapping{1, u"cd"}, Mapping{2, u"ab"}>();
-        {
-            auto str = u""s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, std::nullopt);
-            XCTAssertEqual(res.definite, false);
-            XCTAssertEqual(res.next, str.begin());
-        }
-        {
-            auto str = u"a"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, std::nullopt);
-            XCTAssertEqual(res.definite, false);
-            XCTAssertEqual(res.next, str.begin());
-        }
-        {
-            auto str = u"b"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, std::nullopt);
-            XCTAssertEqual(res.definite, true);
-            XCTAssertEqual(res.next, str.begin());
-        }
-        {
-            auto str = u"cd"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, 1);
-            XCTAssertEqual(res.definite, true);
-            XCTAssertEqual(res.next, str.end());
-        }
+        XCTAssertPrefixMap(mapper, u""s, std::nullopt, false, 0);
+        XCTAssertPrefixMap(mapper, u"a"s, std::nullopt, false, 0);
+        XCTAssertPrefixMap(mapper, u"b"s, std::nullopt, true, 0);
+        XCTAssertPrefixMap(mapper, u"cd"s, 1, true, 2);
     }
     
 }
@@ -135,89 +64,27 @@ using namespace std::literals;
 - (void)testOverlappingStrings {
     {
         auto mapper = makePrefixMapper<std::u16string, Mapping{0, u"b"}, Mapping{1, u"bcd"}>();
-        {
-            auto str = u"b"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, 0);
-            XCTAssertEqual(res.definite, false);
-            XCTAssertEqual(res.next, str.begin() + 1);
-        }
-        {
-            auto str = u"bc"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, 0);
-            XCTAssertEqual(res.definite, false);
-            XCTAssertEqual(res.next, str.begin() + 1);
-        }
-        {
-            auto str = u"bcd"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, 1);
-            XCTAssertEqual(res.definite, true);
-            XCTAssertEqual(res.next, str.begin() + 3);
-        }
+        XCTAssertPrefixMap(mapper, u"b"s, 0, false, 1);
+        XCTAssertPrefixMap(mapper, u"bc"s, 0, false, 1);
+        XCTAssertPrefixMap(mapper, u"bcd"s, 1, true, 3);
     }
     {
         auto mapper = makePrefixMapper<std::u16string, Mapping{0, u"bc"}, Mapping{1, u"bd"}, Mapping{2, u"bdd"}>();
-        {
-            auto str = u"b"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, std::nullopt);
-            XCTAssertEqual(res.definite, false);
-            XCTAssertEqual(res.next, str.begin());
-        }
-        {
-            auto str = u"bc"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, 0);
-            XCTAssertEqual(res.definite, true);
-            XCTAssertEqual(res.next, str.begin() + 2);
-        }
-        {
-            auto str = u"bd"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, 1);
-            XCTAssertEqual(res.definite, false);
-            XCTAssertEqual(res.next, str.begin() + 2);
-        }
-        {
-            auto str = u"bdd"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, 2);
-            XCTAssertEqual(res.definite, true);
-            XCTAssertEqual(res.next, str.begin() + 3);
-        }
+        XCTAssertPrefixMap(mapper, u"b"s, std::nullopt, false, 0);
+        XCTAssertPrefixMap(mapper, u"bc"s, 0, true, 2);
+        XCTAssertPrefixMap(mapper, u"bd"s, 1, false, 2);
+        XCTAssertPrefixMap(mapper, u"bdd"s, 2, true, 3);
     }
     {
         auto mapper = makePrefixMapper<std::string, Mapping{0, "bd"}, Mapping{1, "bddq"}>();
-        {
-            auto str = "bddc"s;
-            auto res = mapper(str);
-            XCTAssertEqual(res.payload, 0);
-            XCTAssertEqual(res.definite, true);
-            XCTAssertEqual(res.next, str.begin() + 2);
-        }
-
+        XCTAssertPrefixMap(mapper, "bddc"s, 0, true, 2);
     }
 }
 
 - (void)testRepeatedStrings {
     constexpr auto mapper = makePrefixMapper<std::string_view, Mapping{0, "ab"}, Mapping{1, "cd"}, Mapping{2, "ab"}>();
-    
-    {
-        constexpr auto str = "ab"sv;
-        auto res = mapper(str);
-        XCTAssertEqual(res.payload, 2);
-        XCTAssertEqual(res.definite, true);
-        XCTAssertEqual(res.next, str.end());
-    }
-    {
-        constexpr auto str = "cd"sv;
-        auto res = mapper(str);
-        XCTAssertEqual(res.payload, 1);
-        XCTAssertEqual(res.definite, true);
-        XCTAssertEqual(res.next, str.end());
-    }
+    XCTAssertPrefixMap(mapper, "ab"sv, 2, true, 2);
+    XCTAssertPrefixMap(mapper, "cd"sv, 1, true, 2);
 }
 
 

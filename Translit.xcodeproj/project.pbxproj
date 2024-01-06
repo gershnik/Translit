@@ -30,7 +30,6 @@
 		442D25AE2B088B5700204800 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 442D25AD2B088B5700204800 /* about.html */; };
 		442D25B22B089F2F00204800 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442D25B12B089F2F00204800 /* WebKit.framework */; };
 		442D25B42B0A2E1B00204800 /* Transliterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445D1E602AFE364900FA1C07 /* Transliterator.cpp */; };
-		442D25BF2B0B2D6600204800 /* TestCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 442D25BE2B0B2D6600204800 /* TestCommon.mm */; };
 		442D25CA2B0B93D500204800 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 442D25C82B0B93D500204800 /* InfoPlist.strings */; };
 		442D25CC2B0CC97100204800 /* Uninstall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 442D25CB2B0CC97100204800 /* Uninstall.mm */; };
 		445D1E4C2AFE2C6C00FA1C07 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */; };
@@ -109,7 +108,6 @@
 		442D25BB2B0ADC3A00204800 /* create-release */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = "create-release"; sourceTree = "<group>"; };
 		442D25BC2B0ADCB200204800 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		442D25BD2B0B2D2C00204800 /* TestCommon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestCommon.hpp; sourceTree = "<group>"; };
-		442D25BE2B0B2D6600204800 /* TestCommon.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestCommon.mm; sourceTree = "<group>"; };
 		442D25C02B0B308000204800 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		442D25C12B0B8C6C00204800 /* format-file */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = "format-file"; sourceTree = "<group>"; };
 		442D25C62B0B93A500204800 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -361,7 +359,6 @@
 				44C675832B02153F003A5BDE /* TestRu.mm */,
 				44B947CE2B4698E500B68C7E /* TestPerf.mm */,
 				442D25BD2B0B2D2C00204800 /* TestCommon.hpp */,
-				442D25BE2B0B2D6600204800 /* TestCommon.mm */,
 				4475AD332B131F80008DA122 /* Main.xctestplan */,
 				4475AD342B132242008DA122 /* Perf.xctestplan */,
 			);
@@ -702,7 +699,6 @@
 				44B947D12B469B4C00B68C7E /* TestMapper.mm in Sources */,
 				44B947CF2B4698E500B68C7E /* TestPerf.mm in Sources */,
 				44C675842B02153F003A5BDE /* TestRu.mm in Sources */,
-				442D25BF2B0B2D6600204800 /* TestCommon.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
