@@ -173,6 +173,7 @@
 		44C675C72B03515B003A5BDE /* mappings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mappings.xib; sourceTree = "<group>"; };
 		44C675CA2B03E176003A5BDE /* ru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ru.png; sourceTree = "<group>"; };
 		44C675CC2B040B87003A5BDE /* he.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = he.png; sourceTree = "<group>"; };
+		44E971362B4D37D50032961E /* objc-helpers-Exports.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "objc-helpers-Exports.xcconfig"; sourceTree = "<group>"; };
 		6D87255C09E91CF960D5DC68 /* libPods-Translit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Translit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -216,6 +217,7 @@
 				442D258F2B05FB9C00204800 /* Translit.xcconfig */,
 				442D25922B06016600204800 /* TranslitTests.xcconfig */,
 				442D25902B05FEFB00204800 /* sys_string-Exports.xcconfig */,
+				44E971362B4D37D50032961E /* objc-helpers-Exports.xcconfig */,
 				442D25912B0600BD00204800 /* sys_string.xcconfig */,
 				442D25A72B06349800204800 /* Installer.xcconfig */,
 			);
@@ -791,7 +793,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 442D25922B06016600204800 /* TranslitTests.xcconfig */;
 			buildSettings = {
-				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};

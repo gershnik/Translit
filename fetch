@@ -4,8 +4,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import sys
-import tarfile
 import shutil
+import subprocess
 from pathlib import Path
 from urllib.request import urlretrieve
 
@@ -13,8 +13,22 @@ components = {
     'sys_string': {
         'ver': '2.13',
         'url': 'https://github.com/gershnik/sys_string/releases/download/v{ver}/sys_string-{ver}.tar.gz',
+        'unpacker': {
+            'type': 'tar',
+            'subst': r'#sys_string/##'
+        },
         'dir': 'sys_string',
         'verFile': 'VERSION'
+    },
+    'objc-helpers': {
+        'ver': '2.3',
+        'url': 'https://github.com/gershnik/objc-helpers/releases/download/v{ver}/objc-helpers-{ver}.tar.gz',
+        'unpacker': {
+            'type': 'tar'
+        },
+        'dir': 'objc-helpers',
+        'verFile': 'VERSION',
+        'generateVerFile': True
     }
 }
 
@@ -33,8 +47,7 @@ def getVersionFromFile(path):
         existingVer = verToList(path.read_text().rstrip())
     return existingVer
 
-
-def fetchUrl(name, component):
+def checkUpToDate(name, component):
     directory = externalDir / component['dir']
     upToDate = False
     
@@ -47,25 +60,63 @@ def fetchUrl(name, component):
     else:
         print(f"Dont know how to detect version of {name}", file=sys.stderr)
         sys.exit(1)
-
+        
     if not upToDate:
         print(f'{name} not up to date, required {requiredVer}, existing {existingVer}')
-        shutil.rmtree(directory, ignore_errors=True)
-        if directory.exists():
-            print(f'Unable to remove {name} directory', file=sys.stderr);
-            sys.exit(1)
-        directory.mkdir()
-        url = component['url'].format(ver = component['ver'])
-        path, headers = urlretrieve(url)
-        try:
-            with tarfile.open(path, "r") as tar:
-                tar.extractall(externalDir)
-            print(f'Installed {name}')
-        finally:
-            Path(path).unlink()
     else:
         print(f'{name} is up to date')
+    return upToDate
+    
+def untar(name, component, archive):
+    directory = externalDir / component['dir']
+    if archive.suffix in ('.tgz', '.gz'):
+        comp = 'z'
+    elif archive.suffix in ('.tbz', '.bz'):
+        comp = 'j'
+    else:
+        comp = ''
+    
+    command = ['/usr/bin/tar', '-C', directory, f'-x{comp}f', archive]
+    subst = component['unpacker'].get('subst')
+    if not subst is None:
+        command += ['-s', subst]
+    subprocess.run(command, check=True)
 
+def fetchUrl(name, component, unpacker):
+    directory = externalDir / component['dir']
+    
+    shutil.rmtree(directory, ignore_errors=True)
+    if directory.exists():
+        print(f'Unable to remove {name} directory', file=sys.stderr);
+        sys.exit(1)
+    directory.mkdir()
+    url = component['url'].format(ver = component['ver'])
+    path, headers = urlretrieve(url)
+    try:
+        unpacker(name, component, Path(path))
+        print(f'Installed {name}')
+    finally:
+        Path(path).unlink()
+    generateVerFile = component.get('generateVerFile', False)
+    if generateVerFile:
+        verFile = directory / component['verFile']
+        verFile.write_text(component['ver'])
+
+
+def getFetcher(name, component):
+    if component.get('url'):
+        return fetchUrl
+    else:
+        print(f"Dont know how to download {name}", file=sys.stderr)
+        sys.exit(1)
+        
+def getUnpacker(name, component):
+    type = component['unpacker']['type']
+    if type == 'tar':
+        return untar
+    else:
+        print(f"Dont know how to unpack {name}", file=sys.stderr)
+        sys.exit(1)
 
 localXcconfig = mydir / 'Local.xcconfig'
 
@@ -84,5 +135,8 @@ if not localXcconfig.exists():
 '''.lstrip())
 
 for name, component in components.items():
-    if component.get('url'):
-        fetchUrl('sys_string', components['sys_string'])
+    if checkUpToDate(name, component):
+        continue
+    fetcher = getFetcher(name, component)
+    unpacker = getUnpacker(name, component)
+    fetcher(name, component, unpacker)
