@@ -9,6 +9,9 @@
 
 @property (nonatomic, readonly) NSMenu * menu;
 
+-(void) displayMappingsForLanguage:(NSString *)language;
+-(void) setMappingsLanguage:(NSString *)language;
+
 @end
 
 #endif

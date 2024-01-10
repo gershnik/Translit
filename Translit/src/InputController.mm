@@ -4,7 +4,7 @@
 #include "Transliterator.hpp"
 #include "AppDelegate.hpp"
 #include "MenuProtocol.hpp"
-#include "MappingsWindowController.hpp"
+
 
 
 @interface InputController : IMKInputController<MenuProtocol>
@@ -14,7 +14,6 @@
 
 @interface InputController() {
     std::unique_ptr<Transliterator> _transliterator;
-    MappingsWindowController * _mappingsController;
     NSString * _currentLanguage;
 }
 
@@ -70,11 +69,8 @@
 //MenuProtocol
 
 -(void) displayMappings:(id)sender {
-    if (!_mappingsController)
-        _mappingsController = [[MappingsWindowController alloc] initWithWindowNibName:@"mappings"];
-    _mappingsController.language = _currentLanguage;
-    [_mappingsController showWindow:self];
-    [_mappingsController.window orderFrontRegardless];
+    auto del = (AppDelegate *)NSApp.delegate;
+    [del displayMappingsForLanguage:_currentLanguage];
 }
 
 
@@ -97,16 +93,25 @@
             _currentLanguage = val.remove_prefix(prefix).ns_str();
             os_log_info(OS_LOG_DEFAULT, "Setting language to %{public}@", _currentLanguage);
             _transliterator = std::make_unique<Transliterator>(_currentLanguage);
-            if (_mappingsController)
-                _mappingsController.language = _currentLanguage;
+            auto del = (AppDelegate *)NSApp.delegate;
+            [del setMappingsLanguage:_currentLanguage];
         }
     }
     [super setValue:value forTag:tag client:sender];
 }
 
-//-(void) deactivateServer:(id)sender {
-//    os_log_debug(OS_LOG_DEFAULT, "Deactivate");
-//}
+- (void)activateServer:(id)sender {
+    [super activateServer:sender];
+    
+    auto del = (AppDelegate *)NSApp.delegate;
+    [del setMappingsLanguage:_currentLanguage];
+}
+
+-(void) deactivateServer:(id)sender {
+    auto del = (AppDelegate *)NSApp.delegate;
+    [del setMappingsLanguage:nil];
+    [super deactivateServer:sender];
+}
 
 //Private
 

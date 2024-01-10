@@ -3,10 +3,12 @@
 
 #import "AppDelegate.hpp"
 #import "MenuProtocol.hpp"
+#include "MappingsWindowController.hpp"
 
 @interface AppDelegate () {
     NSWindow * _window;
     IBOutlet NSMenu * _menu;
+    MappingsWindowController * _mappingsController;
 }
 
 @end
@@ -61,10 +63,25 @@ static void bundleWatchCallback(ConstFSEventStreamRef streamRef,
     return _menu;
 }
 
+-(void) displayMappingsForLanguage:(NSString *)language {
+    if (!_mappingsController) {
+        _mappingsController = [[MappingsWindowController alloc] initWithWindowNibName:@"mappings"];
+        [_mappingsController.window setLevel:NSMainMenuWindowLevel];
+    }
+    _mappingsController.language = language;
+    [_mappingsController showWindow:self];
+    [_mappingsController.window orderFrontRegardless];
+}
 
-//- (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app {
-//    return YES;
-//}
+-(void) setMappingsLanguage:(NSString *)language {
+    if (_mappingsController)
+        _mappingsController.language = language;
+}
+
+
+- (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app {
+    return YES;
+}
 
 
 @end
