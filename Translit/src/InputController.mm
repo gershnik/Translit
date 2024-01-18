@@ -88,9 +88,10 @@
     
     switch(tag) {
         case langTag: {
-            sys_string val(value);
-            sys_string prefix = sys_string(NSBundle.mainBundle.bundleIdentifier) + S(".");
-            _currentLanguage = val.remove_prefix(prefix).ns_str();
+            auto val = (NSString*)value;
+            auto prefix = [NSBundle.mainBundle.bundleIdentifier stringByAppendingString:@"."];
+            _currentLanguage = [val stringByReplacingOccurrencesOfString:prefix withString:@"" 
+                                                                 options:NSAnchoredSearch range:{0, val.length}];
             os_log_info(OS_LOG_DEFAULT, "Setting language to %{public}@", _currentLanguage);
             _transliterator = std::make_unique<Transliterator>(_currentLanguage);
             auto del = (AppDelegate *)NSApp.delegate;
@@ -118,11 +119,11 @@
 -(void) commitAllToSender:(id<IMKTextInput>)sender {
     
     if (auto all = _transliterator->result(); !all.empty()) {
-        sys_string text(all);
+        auto text = makeNSString(all);
 #ifndef NDEBUG
-        os_log_debug(OS_LOG_DEFAULT, "Sending completed: %{public}@", text.ns_str());
+        os_log_debug(OS_LOG_DEFAULT, "Sending completed: %{public}@", text);
 #endif
-        [sender insertText:text.ns_str() replacementRange:NSRange{NSNotFound, NSNotFound}];
+        [sender insertText:text replacementRange:NSRange{NSNotFound, NSNotFound}];
         _transliterator->clear();
     }
 }
@@ -141,22 +142,22 @@
     assert(!_transliterator->result().empty());
     
     if (auto completedSize = _transliterator->completedSize()) {
-        sys_string text(_transliterator->result().data(), completedSize);
+        auto text = makeNSString(_transliterator->result().substr(0, completedSize));
 #ifndef NDEBUG
-        os_log_debug(OS_LOG_DEFAULT, "Sending completed: '%{public}@'", text.ns_str());
+        os_log_debug(OS_LOG_DEFAULT, "Sending completed: '%{public}@'", text);
 #endif
-        [sender insertText:text.ns_str() replacementRange:NSRange{NSNotFound, NSNotFound}];
+        [sender insertText:text replacementRange:NSRange{NSNotFound, NSNotFound}];
         _transliterator->clearCompleted();
     }
     //at this point the only remaining thing in impl is incomplete tail
     if (auto incomplete = _transliterator->result(); !incomplete.empty()) {
-        sys_string text(incomplete);
+        auto text = makeNSString(incomplete);
 #ifndef NDEBUG
-        os_log_debug(OS_LOG_DEFAULT, "Sending incomplete: '%{public}@'", text.ns_str());
+        os_log_debug(OS_LOG_DEFAULT, "Sending incomplete: '%{public}@'", text);
 #endif
-        [sender setMarkedText:text.ns_str()
-               selectionRange:NSRange{0, NSUInteger(text.storage_size())}
-             replacementRange:NSRange{NSNotFound, NSNotFound}];
+        [sender setMarkedText:text
+               selectionRange:{0, text.length}
+             replacementRange:{NSNotFound, NSNotFound}];
     }
     return YES;
 }

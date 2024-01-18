@@ -17,7 +17,7 @@ using namespace std::literals::string_view_literals;
 }
 
 - (void)setUp {
-    _tr = std::make_unique<Transliterator>(S("ru"));
+    _tr = std::make_unique<Transliterator>(NSStringCharAccess(@"ru"));
 }
 
 - (void)tearDown {
@@ -25,47 +25,47 @@ using namespace std::literals::string_view_literals;
 }
 
 - (void)testUnmapped {
-    _tr->append(S(" "));
+    _tr->append(NSStringCharAccess(@" "));
     XCTAssertTranslit(*_tr, u" "sv, 1, false);
 }
 
 - (void)testSingle {
     
-    _tr->append(S("a"));
+    _tr->append(NSStringCharAccess(@"a"));
     XCTAssertTranslit(*_tr, u"а"sv, 1, true);
-    _tr->append(S("b"));
+    _tr->append(NSStringCharAccess(@"b"));
     XCTAssertTranslit(*_tr, u"аб"sv, 2, true);
 }
 
 - (void)testDoubleInterrupted {
-    _tr->append(S("z"));
+    _tr->append(NSStringCharAccess(@"z"));
     XCTAssertTranslit(*_tr, u"з"sv, 0, true);
-    _tr->append(S("."));
+    _tr->append(NSStringCharAccess(@"."));
     XCTAssertTranslit(*_tr, u"з."sv, 2, true);
 }
 
 - (void)testDouble {
-    _tr->append(S("z"));
+    _tr->append(NSStringCharAccess(@"z"));
     XCTAssertTranslit(*_tr, u"з"sv, 0, true);
-    _tr->append(S("h"));
+    _tr->append(NSStringCharAccess(@"h"));
     XCTAssertTranslit(*_tr, u"ж"sv, 1, true);
 }
 
 - (void)testTripleInterrupted {
-    _tr->append(S("s"));
+    _tr->append(NSStringCharAccess(@"s"));
     XCTAssertTranslit(*_tr, u"с"sv, 0, true);
-    _tr->append(S("h"));
+    _tr->append(NSStringCharAccess(@"h"));
     XCTAssertTranslit(*_tr, u"ш"sv, 0, true);
-    _tr->append(S(" "));
+    _tr->append(NSStringCharAccess(@" "));
     XCTAssertTranslit(*_tr, u"ш "sv, 2, true);
 }
 
 - (void)testTriple {
-    _tr->append(S("s"));
+    _tr->append(NSStringCharAccess(@"s"));
     XCTAssertTranslit(*_tr, u"с"sv, 0, true);
-    _tr->append(S("h"));
+    _tr->append(NSStringCharAccess(@"h"));
     XCTAssertTranslit(*_tr, u"ш"sv, 0, true);
-    _tr->append(S("h"));
+    _tr->append(NSStringCharAccess(@"h"));
     XCTAssertTranslit(*_tr, u"щ"sv, 1, true);
 }
 

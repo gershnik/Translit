@@ -16,10 +16,10 @@ private:
     using MappingFunc = PrefixMappingResult<Char, Iterator> (const Range &);
     
 public:
-    Transliterator(const sys_string & name): m_mapper(getMapper(name))
+    Transliterator(const NSStringCharAccess & name): m_mapper(getMapper(name))
     {}
     
-    void append(const sys_string & str);
+    void append(const NSStringCharAccess & str);
     
     auto result() const -> StringView
         { return m_translit; }
@@ -43,7 +43,7 @@ public:
     }
     
 private:
-    static auto getMapper(const sys_string & name) -> MappingFunc *;
+    static auto getMapper(const NSStringCharAccess & name) -> MappingFunc *;
     
 private:
     MappingFunc * m_mapper = nullPrefixMapper<Char, Range>;

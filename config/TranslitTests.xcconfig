@@ -4,7 +4,6 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-#include "sys_string-Exports.xcconfig"
 #include "objc-helpers-Exports.xcconfig"
 
 PRODUCT_NAME = $(TARGET_NAME)
@@ -12,7 +11,7 @@ ONLY_ACTIVE_ARCH = YES
 PRODUCT_BUNDLE_IDENTIFIER = $(ROOT_BUNDLE_IDENTIFIER).tests
 GENERATE_INFOPLIST_FILE = YES
 SWIFT_EMIT_LOC_STRINGS = NO
-HEADER_SEARCH_PATHS = $(inherited) $(SYS_STRING_HEADER_SEARCH_PATHS) $(OBJC_HELPERS_HEADER_SEARCH_PATHS)
+HEADER_SEARCH_PATHS = $(inherited) $(OBJC_HELPERS_HEADER_SEARCH_PATHS)
 GCC_PREFIX_HEADER = Translit/src/pch.hpp
 GCC_PREPROCESSOR_DEFINITIONS = TRANSLIT_TESTING=1 $(inherited)
 //TEST_HOST = $(BUILT_PRODUCTS_DIR)/Translit.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Translit

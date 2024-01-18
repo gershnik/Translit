@@ -39,16 +39,21 @@
                                                                       error:nil];
     auto parent = NSBundle.mainBundle.bundleURL.URLByStandardizingPath.URLByDeletingLastPathComponent;
     
-    sys_string dir;
+    NSString * dir;
     if ([userInputMethods isEqualTo:parent]) {
-        dir = sys_string(userInputMethods.fileSystemRepresentation);
+        dir = @( userInputMethods.fileSystemRepresentation );
     } else if ([systemInputMethods isEqualTo:parent]) {
-        dir = sys_string(systemInputMethods.fileSystemRepresentation);
+        dir = @( systemInputMethods.fileSystemRepresentation );
     }
     
-    if (!dir.empty()) {
-        sys_string subPath = sys_string(bundle.executablePath).remove_prefix(sys_string(dir + S("/")));
-        auto command = [NSString stringWithFormat:@"cd \"%@\"<br/>%@ --uninstall", dir.ns_str(), subPath.ns_str()];
+    if (dir.length > 0) {
+        auto prefix = [dir stringByAppendingString:@"/"];
+        auto exePath = bundle.executablePath;
+        auto subPath = [exePath stringByReplacingOccurrencesOfString:prefix
+                                                          withString:@""
+                                                             options:NSAnchoredSearch
+                                                               range:{0, exePath.length}];
+        auto command = [NSString stringWithFormat:@"cd \"%@\"<br/>%@ --uninstall", dir, subPath];
         html = [html stringByReplacingOccurrencesOfString:@"%COMMAND_VISIBILITY%" withString:@"visible"];
         html = [html stringByReplacingOccurrencesOfString:@"%COMMAND%" withString:command];
     } else {

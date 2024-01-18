@@ -30,8 +30,8 @@
     if (!_text)
         return;
     if (_language) {
-        sys_string name = S("mapping-") + sys_string(_language);
-        auto url = [NSBundle.mainBundle URLForResource:name.ns_str() withExtension:@"pdf"];
+        auto name = [@"mapping-" stringByAppendingString:_language];
+        auto url = [NSBundle.mainBundle URLForResource:name withExtension:@"pdf"];
         auto * image = [[NSImage alloc] initWithContentsOfURL:url];
         _text.image = image;
     } else {

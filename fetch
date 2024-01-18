@@ -10,18 +10,8 @@ from pathlib import Path
 from urllib.request import urlretrieve
 
 components = {
-    'sys_string': {
-        'ver': '2.13',
-        'url': 'https://github.com/gershnik/sys_string/releases/download/v{ver}/sys_string-{ver}.tar.gz',
-        'unpacker': {
-            'type': 'tar',
-            'subst': r'#sys_string/##'
-        },
-        'dir': 'sys_string',
-        'verFile': 'VERSION'
-    },
     'objc-helpers': {
-        'ver': '2.3',
+        'ver': '3.0',
         'url': 'https://github.com/gershnik/objc-helpers/releases/download/v{ver}/objc-helpers-{ver}.tar.gz',
         'unpacker': {
             'type': 'tar'

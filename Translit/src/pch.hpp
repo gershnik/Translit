@@ -4,7 +4,7 @@
 #ifndef TRANSLIT_HEADER_PCH_HPP_INCLUDED
 #define TRANSLIT_HEADER_PCH_HPP_INCLUDED
 
-#include <sys_string/sys_string.h>
+#include <objc-helpers/NSStringUtil.h>
 
 #include <memory>
 #include <array>
@@ -32,7 +32,6 @@
 
 #import <os/log.h>
 
-using namespace sysstr;
 
 #endif
 

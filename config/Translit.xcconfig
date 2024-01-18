@@ -4,7 +4,7 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-#include "sys_string-Exports.xcconfig"
+#include "objc-helpers-Exports.xcconfig"
 
 
 PRODUCT_BUNDLE_IDENTIFIER = $(ROOT_BUNDLE_IDENTIFIER)
@@ -18,7 +18,7 @@ ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
 COMBINE_HIDPI_IMAGES = YES
 SWIFT_EMIT_LOC_STRINGS = YES
 
-HEADER_SEARCH_PATHS = $(inherited) $(SYS_STRING_HEADER_SEARCH_PATHS)
+HEADER_SEARCH_PATHS = $(inherited) $(OBJC_HELPERS_HEADER_SEARCH_PATHS)
 GCC_PREFIX_HEADER = Translit/src/pch.hpp
 
 

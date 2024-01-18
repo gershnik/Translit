@@ -1,8 +1,0 @@
-// Copyright (c) 2023, Eugene Gershnik
-// SPDX-License-Identifier: GPL-3.0-or-later
-
-// Configuration settings file format documentation can be found at:
-// https://help.apple.com/xcode/#/dev745c5c974
-
-SYS_STRING_HEADER_SEARCH_PATHS = $(PROJECT_DIR)/External/sys_string/inc
-

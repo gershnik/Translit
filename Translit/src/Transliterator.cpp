@@ -5,20 +5,19 @@
 #include "TableRU.hpp"
 #include "TableHE.hpp"
 
-auto Transliterator::getMapper(const sys_string & name) -> MappingFunc * {
+auto Transliterator::getMapper(const NSStringCharAccess & name) -> MappingFunc * {
     
-    static constexpr auto mapNameToMapper = makeMapper<sys_string::char_access,
+    static constexpr auto mapNameToMapper = makeMapper<NSStringCharAccess,
         nullPrefixMapper<Char, Range>,
         Mapping{(MappingFunc *)g_mapperRu<Range>, u"ru"},
         Mapping{(MappingFunc *)g_mapperHe<Range>, u"he"}
     >();
     
-    return mapNameToMapper(sys_string::char_access(name));
+    return mapNameToMapper(name);
 }
 
-void Transliterator::append(const sys_string & str) {
-    sys_string::char_access strAccess(str);
-    m_prefix.append(strAccess.begin(), strAccess.end());
+void Transliterator::append(const NSStringCharAccess & str) {
+    m_prefix.append(str.begin(), str.end());
     m_translit.erase(m_translit.begin() + m_translitCompletedSize, m_translit.end());
     
     const auto begin = m_prefix.cbegin();
