@@ -11,7 +11,7 @@ from urllib.request import urlretrieve
 
 components = {
     'objc-helpers': {
-        'ver': '3.0',
+        'ver': '3.1',
         'url': 'https://github.com/gershnik/objc-helpers/releases/download/v{ver}/objc-helpers-{ver}.tar.gz',
         'unpacker': {
             'type': 'tar'
