@@ -22,7 +22,7 @@ jobs:
     
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       
     - name: Get Version
       shell: bash
@@ -56,7 +56,7 @@ jobs:
                    TRANSLIT_SIGN_PACKAGE=true CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO
                    
     - name: 'Upload Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Translit-${{ env.GH_BUILD_VERSION }}.pkg
         path: DerivedData/Build/Products/Release/Translit-${{ env.GH_BUILD_VERSION }}.pkg

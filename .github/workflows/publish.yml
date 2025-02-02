@@ -15,7 +15,7 @@ jobs:
     permissions: write-all
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Get Version
       shell: bash
@@ -56,7 +56,7 @@ jobs:
                                s3://translit-symbols/Translit-${{ env.GH_BUILD_VERSION }}.dSYM.tgz
       
     - name: Make release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         draft: true
         prerelease: false
