@@ -95,6 +95,8 @@
 	<string>NSApplication</string>
 	<key>TISInputSourceID</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>TICapsLockLanguageSwitchCapable</key>
+	<true/>
 	<key>NSMainNibFile</key>
 	<string>menu</string>
 </dict>
