@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+### Fixed
+- Translit now supports "Use Caps Lock key to switch to and from..." setting. (see #2)
+
+### Changed
+- Updated dependencies
+
 ## [1.1] - 2024-01-17
 
 ### Changed
