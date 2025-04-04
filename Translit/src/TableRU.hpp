@@ -88,7 +88,10 @@ constexpr auto g_mapperRu = makePrefixMapper<Range,
     Mapping{u'Э', u"Ä"},  //31
     Mapping{u'Э', u"JE"},
     Mapping{u'Э', u"Je"},
+    Mapping{u'Э', u"YE"},
+    Mapping{u'Э', u"Ye"},
     Mapping{u'э', u"je"},
+    Mapping{u'э', u"ye"},
     Mapping{u'Ю', u"Ü"},  //32
     Mapping{u'Ю', u"JU"},
     Mapping{u'Ю', u"Ju"},
