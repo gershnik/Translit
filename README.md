@@ -145,7 +145,7 @@ The character mappings for Russian and Hebrew are given in the following tables
 <td>Ь</td><td>ь</td><td>Э</td><td>э</td><td>Ю</td><td>ю</td><td>Я</td><td>я</td>
 </tr><tr>
 <td>Ch</td><td>ch</td><td>Sh</td><td>sh</td><td>W<br>Shh</td><td>w<br>shh</td><td>QQ</td><td>qq</td><td>Y</td><td>y</td>
-<td>Q</td><td>q</td><td>Je<br>Ye<br>Ä</td><td>je<br>ye<br>ä</td><td>Ju<br>Yu<br>Ü</td><td>ju<br>yu<br>ü</td><td>Ja<br>Ya</td><td>ja<br>ya</td>
+<td>Q</td><td>q</td><td>Je<br>Ä</td><td>je<br>ä</td><td>Ju<br>Yu<br>Ü</td><td>ju<br>yu<br>ü</td><td>Ja<br>Ya</td><td>ja<br>ya</td>
 </tr></table>
 
 ### Hebrew
