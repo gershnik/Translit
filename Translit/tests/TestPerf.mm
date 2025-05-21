@@ -19,7 +19,7 @@
     std::u16string str(nsstr.length, u'\0');
     [nsstr getCharacters:(unichar *)str.data()];
 
-    auto mapper = g_mapperRu<std::ranges::subrange<std::u16string::const_iterator>>;
+    auto mapper = g_mapperRuDefault<std::ranges::subrange<std::u16string::const_iterator>>;
     
     __block volatile char16_t sink;
     __block intptr_t diff = 0;
