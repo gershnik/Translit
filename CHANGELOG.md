@@ -6,14 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## Unreleased
 
 ### Added
-- Translit UI now respects dark mode
+- Russian can now be configured to use either the default or translit.ru mappings.
+  More schemes can be added in the future, if desired.
+- Hebrew now supports typing _nikkud_, _geresh_ and _gershayim_
+- UI now respects dark mode
 
 ### Changed
-- Mappings and about Window are now dismissed when switching mode away from Translit
+- All Translit windows are now dismissed when switching mode away from Translit
 
 ### Fixed
 - Mappings window now does not randomly become blank
-- ä is now correctly interpreted as э in Russian with default mappings
+- ä is now correctly interpreted as э in Russian
 
 ## [1.2] - 2025-02-01
 

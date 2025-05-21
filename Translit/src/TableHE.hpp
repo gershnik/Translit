@@ -39,7 +39,23 @@ constexpr auto g_mapperHe = makePrefixMapper<Range,
     Mapping{u'ק', u"q"},
     Mapping{u'ר', u"r"},
     Mapping{u'ש', u"w"},
-    Mapping{u'ת', u"t"}
+    Mapping{u'ת', u"t"},
+    Mapping{u'ְ', u"E"},
+    Mapping{u'ֵ', u"EE"},
+    Mapping{u'ֶ', u"EEE"},
+    Mapping{u'ֱ', u"EEEE"},
+    Mapping{u'ַ', u"EA"},
+    Mapping{u'ָ', u"EAA"},
+    Mapping{u'ֲ', u"EAE"},
+    Mapping{u'ֳ', u"EAAE"},
+    Mapping{u'ִ', u"EI"},
+    Mapping{u'ֹ', u"EO"},
+    Mapping{u'ֻ', u"EU"},
+    Mapping{u'ּ', u"ED"},
+    Mapping{u'ׂ', u"ES"},
+    Mapping{u'ׁ', u"EW"},
+    Mapping{u'׳', u"G"},
+    Mapping{u'״', u"GG"}
 >();
 
 #endif
