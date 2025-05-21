@@ -23,7 +23,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
 - [Features](#features)
 - [Installation](#installation)
     - [Keyboard shortcuts](#keyboard-shortcuts)
-    - [Viewing transliteration mappings](#viewing-transliteration-mappings)
+    - [Viewing/Configuring transliteration mappings](#viewingconfiguring-transliteration-mappings)
     - [Uninstallation](#uninstallation)
 - [Mappings](#mappings)
     - [Russian](#russian)
@@ -35,19 +35,22 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
 ## Features
 
 - Type normally in any window without copy/pasting from a separate app/browser
-- Supports multiple languages: currently Russian and Hebrew with an easy way to add more if desired.
+- Supports multiple languages: currently Russian and Hebrew with an easy way to add more, if desired.
 - Supports modern macOS versions
-- Distributed as signed and notarized installer - you don't need to build it yourself (but you can if you want to).
+- Distributed as signed and notarized installer - you don't need to build it yourself (but you can, if you want to).
 - Reliable installation and uninstallation on recent versions of macOS.<br/> 
   Starting roughly with macOS Ventura, Apple has introduced various bugs into its keyboard input sources architecture 
   that make adding and removing them unreliable, error prone and require log off. The installer and uninstaller for this
   application makes the whole process reliable and simple for the user.
-- Not using punctuation like `'` or `#` for transliteration.<br/>
+- Not having to use punctuation like `'` or `#` for transliteration.<br/>
   When typing normally on macOS (as opposed to some 
   designated transliteration app) switching between input modes is more complicated - you cannot just press `ESC` like
   [translit.ru][translit_ru] does. This makes typing text with lots of punctuation annoying. Additionally hijacking `'`
   interferes with macOS "smart quotes" if you use this feature. Avoiding punctuation, such  as using `q` for `ь` 
   and `qq` for `ъ` makes typing much smoother.
+- Support for multiple transliteration schemes. Since some people would prefer to use familiar transliteration schemes
+  from elsewhere, this application allows you to choose which scheme to use.
+  Currently the default or [translit.ru][translit_ru] schemes are supported for Russian. More can be added, if desired.
 
   There are existing macOS transliteration projects on Github such as [cyrillic-transliterator][cyrillic-transliterator] 
   and its forks but none of them supports all the features above.
@@ -56,7 +59,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
   
 * Navigate to [Releases][releases] page and download `Translit-x.y.pkg` package installer. 
 * Run it and install the app
-* You will be prompted to log off at the end of the installation. This is unfortunately necessary. Apple provides
+* You will be prompted to log off at the end of the installation. This is, unfortunately, necessary. Apple provides
   no way to avoid this.
 * After you log back in launch `System Preferences ⇒ Keyboard`
 * In the `Text Input` section press `Edit...` button for `Input Sources`<br/><br/>
@@ -78,17 +81,26 @@ Select the newly added input method and you can start typing in it anywhere.
 
 ### Keyboard shortcuts
 
-By default macOS sets `⌃Space` and `⌃⌥Space` to switch between different input sources. Which is far more convenient when typing than using the menu bar.
+By default macOS sets `⌃Space` and `⌃⌥Space` to switch between different input sources. 
+This can be far more convenient than using the menu bar when typing mixed language text.
 
 If these aren't working navigate to `System Preferences ⇒ Keyboard ⇒ Keyboard Shortcuts ⇒ Input Sources` and enable or change them.
 
-### Viewing transliteration mappings
+It is also possible to make Caps Lock key switch between default and Translit input source. See
+the following toggle in the `Input Sources` screen.<br/>
+<img src="doc/CapsLock.png" width="500px">
+<br/>
+
+### Viewing/Configuring transliteration mappings
 
 When a transliteration input mode is selected the pop-up system menu will show addition entries like these
 
 <img src="doc/TranslitMenu.png" width="200px">
 
-Select `Show Mappings` to display which Latin characters and combination map to which letters of the target language.
+Select `Mappings` to display which Latin characters and combination map to which letters of the target language.
+If multiple transliteration schemes are supported for the target language you can also change the scheme.
+
+<img src="doc/Mapping.png" width="400px">
 
 
 ### Uninstallation
@@ -114,7 +126,7 @@ to Apple's bugs.
 
 ## Mappings
 
-The character mappings for Russian and Hebrew are given in the following tables
+The default character mappings for Russian and Hebrew are given in the following tables
 
 ### Russian
 
@@ -150,11 +162,12 @@ The character mappings for Russian and Hebrew are given in the following tables
 
 ### Hebrew
 
+<div dir="rtl">
 <table dir="rtl"><tr>
 <td>א</td><td>ב</td><td>ג</td><td>ד</td><td>ה</td><td>ו</td><td>ז</td><td>ח</td>
 <td>ט</td><td>י</td><td>כ</td><td>ך</td><td>ל</td><td>מ</td><td>ם</td>
 </tr><tr>
-<td>a</td><td>b</td><td>g</td><td>d</td><td>h</td><td>o<br>u</td><td>z</td><td>x</td>
+<td>a</td><td>b<br>v</td><td>g</td><td>d</td><td>h</td><td>o<br>u</td><td>z</td><td>x</td>
 <td>T</td><td>i<br>j</td><td>k</td><td>K</td><td>l</td><td>m</td><td>M</td>
 </tr></table>
 <table dir="rtl"><tr>
@@ -164,6 +177,17 @@ The character mappings for Russian and Hebrew are given in the following tables
 <td>n</td><td>N</td><td>s</td><td>y</td><td>f<br>p</td><td>F<br>P</td>
 <td>c</td><td>C</td><td>q</td><td>r</td><td>w</td><td>t</td>
 </tr></table>
+<table dir="rtl"><tr>
+<td>◌ְ</td><td>◌ֵ</td><td>◌ֶ</td><td>◌ֱ</td><td>◌ַ</td><td>◌ָ</td><td>◌ֲ</td><td>◌ֳ</td>
+</tr><tr>
+<td>E</td><td>EE</td><td>EEE</td><td>EEEE</td><td>EA</td><td>EAA</td><td>EAE</td><td>EAAE</td>
+</tr></table>
+<table dir="rtl"><tr>
+<td>◌ִ</td><td>◌ֹ</td><td>◌ֻ</td><td>◌ּ</td><td>שׂ</td><td>שׁ</td><td>׳</td><td>״</td>
+</tr><tr>
+<td>EI</td><td>EO</td><td>EU</td><td>ED</td><td>wES</td><td>wEW</td><td>G</td><td>GG</td>
+</tr></table>
+</div>
 
 ## Building
 
