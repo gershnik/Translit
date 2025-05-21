@@ -5,6 +5,7 @@
 #define TRANSLIT_HEADER_PCH_HPP_INCLUDED
 
 #include <objc-helpers/NSStringUtil.h>
+#include <objc-helpers/BlockUtil.h>
 
 #include <memory>
 #include <array>

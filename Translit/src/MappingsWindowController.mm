@@ -81,15 +81,19 @@
 -(void) webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [webView evaluateJavaScript:@"document.getElementById('table-holder').scrollHeight"
               completionHandler:^(id result, NSError * err){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (err)
+        if (err) {
+            os_log_error(OS_LOG_DEFAULT, "Javascript failed: %{public}@", err);
+            return;
+        }
+        dispatch_async(dispatch_get_main_queue(), [weakSelf = makeWeak(self),result]() {
+            auto self = makeStrong(weakSelf);
+            if (!self)
                 return;
             auto height = (NSNumber *)result;
             auto contentRect = self.window.contentLayoutRect;
             auto textFrame = self->_text.frame;
             auto minSize = self.window.contentMinSize;
             minSize.height = (contentRect.size.height - textFrame.size.height) + height.doubleValue;
-            os_log_info(OS_LOG_DEFAULT, "HAHAHA %{public}lf %{public}lf", contentRect.size.height, minSize.height);
             [self.window setContentMinSize:minSize];
             if (self->_firstLoad || contentRect.size.height < minSize.height)
                 [self.window setContentSize:{contentRect.size.width, minSize.height}];

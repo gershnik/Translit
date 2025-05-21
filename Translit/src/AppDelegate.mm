@@ -86,7 +86,7 @@ static void bundleWatchCallback(ConstFSEventStreamRef streamRef,
     auto variantKey = [language stringByAppendingString:@"_variant"];
     [defs setObject:variant forKey:variantKey];
     
-    if (id<InputControllerProtocol> __strong inputController = _inputController; inputController) {
+    if (auto inputController = makeStrong(_inputController)) {
         auto currentLanguage = inputController.currentLanguage;
         if (currentLanguage && [currentLanguage isEqualToString:language])
             [inputController changeVariant:variant];
@@ -113,7 +113,7 @@ static void bundleWatchCallback(ConstFSEventStreamRef streamRef,
         [_mappingsController close];
         _mappingsController = nil;
     }
-    if (NSWindowController * __strong aboutController = _aboutController; aboutController) {
+    if (auto aboutController = makeStrong(_aboutController)) {
         [aboutController close];
     }
 }
