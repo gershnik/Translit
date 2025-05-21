@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [1.3] - 2025-05-21
+
 ### Added
 - Russian can now be configured to use either the default or translit.ru mappings.
   More schemes can be added in the future, if desired.
@@ -40,3 +42,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 [1.0]: https://github.com/gershnik/Translit/releases/v1.0
 [1.1]: https://github.com/gershnik/Translit/releases/v1.1
 [1.2]: https://github.com/gershnik/Translit/releases/v1.2
+[1.3]: https://github.com/gershnik/Translit/releases/v1.3
