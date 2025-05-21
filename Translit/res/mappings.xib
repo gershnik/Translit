@@ -3,13 +3,14 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="23727"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MappingsWindowController">
             <connections>
                 <outlet property="_schemeSelector" destination="wI6-Mv-mZW" id="5ig-MK-xzL"/>
-                <outlet property="_text" destination="3Yp-qG-rlm" id="od1-bW-hvB"/>
+                <outlet property="_text" destination="UJS-9E-cs0" id="s1J-DF-jos"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="s5e-bK-cOi"/>
             </connections>
         </customObject>
@@ -17,15 +18,15 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Letter Mappings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <rect key="contentRect" x="196" y="240" width="425" height="377"/>
+            <rect key="contentRect" x="196" y="240" width="425" height="307"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
-            <value key="minSize" type="size" width="425" height="310"/>
+            <value key="minSize" type="size" width="425" height="307"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="425" height="377"/>
+                <rect key="frame" x="0.0" y="0.0" width="425" height="307"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WWb-ul-6rO">
-                        <rect key="frame" x="6" y="340" width="110" height="16"/>
+                        <rect key="frame" x="6" y="270" width="110" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Mapping Scheme" id="9tn-kL-2hN">
                             <font key="font" usesAppearanceFont="YES"/>
@@ -33,13 +34,8 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Yp-qG-rlm">
-                        <rect key="frame" x="0.0" y="6" width="425" height="310"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyUpOrDown" image="mapping-ru" id="bqP-gf-Pif"/>
-                    </imageView>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wI6-Mv-mZW">
-                        <rect key="frame" x="127" y="333" width="155" height="25"/>
+                        <rect key="frame" x="127" y="263" width="155" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" inset="2" id="e9I-ox-MLp">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -47,12 +43,17 @@
                             <menu key="menu" id="Ig4-LU-YGz"/>
                         </popUpButtonCell>
                     </popUpButton>
+                    <wkWebView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJS-9E-cs0">
+                        <rect key="frame" x="0.0" y="8" width="425" height="241"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <wkWebViewConfiguration key="configuration">
+                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                            <wkPreferences key="preferences"/>
+                        </wkWebViewConfiguration>
+                    </wkWebView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="282" y="195"/>
+            <point key="canvasLocation" x="281.5" y="159.5"/>
         </window>
     </objects>
-    <resources>
-        <image name="mapping-ru" width="574" height="419"/>
-    </resources>
 </document>

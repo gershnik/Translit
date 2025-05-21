@@ -22,10 +22,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		4428E40F2DDDBFDB006C1285 /* mapping-ru.translit-ru.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4428E40E2DDDBFDA006C1285 /* mapping-ru.translit-ru.pdf */; };
+		4428E4132DDDCCD7006C1285 /* mapping-ru.translit-ru.html in Resources */ = {isa = PBXBuildFile; fileRef = 4428E4122DDDCCD7006C1285 /* mapping-ru.translit-ru.html */; };
+		4428E4142DDDCCD7006C1285 /* mapping-he.html in Resources */ = {isa = PBXBuildFile; fileRef = 4428E4102DDDCCD7006C1285 /* mapping-he.html */; };
+		4428E4152DDDCCD7006C1285 /* mapping-ru.html in Resources */ = {isa = PBXBuildFile; fileRef = 4428E4112DDDCCD7006C1285 /* mapping-ru.html */; };
 		442D25822B044EE000204800 /* MappingsWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 442D25812B044EE000204800 /* MappingsWindowController.mm */; };
-		442D25842B04562800204800 /* mapping-ru.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 442D25832B04562800204800 /* mapping-ru.pdf */; };
-		442D25862B04A50C00204800 /* mapping-he.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 442D25852B04A50C00204800 /* mapping-he.pdf */; };
 		442D25A82B06C56200204800 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442D25872B04AEA200204800 /* Carbon.framework */; };
 		442D25AC2B08339F00204800 /* AboutWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 442D25AB2B08339F00204800 /* AboutWindowController.mm */; };
 		442D25AE2B088B5700204800 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 442D25AD2B088B5700204800 /* about.html */; };
@@ -70,11 +70,11 @@
 
 /* Begin PBXFileReference section */
 		4428E40D2DDD9DE4006C1285 /* InputControllerProtocol.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InputControllerProtocol.hpp; sourceTree = "<group>"; };
-		4428E40E2DDDBFDA006C1285 /* mapping-ru.translit-ru.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "mapping-ru.translit-ru.pdf"; sourceTree = "<group>"; };
+		4428E4102DDDCCD7006C1285 /* mapping-he.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "mapping-he.html"; sourceTree = "<group>"; };
+		4428E4112DDDCCD7006C1285 /* mapping-ru.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "mapping-ru.html"; sourceTree = "<group>"; };
+		4428E4122DDDCCD7006C1285 /* mapping-ru.translit-ru.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "mapping-ru.translit-ru.html"; sourceTree = "<group>"; };
 		442D25802B044EE000204800 /* MappingsWindowController.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = MappingsWindowController.hpp; sourceTree = "<group>"; };
 		442D25812B044EE000204800 /* MappingsWindowController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MappingsWindowController.mm; sourceTree = "<group>"; };
-		442D25832B04562800204800 /* mapping-ru.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "mapping-ru.pdf"; sourceTree = "<group>"; };
-		442D25852B04A50C00204800 /* mapping-he.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "mapping-he.pdf"; sourceTree = "<group>"; };
 		442D25872B04AEA200204800 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		442D258A2B05F4D200204800 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		442D258C2B05F60900204800 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
@@ -366,9 +366,9 @@
 		44C675C92B03E15E003A5BDE /* res */ = {
 			isa = PBXGroup;
 			children = (
-				4428E40E2DDDBFDA006C1285 /* mapping-ru.translit-ru.pdf */,
-				442D25832B04562800204800 /* mapping-ru.pdf */,
-				442D25852B04A50C00204800 /* mapping-he.pdf */,
+				4428E4102DDDCCD7006C1285 /* mapping-he.html */,
+				4428E4112DDDCCD7006C1285 /* mapping-ru.html */,
+				4428E4122DDDCCD7006C1285 /* mapping-ru.translit-ru.html */,
 				445D1E722AFFFAE600FA1C07 /* InfoPlist.strings */,
 				445D1E4D2AFE2C6F00FA1C07 /* Assets.xcassets */,
 				44C675BA2B026F43003A5BDE /* preferences.xib */,
@@ -489,13 +489,13 @@
 				445D1E4E2AFE2C6F00FA1C07 /* Assets.xcassets in Resources */,
 				44C675BD2B028225003A5BDE /* menu.xib in Resources */,
 				44C675BB2B026F43003A5BDE /* preferences.xib in Resources */,
+				4428E4132DDDCCD7006C1285 /* mapping-ru.translit-ru.html in Resources */,
+				4428E4142DDDCCD7006C1285 /* mapping-he.html in Resources */,
+				4428E4152DDDCCD7006C1285 /* mapping-ru.html in Resources */,
 				44C675C82B03515B003A5BDE /* mappings.xib in Resources */,
 				44C675CB2B03E176003A5BDE /* ru.png in Resources */,
-				4428E40F2DDDBFDB006C1285 /* mapping-ru.translit-ru.pdf in Resources */,
 				44C675CD2B040B87003A5BDE /* he.png in Resources */,
 				442D25AE2B088B5700204800 /* about.html in Resources */,
-				442D25862B04A50C00204800 /* mapping-he.pdf in Resources */,
-				442D25842B04562800204800 /* mapping-ru.pdf in Resources */,
 				442D25CA2B0B93D500204800 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

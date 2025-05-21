@@ -2,11 +2,19 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+            
     <style>
+        html {
+            overflow: hidden;
+        }
         body {
             margin: 0px;
-            font-family: Helvetica;
-            background-color: white;
+            font-family:-apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            -webkit-overflow-scrolling: touch;
         }
         table{
             table-layout: auto;
@@ -36,10 +44,16 @@
         tr.contentRow {
             background-color: #F0F0F0
         }
+        @media (prefers-color-scheme: dark) {
+            tr.contentRow {
+                background-color: #303030
+            }
+        }
+        
     </style>
 </head>
 <body dir="rtl">
-    <div style="width:100%">
+    <div id="table-holder" style="width:100%">
         <table class="main">
             <tr class="headerRow">
                 <td>א</td>
