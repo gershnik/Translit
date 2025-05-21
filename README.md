@@ -119,7 +119,7 @@ To completely uninstall Translit issue the following commands in Terminal
 /Library/Input\ Methods/Translit.app/Contents/MacOS/Translit --uninstall
 ```
 
-You can also see the exact command for your installation in `About Translit` menu with a translit mode selected.
+You can also see the exact command for your installation in `About` menu with a translit mode selected.
 
 Just like with installation, you will be prompted for a logoff at the end. This, unfortunately, is also necessary due
 to Apple's bugs. 
