@@ -4,10 +4,10 @@
 #include "Transliterator.hpp"
 #include "AppDelegate.hpp"
 #include "MenuProtocol.hpp"
+#include "InputControllerProtocol.hpp"
 
 
-
-@interface InputController : IMKInputController<MenuProtocol>
+@interface InputController : IMKInputController<MenuProtocol, InputControllerProtocol>
 
 @end
 
@@ -73,6 +73,15 @@
     [del displayMappingsForLanguage:_currentLanguage];
 }
 
+//InputControllerProtocol
+
+- (NSString *) currentLanguage {
+    return _currentLanguage;
+}
+
+-(void) changeVariant:(NSString *)variant {
+    [self resetLanguage:_currentLanguage variant:variant];
+}
 
 //IMKStateSetting
 
@@ -90,31 +99,35 @@
         case langTag: {
             auto val = (NSString*)value;
             auto prefix = [NSBundle.mainBundle.bundleIdentifier stringByAppendingString:@"."];
-            _currentLanguage = [val stringByReplacingOccurrencesOfString:prefix withString:@"" 
-                                                                 options:NSAnchoredSearch range:{0, val.length}];
-            os_log_info(OS_LOG_DEFAULT, "Setting language to %{public}@", _currentLanguage);
-            _transliterator = std::make_unique<Transliterator>(_currentLanguage);
+            auto language = [val stringByReplacingOccurrencesOfString:prefix withString:@""
+                                                              options:NSAnchoredSearch range:{0, val.length}];
+            
             auto del = (AppDelegate *)NSApp.delegate;
+            auto variant = [del getVariantForLanguage:_currentLanguage];
+            [self resetLanguage:language variant:variant];
             [del setMappingsLanguage:_currentLanguage];
         }
     }
     [super setValue:value forTag:tag client:sender];
 }
 
-- (void)activateServer:(id)sender {
-    [super activateServer:sender];
-    
+-(void) hidePalettes {
     auto del = (AppDelegate *)NSApp.delegate;
-    [del setMappingsLanguage:_currentLanguage];
-}
-
--(void) deactivateServer:(id)sender {
-    auto del = (AppDelegate *)NSApp.delegate;
-    [del setMappingsLanguage:nil];
-    [super deactivateServer:sender];
+    [del deactivateUI];
+    [super hidePalettes];
 }
 
 //Private
+
+-(void) resetLanguage:(NSString *)language variant:(NSString *)variant {
+    _currentLanguage = language;
+    os_log_info(OS_LOG_DEFAULT, "Setting language to %{public}@", _currentLanguage);
+    if (variant.length != 0)
+        variant = [@"." stringByAppendingString:variant];
+    NSString * transliteratorLanguage = [_currentLanguage stringByAppendingString:variant];
+    os_log_info(OS_LOG_DEFAULT, "Activating %{public}@", transliteratorLanguage);
+    _transliterator = std::make_unique<Transliterator>(transliteratorLanguage);
+}
 
 -(void) commitAllToSender:(id<IMKTextInput>)sender {
     

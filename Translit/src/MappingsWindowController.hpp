@@ -8,7 +8,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MappingsWindowController : NSWindowController
 
-@property(atomic, strong) NSString * __nullable language;
+- (void) showLanguage:(NSString *)language;
 
 @end
 

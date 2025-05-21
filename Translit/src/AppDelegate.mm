@@ -3,12 +3,15 @@
 
 #import "AppDelegate.hpp"
 #import "MenuProtocol.hpp"
+#import "InputControllerProtocol.hpp"
 #include "MappingsWindowController.hpp"
 
 @interface AppDelegate () {
     NSWindow * _window;
     IBOutlet NSMenu * _menu;
     MappingsWindowController * _mappingsController;
+    id<InputControllerProtocol> __weak _inputController;
+    NSWindowController * __weak _aboutController;
 }
 
 @end
@@ -63,19 +66,56 @@ static void bundleWatchCallback(ConstFSEventStreamRef streamRef,
     return _menu;
 }
 
+-(void) setCurrentInputController:(id<InputControllerProtocol>)controller {
+    _inputController = controller;
+}
+
+-(void) setCurrentAboutController:(NSWindowController *)controller {
+    _aboutController = controller;
+}
+
+-(NSString *) getVariantForLanguage:(NSString *)language {
+    auto defs = NSUserDefaults.standardUserDefaults;
+    auto variantKey = [language stringByAppendingString:@"_variant"];
+    auto variant = [defs stringForKey:variantKey];
+    return variant ? variant : @"";
+}
+
+-(void) setVariant:(NSString *)variant forLanguage:(NSString *)language {
+    auto defs = NSUserDefaults.standardUserDefaults;
+    auto variantKey = [language stringByAppendingString:@"_variant"];
+    [defs setObject:variant forKey:variantKey];
+    
+    if (id<InputControllerProtocol> __strong inputController = _inputController; inputController) {
+        auto currentLanguage = inputController.currentLanguage;
+        if (currentLanguage && [currentLanguage isEqualToString:language])
+            [inputController changeVariant:variant];
+    }
+}
+
 -(void) displayMappingsForLanguage:(NSString *)language {
     if (!_mappingsController) {
         _mappingsController = [[MappingsWindowController alloc] initWithWindowNibName:@"mappings"];
         [_mappingsController.window setLevel:NSMainMenuWindowLevel];
     }
-    _mappingsController.language = language;
+    [_mappingsController showLanguage:language];
     [_mappingsController showWindow:self];
     [_mappingsController.window orderFrontRegardless];
 }
 
 -(void) setMappingsLanguage:(NSString *)language {
     if (_mappingsController)
-        _mappingsController.language = language;
+        [_mappingsController showLanguage:language];
+}
+
+-(void) deactivateUI {
+    if (_mappingsController) {
+        [_mappingsController close];
+        _mappingsController = nil;
+    }
+    if (NSWindowController * __strong aboutController = _aboutController; aboutController) {
+        [aboutController close];
+    }
 }
 
 

@@ -9,7 +9,8 @@ auto Transliterator::getMapper(const NSStringCharAccess & name) -> MappingFunc *
     
     static constexpr auto mapNameToMapper = makeMapper<NSStringCharAccess,
         nullPrefixMapper<Char, Range>,
-        Mapping{(MappingFunc *)g_mapperRu<Range>, u"ru"},
+        Mapping{(MappingFunc *)g_mapperRuDefault<Range>, u"ru"},
+        Mapping{(MappingFunc *)g_mapperRuTranslitRu<Range>, u"ru.translit-ru"},
         Mapping{(MappingFunc *)g_mapperHe<Range>, u"he"}
     >();
     

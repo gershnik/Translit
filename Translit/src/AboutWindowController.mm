@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #import "AboutWindowController.hpp"
+#import "AppDelegate.hpp"
 
 @interface AboutWindowController () <WKNavigationDelegate> {
     IBOutlet WKWebView * _text;
@@ -63,6 +64,9 @@
     
     [_text loadHTMLString:html baseURL:nil];
     _text.navigationDelegate = self;
+    
+    auto del = (AppDelegate *)NSApp.delegate;
+    [del setCurrentAboutController:self];
 }
 
 -(void) webView:(WKWebView *)webView 

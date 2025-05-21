@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		4428E40F2DDDBFDB006C1285 /* mapping-ru.translit-ru.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4428E40E2DDDBFDA006C1285 /* mapping-ru.translit-ru.pdf */; };
 		442D25822B044EE000204800 /* MappingsWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 442D25812B044EE000204800 /* MappingsWindowController.mm */; };
 		442D25842B04562800204800 /* mapping-ru.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 442D25832B04562800204800 /* mapping-ru.pdf */; };
 		442D25862B04A50C00204800 /* mapping-he.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 442D25852B04A50C00204800 /* mapping-he.pdf */; };
@@ -68,6 +69,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4428E40D2DDD9DE4006C1285 /* InputControllerProtocol.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InputControllerProtocol.hpp; sourceTree = "<group>"; };
+		4428E40E2DDDBFDA006C1285 /* mapping-ru.translit-ru.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "mapping-ru.translit-ru.pdf"; sourceTree = "<group>"; };
 		442D25802B044EE000204800 /* MappingsWindowController.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = MappingsWindowController.hpp; sourceTree = "<group>"; };
 		442D25812B044EE000204800 /* MappingsWindowController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MappingsWindowController.mm; sourceTree = "<group>"; };
 		442D25832B04562800204800 /* mapping-ru.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "mapping-ru.pdf"; sourceTree = "<group>"; };
@@ -300,6 +303,7 @@
 				445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */,
 				44C675C62B034E17003A5BDE /* MenuProtocol.hpp */,
 				445D1E5E2AFE35AA00FA1C07 /* InputController.mm */,
+				4428E40D2DDD9DE4006C1285 /* InputControllerProtocol.hpp */,
 				4475AD302B11EEE4008DA122 /* Mapper.hpp */,
 				449738F62B44FA4300C7FAA9 /* MultiMatch.hpp */,
 				445D1E602AFE364900FA1C07 /* Transliterator.cpp */,
@@ -362,6 +366,7 @@
 		44C675C92B03E15E003A5BDE /* res */ = {
 			isa = PBXGroup;
 			children = (
+				4428E40E2DDDBFDA006C1285 /* mapping-ru.translit-ru.pdf */,
 				442D25832B04562800204800 /* mapping-ru.pdf */,
 				442D25852B04A50C00204800 /* mapping-he.pdf */,
 				445D1E722AFFFAE600FA1C07 /* InfoPlist.strings */,
@@ -486,6 +491,7 @@
 				44C675BB2B026F43003A5BDE /* preferences.xib in Resources */,
 				44C675C82B03515B003A5BDE /* mappings.xib in Resources */,
 				44C675CB2B03E176003A5BDE /* ru.png in Resources */,
+				4428E40F2DDDBFDB006C1285 /* mapping-ru.translit-ru.pdf in Resources */,
 				44C675CD2B040B87003A5BDE /* he.png in Resources */,
 				442D25AE2B088B5700204800 /* about.html in Resources */,
 				442D25862B04A50C00204800 /* mapping-he.pdf in Resources */,
