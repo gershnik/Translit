@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+### Added
+- Translit UI now respects dark mode
+
+### Changed
+- Mappings and about Window are now dismissed when switching mode away from Translit
+
+### Fixed
+- Mappings window now does not randomly become blank
+- ä is now correctly interpreted as э in Russian with default mappings
+
 ## [1.2] - 2025-02-01
 
 ### Fixed
