@@ -7,11 +7,25 @@ SPDX-License-Identifier: GPL-3.0-or-later
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width = device-width">
+        <meta name="color-scheme" content="light dark">
+        <meta name="supported-color-schemes" content="light dark">
         <style>
             body {
                 margin: 5px;
                 font-family:-apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
                 font-size: 14px;
+            }
+            .code-holder {
+                background-color:#f0f0f0;
+                padding-top:4px;
+                padding-bottom: 4px
+            }
+            @media (prefers-color-scheme: dark) {
+                .code-holder {
+                    background-color:#292a2f;
+                    padding-top:4px;
+                    padding-bottom: 4px
+                }
             }
         </style>
     </head>
@@ -35,7 +49,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
             <p>
             To uninstall this application execute the following commands in the Terminal
             </p>
-            <div style="background-color:#f0f0f0;padding-top:4px;padding-bottom: 4px">
+            <div class="code-holder">
                 <code style="font-size: 12px;font-weight:bold">%COMMAND%</code>
             </div>
         </div>
