@@ -5,6 +5,7 @@
 
 #include "TableRU.hpp"
 #include "TableUK.hpp"
+#include "TableBE.hpp"
 #include "TableHE.hpp"
 
 using MappingFunc = Transliterator::MappingFunc;
@@ -27,6 +28,12 @@ static const LanguageVariant g_ukrainianEntries[] = {
 };
 static constexpr std::span<const LanguageVariant> g_ukrainian{g_ukrainianEntries};
 
+static const LanguageVariant g_belarussianEntries[] = {
+    { @"",              @"default",         static_cast<MappingFunc *>(g_mapperBeDefault<Range>) },
+    { @"translit-ru",   @"translit.net",    static_cast<MappingFunc *>(g_mapperBeTranslitRu<Range>) }
+};
+static constexpr std::span<const LanguageVariant> g_belarussian{g_belarussianEntries};
+
 static const LanguageVariant g_hebrewEntries[] = {
     { @"",              @"default",         static_cast<MappingFunc *>(g_mapperHe<Range>) },
 };
@@ -40,6 +47,7 @@ auto getVariantsForLanguage(NSString * name) -> std::span<const LanguageVariant>
         //mappings
         Mapping{&g_russian,     u"ru"},
         Mapping{&g_ukrainian,   u"uk"},
+        Mapping{&g_belarussian, u"be"},
         Mapping{&g_hebrew,      u"he"}
     >();
     

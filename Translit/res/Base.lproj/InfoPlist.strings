@@ -6,4 +6,5 @@ CFBundleName = "Translit";
 {PRODUCT_BUNDLE_IDENTIFIER}="Translit";
 {PRODUCT_BUNDLE_IDENTIFIER}.ru="Russian Translit";
 {PRODUCT_BUNDLE_IDENTIFIER}.uk="Ukrainian Translit";
+{PRODUCT_BUNDLE_IDENTIFIER}.be="Belarusian Translit";
 {PRODUCT_BUNDLE_IDENTIFIER}.he="Hebrew Translit";

@@ -24,6 +24,8 @@
 /* Begin PBXBuildFile section */
 		44098FE52DE0107800FAA397 /* mapping-uk.html in Resources */ = {isa = PBXBuildFile; fileRef = 44098FE42DE0107800FAA397 /* mapping-uk.html */; };
 		44098FE72DE012D100FAA397 /* mapping-uk.translit-ru.html in Resources */ = {isa = PBXBuildFile; fileRef = 44098FE62DE012D100FAA397 /* mapping-uk.translit-ru.html */; };
+		44098FEA2DE043F200FAA397 /* mapping-be.html in Resources */ = {isa = PBXBuildFile; fileRef = 44098FE92DE043F200FAA397 /* mapping-be.html */; };
+		44098FEC2DE04CBD00FAA397 /* mapping-be.translit-ru.html in Resources */ = {isa = PBXBuildFile; fileRef = 44098FEB2DE04CBD00FAA397 /* mapping-be.translit-ru.html */; };
 		4428E4132DDDCCD7006C1285 /* mapping-ru.translit-ru.html in Resources */ = {isa = PBXBuildFile; fileRef = 4428E4122DDDCCD7006C1285 /* mapping-ru.translit-ru.html */; };
 		4428E4142DDDCCD7006C1285 /* mapping-he.html in Resources */ = {isa = PBXBuildFile; fileRef = 4428E4102DDDCCD7006C1285 /* mapping-he.html */; };
 		4428E4152DDDCCD7006C1285 /* mapping-ru.html in Resources */ = {isa = PBXBuildFile; fileRef = 4428E4112DDDCCD7006C1285 /* mapping-ru.html */; };
@@ -35,6 +37,7 @@
 		442D25B42B0A2E1B00204800 /* Transliterator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 445D1E602AFE364900FA1C07 /* Transliterator.mm */; };
 		442D25CA2B0B93D500204800 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 442D25C82B0B93D500204800 /* InfoPlist.strings */; };
 		442D25CC2B0CC97100204800 /* Uninstall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 442D25CB2B0CC97100204800 /* Uninstall.mm */; };
+		444998F62DE0527000E851CE /* be.png in Resources */ = {isa = PBXBuildFile; fileRef = 444998F52DE0527000E851CE /* be.png */; };
 		445D1E4C2AFE2C6C00FA1C07 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */; };
 		445D1E4E2AFE2C6F00FA1C07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 445D1E4D2AFE2C6F00FA1C07 /* Assets.xcassets */; };
 		445D1E532AFE2C6F00FA1C07 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 445D1E522AFE2C6F00FA1C07 /* main.mm */; };
@@ -75,6 +78,9 @@
 /* Begin PBXFileReference section */
 		44098FE42DE0107800FAA397 /* mapping-uk.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "mapping-uk.html"; sourceTree = "<group>"; };
 		44098FE62DE012D100FAA397 /* mapping-uk.translit-ru.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "mapping-uk.translit-ru.html"; sourceTree = "<group>"; };
+		44098FE82DE03E9D00FAA397 /* TableBE.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TableBE.hpp; sourceTree = "<group>"; };
+		44098FE92DE043F200FAA397 /* mapping-be.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "mapping-be.html"; sourceTree = "<group>"; };
+		44098FEB2DE04CBD00FAA397 /* mapping-be.translit-ru.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "mapping-be.translit-ru.html"; sourceTree = "<group>"; };
 		4428E40D2DDD9DE4006C1285 /* InputControllerProtocol.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InputControllerProtocol.hpp; sourceTree = "<group>"; };
 		4428E4102DDDCCD7006C1285 /* mapping-he.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "mapping-he.html"; sourceTree = "<group>"; };
 		4428E4112DDDCCD7006C1285 /* mapping-ru.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "mapping-ru.html"; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 		442D25C92B0B93D500204800 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		442D25CB2B0CC97100204800 /* Uninstall.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Uninstall.mm; sourceTree = "<group>"; };
 		442D25CD2B0CC9C200204800 /* Uninstall.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Uninstall.hpp; sourceTree = "<group>"; };
+		444998F52DE0527000E851CE /* be.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = be.png; sourceTree = "<group>"; };
 		445D1E472AFE2C6C00FA1C07 /* Translit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Translit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		445D1E4A2AFE2C6C00FA1C07 /* AppDelegate.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = AppDelegate.hpp; sourceTree = "<group>"; };
 		445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -317,6 +324,7 @@
 				445D1E612AFE364900FA1C07 /* Transliterator.hpp */,
 				445D1E602AFE364900FA1C07 /* Transliterator.mm */,
 				44C6757E2B01B4FD003A5BDE /* TableRU.hpp */,
+				44098FE82DE03E9D00FAA397 /* TableBE.hpp */,
 				447848822DDFA9EA008E6E36 /* TableUK.hpp */,
 				44C675B92B02635A003A5BDE /* TableHE.hpp */,
 				442D25802B044EE000204800 /* MappingsWindowController.hpp */,
@@ -377,9 +385,11 @@
 			children = (
 				4428E4102DDDCCD7006C1285 /* mapping-he.html */,
 				4428E4112DDDCCD7006C1285 /* mapping-ru.html */,
+				4428E4122DDDCCD7006C1285 /* mapping-ru.translit-ru.html */,
 				44098FE42DE0107800FAA397 /* mapping-uk.html */,
 				44098FE62DE012D100FAA397 /* mapping-uk.translit-ru.html */,
-				4428E4122DDDCCD7006C1285 /* mapping-ru.translit-ru.html */,
+				44098FE92DE043F200FAA397 /* mapping-be.html */,
+				44098FEB2DE04CBD00FAA397 /* mapping-be.translit-ru.html */,
 				445D1E722AFFFAE600FA1C07 /* InfoPlist.strings */,
 				445D1E4D2AFE2C6F00FA1C07 /* Assets.xcassets */,
 				44C675BA2B026F43003A5BDE /* preferences.xib */,
@@ -388,6 +398,7 @@
 				44C675CA2B03E176003A5BDE /* ru.png */,
 				447848802DDFA9D0008E6E36 /* uk.png */,
 				44C675CC2B040B87003A5BDE /* he.png */,
+				444998F52DE0527000E851CE /* be.png */,
 				442D25AD2B088B5700204800 /* about.html */,
 			);
 			path = res;
@@ -498,8 +509,10 @@
 				445D1E4E2AFE2C6F00FA1C07 /* Assets.xcassets in Resources */,
 				44C675BD2B028225003A5BDE /* menu.xib in Resources */,
 				44098FE52DE0107800FAA397 /* mapping-uk.html in Resources */,
+				44098FEA2DE043F200FAA397 /* mapping-be.html in Resources */,
 				44C675BB2B026F43003A5BDE /* preferences.xib in Resources */,
 				4428E4132DDDCCD7006C1285 /* mapping-ru.translit-ru.html in Resources */,
+				44098FEC2DE04CBD00FAA397 /* mapping-be.translit-ru.html in Resources */,
 				44098FE72DE012D100FAA397 /* mapping-uk.translit-ru.html in Resources */,
 				4428E4142DDDCCD7006C1285 /* mapping-he.html in Resources */,
 				447848812DDFA9D0008E6E36 /* uk.png in Resources */,
@@ -508,6 +521,7 @@
 				44C675CB2B03E176003A5BDE /* ru.png in Resources */,
 				44C675CD2B040B87003A5BDE /* he.png in Resources */,
 				442D25AE2B088B5700204800 /* about.html in Resources */,
+				444998F62DE0527000E851CE /* be.png in Resources */,
 				442D25CA2B0B93D500204800 /* InfoPlist.strings in Resources */,
 			);
 		};
@@ -526,6 +540,7 @@
 			shellPath = /bin/sh;
 			shellScript = (
 				"$SRCROOT/Installer/build.py \"$BUILT_PRODUCTS_DIR\" \"$TARGET_TEMP_DIR\"",
+				"",
 				"",
 			);
 		};
@@ -546,6 +561,7 @@
 				"$SRCROOT/tools/format-file $SRCROOT/Translit/Info.plist $SRCROOT/Translit/generated/Info.plist",
 				"mkdir -p $SRCROOT/Translit/generated/Base.lproj",
 				"$SRCROOT/tools/format-file $SRCROOT/Translit/res/Base.lproj/InfoPlist.strings $SRCROOT/Translit/generated/Base.lproj/InfoPlist.strings",
+				"",
 				"",
 			);
 			showEnvVarsInLog = 0;
