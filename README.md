@@ -191,7 +191,7 @@ The default character mappings for Russian and Hebrew are given in the following
 
 ## Building
 
-Xcode 15 or above and Python 3 are the only requirements to build Translit.
+Xcode 16.3 or above and Python 3 are the only requirements to build Translit.
 
 * Download/clone the repo
 * Run `fetch` script from the top-level directory (current directory doesn't matter). This will fetch external dependencies

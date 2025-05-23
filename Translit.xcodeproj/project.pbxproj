@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -167,21 +167,17 @@
 /* Begin PBXFrameworksBuildPhase section */
 		445D1E442AFE2C6C00FA1C07 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				44C675B62B021B0F003A5BDE /* Cocoa.framework in Frameworks */,
 				445D1E662AFFA1F700FA1C07 /* InputMethodKit.framework in Frameworks */,
 				442D25A82B06C56200204800 /* Carbon.framework in Frameworks */,
 				442D25B22B089F2F00204800 /* WebKit.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		446DBB8B2B00BD53000B76EC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -432,8 +428,6 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			name = Translit;
 			productName = Translit;
 			productReference = 445D1E472AFE2C6C00FA1C07 /* Translit.app */;
@@ -478,7 +472,6 @@
 				};
 			};
 			buildConfigurationList = 445D1E422AFE2C6C00FA1C07 /* Build configuration list for PBXProject "Translit" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -486,6 +479,7 @@
 				Base,
 			);
 			mainGroup = 445D1E3E2AFE2C6C00FA1C07;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 445D1E482AFE2C6C00FA1C07 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -500,7 +494,6 @@
 /* Begin PBXResourcesBuildPhase section */
 		445D1E452AFE2C6C00FA1C07 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				445D1E4E2AFE2C6F00FA1C07 /* Assets.xcassets in Resources */,
 				44C675BD2B028225003A5BDE /* menu.xib in Resources */,
@@ -517,14 +510,11 @@
 				442D25AE2B088B5700204800 /* about.html in Resources */,
 				442D25CA2B0B93D500204800 /* InfoPlist.strings in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		446DBB8C2B00BD53000B76EC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
@@ -532,43 +522,32 @@
 		442D25A42B0605CB00204800 /* Build Installer */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
 			name = "Build Installer";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Installer/build.py \"$BUILT_PRODUCTS_DIR\" \"$TARGET_TEMP_DIR\"\n";
+			shellScript = (
+				"$SRCROOT/Installer/build.py \"$BUILT_PRODUCTS_DIR\" \"$TARGET_TEMP_DIR\"",
+				"",
+			);
 		};
 		442D25C22B0B8D8200204800 /* Generate Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"$(SRCROOT)/Translit/Info.plist",
 				$SRCROOT/Translit/res/Base.lproj/InfoPlist.strings,
 			);
 			name = "Generate Info.plist";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				$SRCROOT/Translit/generated/Info.plist,
 				$SRCROOT/Translit/generated/Base.lproj/InfoPlist.strings,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir -p $SRCROOT/Translit/generated\n$SRCROOT/tools/format-file $SRCROOT/Translit/Info.plist $SRCROOT/Translit/generated/Info.plist\nmkdir -p $SRCROOT/Translit/generated/Base.lproj\n$SRCROOT/tools/format-file $SRCROOT/Translit/res/Base.lproj/InfoPlist.strings $SRCROOT/Translit/generated/Base.lproj/InfoPlist.strings\n";
+			shellScript = (
+				"mkdir -p $SRCROOT/Translit/generated",
+				"$SRCROOT/tools/format-file $SRCROOT/Translit/Info.plist $SRCROOT/Translit/generated/Info.plist",
+				"mkdir -p $SRCROOT/Translit/generated/Base.lproj",
+				"$SRCROOT/tools/format-file $SRCROOT/Translit/res/Base.lproj/InfoPlist.strings $SRCROOT/Translit/generated/Base.lproj/InfoPlist.strings",
+				"",
+			);
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -576,7 +555,6 @@
 /* Begin PBXSourcesBuildPhase section */
 		445D1E432AFE2C6C00FA1C07 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				442D25CC2B0CC97100204800 /* Uninstall.mm in Sources */,
 				442D25AC2B08339F00204800 /* AboutWindowController.mm in Sources */,
@@ -587,11 +565,9 @@
 				445D1E5F2AFE35AA00FA1C07 /* InputController.mm in Sources */,
 				445D1E4C2AFE2C6C00FA1C07 /* AppDelegate.mm in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		446DBB8A2B00BD53000B76EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				4475AD322B11F97F008DA122 /* TestPrefixMapper.mm in Sources */,
 				442D25B42B0A2E1B00204800 /* Transliterator.mm in Sources */,
@@ -599,7 +575,6 @@
 				44B947CF2B4698E500B68C7E /* TestPerf.mm in Sources */,
 				44C675842B02153F003A5BDE /* TestRu.mm in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -636,56 +611,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		442D25952B0603B200204800 /* Debug */ = {
+		442D25952B0603B200204800 /* Debug configuration for PBXAggregateTarget "Installer" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 442D25A72B06349800204800 /* Installer.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		442D25962B0603B200204800 /* Release */ = {
+		442D25962B0603B200204800 /* Release configuration for PBXAggregateTarget "Installer" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 442D25A72B06349800204800 /* Installer.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		445D1E552AFE2C6F00FA1C07 /* Debug */ = {
+		445D1E552AFE2C6F00FA1C07 /* Debug configuration for PBXProject "Translit" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 442D258D2B05F74200204800 /* Project_Debug.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		445D1E562AFE2C6F00FA1C07 /* Release */ = {
+		445D1E562AFE2C6F00FA1C07 /* Release configuration for PBXProject "Translit" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 442D258E2B05F75000204800 /* Project_Release.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		445D1E582AFE2C6F00FA1C07 /* Debug */ = {
+		445D1E582AFE2C6F00FA1C07 /* Debug configuration for PBXNativeTarget "Translit" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 442D258F2B05FB9C00204800 /* Translit.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		445D1E592AFE2C6F00FA1C07 /* Release */ = {
+		445D1E592AFE2C6F00FA1C07 /* Release configuration for PBXNativeTarget "Translit" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 442D258F2B05FB9C00204800 /* Translit.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		446DBB952B00BD53000B76EC /* Debug */ = {
+		446DBB952B00BD53000B76EC /* Debug configuration for PBXNativeTarget "TranslitTests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 442D25922B06016600204800 /* TranslitTests.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		446DBB962B00BD53000B76EC /* Release */ = {
+		446DBB962B00BD53000B76EC /* Release configuration for PBXNativeTarget "TranslitTests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 442D25922B06016600204800 /* TranslitTests.xcconfig */;
 			buildSettings = {
@@ -698,37 +673,33 @@
 		442D25942B0603B200204800 /* Build configuration list for PBXAggregateTarget "Installer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				442D25952B0603B200204800 /* Debug */,
-				442D25962B0603B200204800 /* Release */,
+				442D25952B0603B200204800 /* Debug configuration for PBXAggregateTarget "Installer" */,
+				442D25962B0603B200204800 /* Release configuration for PBXAggregateTarget "Installer" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		445D1E422AFE2C6C00FA1C07 /* Build configuration list for PBXProject "Translit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				445D1E552AFE2C6F00FA1C07 /* Debug */,
-				445D1E562AFE2C6F00FA1C07 /* Release */,
+				445D1E552AFE2C6F00FA1C07 /* Debug configuration for PBXProject "Translit" */,
+				445D1E562AFE2C6F00FA1C07 /* Release configuration for PBXProject "Translit" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		445D1E572AFE2C6F00FA1C07 /* Build configuration list for PBXNativeTarget "Translit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				445D1E582AFE2C6F00FA1C07 /* Debug */,
-				445D1E592AFE2C6F00FA1C07 /* Release */,
+				445D1E582AFE2C6F00FA1C07 /* Debug configuration for PBXNativeTarget "Translit" */,
+				445D1E592AFE2C6F00FA1C07 /* Release configuration for PBXNativeTarget "Translit" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		446DBB942B00BD53000B76EC /* Build configuration list for PBXNativeTarget "TranslitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				446DBB952B00BD53000B76EC /* Debug */,
-				446DBB962B00BD53000B76EC /* Release */,
+				446DBB952B00BD53000B76EC /* Debug configuration for PBXNativeTarget "TranslitTests" */,
+				446DBB962B00BD53000B76EC /* Release configuration for PBXNativeTarget "TranslitTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
