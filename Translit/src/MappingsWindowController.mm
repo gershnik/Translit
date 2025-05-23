@@ -4,6 +4,8 @@
 #import "MappingsWindowController.hpp"
 #import "AppDelegate.hpp"
 
+#include "Languages.hpp"
+
 @interface MappingsWindowController () <WKNavigationDelegate> {
     IBOutlet WKWebView * _text;
     IBOutlet NSPopUpButton * _schemeSelector;
@@ -37,19 +39,16 @@
     
     auto menu = _schemeSelector.menu;
     [menu removeAllItems];
-    auto item = [menu addItemWithTitle:@"default" action:@selector(setMappingVariant:) keyEquivalent:@""];
-    item.representedObject = @"";
-    NSMenuItem * selected = item;
-    if ([_language isEqualToString:@"ru"]) {
-        item = [menu addItemWithTitle:@"translit.ru" action:@selector(setMappingVariant:) keyEquivalent:@""];
-        item.representedObject = @"translit-ru";
-        if ([_variant isEqualToString:@"translit-ru"])
+    NSMenuItem * selected;
+    for (auto & entry: getVariantsForLanguage(_language)) {
+        auto item = [menu addItemWithTitle:entry.displayName action:@selector(setMappingVariant:) keyEquivalent:@""];
+        item.representedObject = entry.name;
+        if ([_variant isEqualToString:entry.name])
             selected = item;
-        
-        [_schemeSelector setEnabled:YES];
-    } else {
-        [_schemeSelector setEnabled:NO];
     }
+    if (!selected)
+        selected = menu.itemArray[0];
+    [_schemeSelector setEnabled:menu.numberOfItems > 1];
     [_schemeSelector selectItem:selected];
     [_schemeSelector synchronizeTitleAndSelectedItem];
     
@@ -74,7 +73,16 @@
     if (_variant.length)
         name = [[name stringByAppendingString:@"."] stringByAppendingString:_variant];
     auto url = [NSBundle.mainBundle URLForResource:name withExtension:@"html"];
+    if (!url) {
+        _text.hidden = YES;
+        return;
+    }
     auto html = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+    if (!html) {
+        _text.hidden = YES;
+        return;
+    }
+    _text.hidden = NO;
     [_text loadHTMLString:html baseURL:nil];
 }
 

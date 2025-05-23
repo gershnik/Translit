@@ -13,6 +13,7 @@
 #include <string>
 #include <map>
 #include <ranges>
+#include <span>
 #include <algorithm>
 #include <utility>
 #include <type_traits>

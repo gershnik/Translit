@@ -12,11 +12,15 @@ private:
     using String = std::basic_string<Char>;
     using StringView = std::basic_string_view<Char>;
     using Iterator = String::const_iterator;
+public:
     using Range = std::ranges::subrange<Iterator>;
     using MappingFunc = PrefixMappingResult<Char, Iterator> (const Range &);
     
+    static constexpr MappingFunc * nullMapper = nullPrefixMapper<Char, Range>;
 public:
-    Transliterator(const NSStringCharAccess & name): m_mapper(getMapper(name))
+    Transliterator() = default;
+    
+    Transliterator(MappingFunc * mapper): m_mapper(mapper)
     {}
     
     void append(const NSStringCharAccess & str);
@@ -43,10 +47,7 @@ public:
     }
     
 private:
-    static auto getMapper(const NSStringCharAccess & name) -> MappingFunc *;
-    
-private:
-    MappingFunc * m_mapper = nullPrefixMapper<Char, Range>;
+    MappingFunc * m_mapper = nullMapper;
     
     String m_prefix;
     String m_translit;

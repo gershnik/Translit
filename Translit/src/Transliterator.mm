@@ -2,20 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "Transliterator.hpp"
-#include "TableRU.hpp"
-#include "TableHE.hpp"
 
-auto Transliterator::getMapper(const NSStringCharAccess & name) -> MappingFunc * {
-    
-    static constexpr auto mapNameToMapper = makeMapper<NSStringCharAccess,
-        nullPrefixMapper<Char, Range>,
-        Mapping{(MappingFunc *)g_mapperRuDefault<Range>, u"ru"},
-        Mapping{(MappingFunc *)g_mapperRuTranslitRu<Range>, u"ru.translit-ru"},
-        Mapping{(MappingFunc *)g_mapperHe<Range>, u"he"}
-    >();
-    
-    return mapNameToMapper(name);
-}
 
 void Transliterator::append(const NSStringCharAccess & str) {
     m_prefix.append(str.begin(), str.end());

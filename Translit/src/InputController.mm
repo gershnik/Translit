@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "Transliterator.hpp"
+#include "Languages.hpp"
 #include "AppDelegate.hpp"
 #include "MenuProtocol.hpp"
 #include "InputControllerProtocol.hpp"
@@ -27,7 +28,7 @@
     if (self)
     {
         _currentLanguage = @"ru";
-        _transliterator = std::make_unique<Transliterator>(_currentLanguage);
+        _transliterator = std::make_unique<Transliterator>();
     }
     
     return self;
@@ -121,12 +122,9 @@
 
 -(void) resetLanguage:(NSString *)language variant:(NSString *)variant {
     _currentLanguage = language;
-    os_log_info(OS_LOG_DEFAULT, "Setting language to %{public}@", _currentLanguage);
-    if (variant.length != 0)
-        variant = [@"." stringByAppendingString:variant];
-    NSString * transliteratorLanguage = [_currentLanguage stringByAppendingString:variant];
-    os_log_info(OS_LOG_DEFAULT, "Activating %{public}@", transliteratorLanguage);
-    _transliterator = std::make_unique<Transliterator>(transliteratorLanguage);
+    os_log_info(OS_LOG_DEFAULT, "Setting language to %{public}@, variant '%{public}@'", _currentLanguage, variant);
+    auto mapper = getMapperFor(language, variant);
+    _transliterator = std::make_unique<Transliterator>(mapper);
 }
 
 -(void) commitAllToSender:(id<IMKTextInput>)sender {

@@ -49,6 +49,29 @@
 				<key>tsInputModeScriptKey</key>
 				<string>smCyrillic</string>
 			</dict>
+            <key>{PRODUCT_BUNDLE_IDENTIFIER}.uk</key>
+            <dict>
+                <key>TISInputSourceID</key>
+                <string>$(PRODUCT_BUNDLE_IDENTIFIER).uk</string>
+                <key>TISIntendedLanguage</key>
+                <string>uk</string>
+                <key>TISDoubleSpaceSubstitution</key>
+                <string>. </string>
+                <key>tsInputModeIsVisibleKey</key>
+                <true/>
+                <key>tsInputModePrimaryInScriptKey</key>
+                <false/>
+                <key>tsInputModeMenuIconFileKey</key>
+                <string>uk.png</string>
+                <key>tsInputModePaletteIconFileKey</key>
+                <string>uk.png</string>
+                <key>tsInputMethodCharacterRepertoireKey</key>
+                <array>
+                    <string>Cyrl</string>
+                </array>
+                <key>tsInputModeScriptKey</key>
+                <string>smCyrillic</string>
+            </dict>
 			<key>{PRODUCT_BUNDLE_IDENTIFIER}.he</key>
 			<dict>
 				<key>TISInputSourceID</key>
@@ -76,6 +99,7 @@
 		<key>tsVisibleInputModeOrderedArrayKey</key>
 		<array>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).ru</string>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER).uk</string>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).he</string>
 		</array>
 	</dict>

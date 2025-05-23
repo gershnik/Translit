@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    
+    <style>
+        html {
+            overflow: hidden;
+        }
+        body {
+            margin: 0px;
+            font-family:-apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            -webkit-overflow-scrolling: touch;
+        }
+        table{
+            table-layout: auto;
+            margin: 0px;
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        tr {
+            margin: 0px;
+        }
+        table.main td {
+            margin: 0px;
+            border: 1px solid #E5E5E5;
+            white-space: nowrap;
+        }
+        
+        table.multi td {
+            margin: 0px;
+            border: 0px;
+            white-space: nowrap;
+        }
+        
+        tr.headerRow {
+            font-weight:bold;
+        }
+        tr.contentRow {
+            background-color: #F0F0F0
+        }
+        @media (prefers-color-scheme: dark) {
+            tr.contentRow {
+                background-color: #303030
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="table-holder" style="width:100%">
+        <table class="main">
+            <tr class="headerRow">
+                <td>А</td>
+                <td>а</td>
+                <td>Б</td>
+                <td>б</td>
+                <td>В</td>
+                <td>в</td>
+                <td>Г</td>
+                <td>г</td>
+                <td>Ґ</td>
+                <td>ґ</td>
+                <td>Д</td>
+                <td>д</td>
+                <td>Е</td>
+                <td>е</td>
+                <td>Є</td>
+                <td>є</td>
+                <td>Ж</td>
+                <td>ж</td>
+            </tr>
+            <tr class="contentRow">
+                <td>A</td>
+                <td>a</td>
+                <td>B</td>
+                <td>b</td>
+                <td>V</td>
+                <td>v</td>
+                <td>G</td>
+                <td>g</td>
+                <td>G'</td>
+                <td>g'</td>
+                <td>D</td>
+                <td>d</td>
+                <td>E</td>
+                <td>e</td>
+                <td><table class="multi"><tr><td>Je</td></tr><tr><td>Ye</td></tr></table></td>
+                <td><table class="multi"><tr><td>je</td></tr><tr><td>ye</td></tr></table></td>
+                <td>Zh</td>
+                <td>zh</td>
+            </tr>
+        </table>
+        <br />
+        <table class="main">
+            <tr class="headerRow">
+                <td>З</td>
+                <td>з</td>
+                <td>И</td>
+                <td>и</td>
+                <td>І</td>
+                <td>і</td>
+                <td>Ї</td>
+                <td>ї</td>
+                <td>Й</td>
+                <td>й</td>
+                <td>К</td>
+                <td>к</td>
+                <td>Л</td>
+                <td>л</td>
+                <td>М</td>
+                <td>м</td>
+            </tr>
+            <tr class="contentRow">
+                <td>Z</td>
+                <td>z</td>
+                <td>Y</td>
+                <td>y</td>
+                <td>I</td>
+                <td>i</td>
+                <td><table class="multi"><tr><td>I'</td></tr><tr><td>Ji</td></tr></table></td>
+                <td><table class="multi"><tr><td>i'</td></tr><tr><td>ji</td></tr></table></td>
+                <td>J</td>
+                <td>j</td>
+                <td>K</td>
+                <td>k</td>
+                <td>L</td>
+                <td>l</td>
+                <td>M</td>
+                <td>m</td>
+            </tr>
+        </table>
+        <br/>
+        <table class="main">
+            <tr class="headerRow">
+                <td>Н</td>
+                <td>н</td>
+                <td>О</td>
+                <td>о</td>
+                <td>П</td>
+                <td>п</td>
+                <td>Р</td>
+                <td>р</td>
+                <td>С</td>
+                <td>с</td>
+                <td>Т</td>
+                <td>т</td>
+                <td>У</td>
+                <td>у</td>
+                <td>Ф</td>
+                <td>ф</td>
+            </tr>
+            <tr class="contentRow">
+                <td>N</td>
+                <td>n</td>
+                <td>O</td>
+                <td>o</td>
+                <td>P</td>
+                <td>p</td>
+                <td>R</td>
+                <td>r</td>
+                <td>S</td>
+                <td>s</td>
+                <td>T</td>
+                <td>t</td>
+                <td>U</td>
+                <td>u</td>
+                <td>F</td>
+                <td>f</td>
+            </tr>
+        </table>
+        <br/>
+        <table class="main">
+            <tr class="headerRow">
+                <td>Х</td>
+                <td>х</td>
+                <td>Ц</td>
+                <td>ц</td>
+                <td>Ч</td>
+                <td>ч</td>
+                <td>Ш</td>
+                <td>ш</td>
+                <td>Щ</td>
+                <td>щ</td>
+                <td>Ь</td>
+                <td>ь</td>
+                <td>Ю</td>
+                <td>ю</td>
+                <td>Я</td>
+                <td>я</td>
+            </tr>
+            <tr class="contentRow">
+                <td><table class="multi"><tr><td>H</td></tr><tr><td>X</td></tr></table></td>
+                <td><table class="multi"><tr><td>h</td></tr><tr><td>x</td></tr></table></td>
+                <td>C</td>
+                <td>c</td>
+                <td>Ch</td>
+                <td>ch</td>
+                <td><table class="multi"><tr><td>Sh</td></tr><tr><td>W</td></tr></table></td>
+                <td><table class="multi"><tr><td>sh</td></tr><tr><td>w</td></tr></table></td>
+                <td><table class="multi"><tr><td>Shh</td></tr><tr><td>Q</td></tr></table></td>
+                <td><table class="multi"><tr><td>shh</td></tr><tr><td>q</td></tr></table></td>
+                <td>''</td>
+                <td>'</td>
+                <td><table class="multi"><tr><td>Ju</td></tr><tr><td>Yu</td></tr><tr><td>Ü</td></tr></table></td>
+                <td><table class="multi"><tr><td>ju</td></tr><tr><td>yu</td></tr><tr><td>ü</td></tr></table></td>
+                <td><table class="multi"><tr><td>Ja</td></tr><tr><td>Ya</td></tr></table></td>
+                <td><table class="multi"><tr><td>ja</td></tr><tr><td>ya</td></tr></table></td>
+                
+            </tr>
+        </table>
+        <br/>
+        <div style="padding-left:4px;padding-right:4px">
+        <span>❗️To enter combinations such as <code>сх</code> or <code>шх</code> press <code>ESC</code> after the first letter to stop recognition. 
+            That is <code>s ESC h</code> will produce <code>сх</code> and <code>sh ESC h</code> will produce <code>шх</code>.
+        </span>
+        </div>
+    </div>
+</body>
+</html>
