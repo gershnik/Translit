@@ -273,16 +273,17 @@ def generate_html(config: dict[str, Any]):
                     </table>
             ''')
         
+        content += '        <div style="height:0.5em"></div>\n'
         footer = config.get('footer', {}).get('content')
         if footer is not None:
             footer = footer.rstrip()
             content += dedent(f'''\
-                    <br>
                     <div class="footer">
                     <span>
                     {indent_insert(footer, 20)}
                     </span>
                     </div>
+                    <div style="height:0.5em"></div>
             ''')
         content += dedent('''\
                 </div>

@@ -21,7 +21,7 @@
             <rect key="contentRect" x="196" y="240" width="425" height="307"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
             <value key="minSize" type="size" width="425" height="307"/>
-            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
+            <view key="contentView" clipsToBounds="YES" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="425" height="307"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -39,12 +39,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" inset="2" id="e9I-ox-MLp">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
+                            <font key="font" metaFont="message"/>
                             <menu key="menu" id="Ig4-LU-YGz"/>
                         </popUpButtonCell>
                     </popUpButton>
                     <wkWebView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJS-9E-cs0">
-                        <rect key="frame" x="0.0" y="8" width="425" height="241"/>
+                        <rect key="frame" x="0.0" y="0.0" width="425" height="249"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <wkWebViewConfiguration key="configuration">
                             <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
