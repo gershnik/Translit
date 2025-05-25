@@ -62,7 +62,7 @@
     }
     
     
-    [_text loadHTMLString:html baseURL:nil];
+    [_text loadHTMLString:html baseURL:NSBundle.mainBundle.resourceURL];
     _text.navigationDelegate = self;
     
     auto del = (AppDelegate *)NSApp.delegate;

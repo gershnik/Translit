@@ -80,7 +80,7 @@
         return;
     }
     _text.hidden = NO;
-    [_text loadHTMLString:html baseURL:nil];
+    [_text loadHTMLString:html baseURL:NSBundle.mainBundle.resourceURL];
 }
 
 -(void) webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
