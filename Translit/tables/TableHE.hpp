@@ -6,7 +6,7 @@
 #ifndef TRANSLIT_HEADER_TABLE_HE_HPP_INCLUDED
 #define TRANSLIT_HEADER_TABLE_HE_HPP_INCLUDED
 
-#include "Mapper.hpp"
+#include "../src/Mapper.hpp"
 
 template<std::ranges::forward_range Range>
 constexpr auto g_mapperHeDefault = makePrefixMapper<Range,

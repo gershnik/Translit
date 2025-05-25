@@ -11,6 +11,7 @@ struct LanguageVariant {
     NSString * name;
     NSString * displayName;
     Transliterator::MappingFunc * mapper;
+    std::span<const uint8_t> mappings_html;
 };
 
 auto getVariantsForLanguage(NSString * name) -> std::span<const LanguageVariant>;
@@ -25,6 +26,18 @@ inline auto getMapperFor(NSString * language, NSString * variant) -> Translitera
             return current.mapper;
     }
     return variants[0].mapper;
+}
+
+inline auto getHtmlFor(NSString * language, NSString * variant) -> std::span<const uint8_t> {
+    
+    auto variants = getVariantsForLanguage(language);
+    if (!variant)
+        variant = @"";
+    for (auto & current: variants) {
+        if ([current.name isEqualToString:variant])
+            return current.mappings_html;
+    }
+    return variants[0].mappings_html;
 }
 
 #endif

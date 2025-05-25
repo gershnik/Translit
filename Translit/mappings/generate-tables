@@ -43,6 +43,20 @@ def make_mapper_name(language: str, variant: str):
     suffix = ''.join(words)
     return prefix + suffix
 
+def make_html_name(language: str, variant: str):
+    prefix = f'g_html{language.title()}'
+    words = re.split(r'[-_]', variant)
+    words = [w.title() for w in words]
+    suffix = ''.join(words)
+    return prefix + suffix
+
+def make_html_file_name(language: str, variant: str):
+    filename = f'mapping-{language}'
+    if variant != 'default':
+        filename += f'.{variant}'
+    filename += '.html'
+    return filename
+
 def write_file_if_different(path: Path, content: str):
     bin_content = content.encode('utf-8')
     if path.is_file():
@@ -158,7 +172,7 @@ def generate_mapping_header(config: dict[str, Any]):
         #ifndef TRANSLIT_HEADER_{macro}_INCLUDED
         #define TRANSLIT_HEADER_{macro}_INCLUDED
 
-        #include "Mapper.hpp"
+        #include "../src/Mapper.hpp"
 
         ''')
     
@@ -186,7 +200,8 @@ def generate_mapping_header(config: dict[str, Any]):
         content += '\n>();\n'
 
     content += '\n#endif\n'
-    write_file_if_different(MYDIR.parent / 'src' / header, content)
+    (MYDIR.parent / 'tables').mkdir(exist_ok=True)
+    write_file_if_different(MYDIR.parent / 'tables' / header, content)
 
 def generate_html(config: dict[str, Any]):
 
@@ -272,11 +287,9 @@ def generate_html(config: dict[str, Any]):
             ''')
 
         language: str = config['language']
-        filename = f'mapping-{language}'
-        if varname != 'default':
-            filename += f'.{varname}'
-        filename += '.html'
-        write_file_if_different(MYDIR.parent / 'res' / filename, content)
+        filename = make_html_file_name(language, varname)
+        (MYDIR.parent / 'tables').mkdir(exist_ok=True)
+        write_file_if_different(MYDIR.parent / 'tables' / filename, content)
 
 def generate_markdown(config):
 
@@ -328,23 +341,31 @@ def generate_implementation(impl: dict[str, Any]):
 
         using MappingFunc = Transliterator::MappingFunc;
         using Range = Transliterator::Range;
+                      
+        #pragma clang diagnostic ignored "-Wc23-extensions"
 
         static const LanguageVariant g_defaultEntries[] = {
-            { @"",              @"default",         Transliterator::nullMapper },
+            { @"",              @"default",         Transliterator::nullMapper, {} },
         };
         static constexpr std::span<const LanguageVariant> g_default{g_defaultEntries};
         ''')
 
     for lang, variants in impl['languages'].items():
+        for variant in variants:
+            varname = variant[0]
+            content += dedent(f'''
+            static const uint8_t {make_html_name(lang, varname)}[] = {{
+                #embed "../tables/{make_html_file_name(lang, varname)}"
+            }};''')
+
         content += f'\nstatic const LanguageVariant g_{lang}Entries[] = {{\n'
         for variant in variants:
             varname = variant[0]
             varinfo = variant[1]
             variable = make_mapper_name(lang, varname)
             display = varinfo['display']
-            if varname == 'default':
-                varname = ''
-            content += f'    {{ @"{varname}", @"{display}", {variable}<Range> }},\n'
+            var_id = varname if varname != 'default' else ''
+            content += f'    {{ @"{var_id}", @"{display}", {variable}<Range>, {make_html_name(lang, varname)} }},\n'
         content += dedent(f'''\
             }};
             static constexpr std::span<const LanguageVariant> g_{lang}{{g_{lang}Entries}};
@@ -388,7 +409,7 @@ def main():
         generate_markdown(config)
 
         language: str = config['language']
-        impl.setdefault('headers', []).append(f'Table{language.upper()}.hpp')
+        impl.setdefault('headers', []).append(f'../tables/Table{language.upper()}.hpp')
         impl_table = []
         for varname, varinfo in config['variants'].items():
             impl_table.append((varname, varinfo))

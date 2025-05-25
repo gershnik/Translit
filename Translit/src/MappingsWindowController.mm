@@ -69,15 +69,12 @@
 }
 
 -(void) updateTable {
-    auto name = [@"mapping-" stringByAppendingString:_language];
-    if (_variant.length)
-        name = [[name stringByAppendingString:@"."] stringByAppendingString:_variant];
-    auto url = [NSBundle.mainBundle URLForResource:name withExtension:@"html"];
-    if (!url) {
+    auto html_bytes = getHtmlFor(_language, _variant);
+    if (html_bytes.empty()) {
         _text.hidden = YES;
         return;
     }
-    auto html = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+    auto html = [[NSString alloc] initWithBytes:html_bytes.data() length:html_bytes.size() encoding:NSUTF8StringEncoding];
     if (!html) {
         _text.hidden = YES;
         return;
