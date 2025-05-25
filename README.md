@@ -66,8 +66,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
   <img src="doc/images/Edit.png" width="500px"><br/>
 * Press the `+` button to add an input source<br/><br/>
   <img src="doc/images/Plus.png" width="500px"><br/>
-* Navigate to the desired target language (e.g. `Russian`, `Hebrew` etc.) and select `<Langage> Translit` (for example  `Hebrew Translit`).
-  as desired. If you wish to multiple languages press the `+` again after adding one.
+* Navigate to the desired target language (e.g. `Russian`, `Hebrew` etc.) and select `<Langage> Translit` (for example  `Hebrew Translit`). If you wish to add multiple languages press the `+` again after that.
 
 You are all set. If you have enabled `Show Input menu in menu bar` setting
 
