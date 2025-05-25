@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+### Added
+- Support for Ukrainian and Belarusian
+
+### Changed
+- Minor UI improvements
+
 ## [1.3] - 2025-05-21
 
 ### Added
