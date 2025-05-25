@@ -14,20 +14,18 @@
 
 This macOS keyboard _[input source][input_sources]_ allows a user familiar only with Latin alphabet keyboard to 
 type in other languages by using common Latin transliteration of the target language letters. 
-Currently supported target languages are Hebrew, Russian, Ukrainian and Belarusian. 
+Currently supported target languages are Russian, Hebrew, Ukrainian and Belarusian. 
 To give an example, typing `privet` in Russian mode will produce `привет` and typing `hi` in Hebrew mode will produce `הי`.
 
-
-<!-- TOC depthfrom:2 -->
+<!-- TOC depthfrom:2-->
 
 - [Features](#features)
 - [Installation](#installation)
+    - [Basics](#basics)
     - [Keyboard shortcuts](#keyboard-shortcuts)
     - [Viewing/Configuring transliteration mappings](#viewingconfiguring-transliteration-mappings)
     - [Uninstallation](#uninstallation)
 - [Mappings](#mappings)
-    - [Russian](#russian)
-    - [Hebrew](#hebrew)
 - [Building](#building)
 
 <!-- /TOC -->
@@ -35,7 +33,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
 ## Features
 
 - Type normally in any window without copy/pasting from a separate app/browser
-- Supports multiple languages: currently Russian, Ukrainian, Belarusian and Hebrew with an easy way to add more, if desired.
+- Supports multiple languages: currently Russian, Hebrew, Ukrainian and Belarusian with an easy way to add more, if desired.
 - Supports modern macOS versions
 - Distributed as signed and notarized installer - you don't need to build it yourself (but you can, if you want to).
 - Reliable installation and uninstallation on recent versions of macOS.<br/> 
@@ -50,12 +48,14 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
   and `qq` for `ъ` makes typing much smoother.
 - Support for multiple transliteration schemes. Since some people would prefer to use familiar transliteration schemes
   from elsewhere, this application allows you to choose which scheme to use.
-  Currently the default or [translit.ru/translit.net][translit_ru] schemes are supported for Russian, Ukrainian and Belarusian. More can be added, if desired.
+  Currently, in addition to the default, [translit.ru/translit.net][translit_ru] schemes are supported for Russian, Ukrainian and Belarusian. More can be added, if desired.
 
   There are existing macOS transliteration projects on Github such as [cyrillic-transliterator][cyrillic-transliterator] 
   and its forks but none of them supports all the features above.
 
 ## Installation
+
+### Basics
   
 * Navigate to [Releases][releases] page and download `Translit-x.y.pkg` package installer. 
 * Run it and install the app
@@ -66,7 +66,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
   <img src="doc/images/Edit.png" width="500px"><br/>
 * Press the `+` button to add an input source<br/><br/>
   <img src="doc/images/Plus.png" width="500px"><br/>
-* Navigate to the desired target language (e.g. `Russian` or `Hebrew`) and select `Russian Translit` or `Hebrew Translit` etc. 
+* Navigate to the desired target language (e.g. `Russian`, `Hebrew` etc.) and select `<Langage> Translit` (for example  `Hebrew Translit`).
   as desired. If you wish to multiple languages press the `+` again after adding one.
 
 You are all set. If you have enabled `Show Input menu in menu bar` setting
