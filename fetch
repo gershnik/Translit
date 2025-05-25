@@ -17,9 +17,10 @@ from urllib.request import urlretrieve
 components = {
     'objc-helpers': {
         'ver': '3.1',
-        'url': 'https://github.com/gershnik/objc-helpers/releases/download/v{ver}/objc-helpers-{ver}.tar.gz',
+        'url': 'https://github.com/gershnik/objc-helpers/archive/refs/tags/v{ver}/v{ver}.tar.gz',
         'unpacker': {
-            'type': 'tar'
+            'type': 'tar',
+            'strip': 1
         },
         'dir': 'objc-helpers',
         'verFile': 'VERSION',
@@ -62,18 +63,22 @@ def check_up_to_date(name, component):
     return up_to_date
     
 def untar(name, component, archive):
-    directory = EXTERNAL_DIR / component['dir']
+    directory = EXTERNAL_DIR / component.get('dir', name)
     if archive.suffix in ('.tgz', '.gz'):
         comp = 'z'
     elif archive.suffix in ('.tbz', '.bz'):
         comp = 'j'
     else:
         comp = ''
-    
+
     command = ['/usr/bin/tar', '-C', directory, f'-x{comp}f', archive]
     subst = component['unpacker'].get('subst')
-    if not subst is None:
+    if subst is not None:
         command += ['-s', subst]
+    strip = component['unpacker'].get('strip')
+    if strip is not None:
+        command += ['--strip-components', str(strip)]
+
     subprocess.run(command, check=True)
 
 def fetch_url(name, component, unpacker):
@@ -85,7 +90,7 @@ def fetch_url(name, component, unpacker):
         sys.exit(1)
     directory.mkdir()
     url = component['url'].format(ver = component['ver'])
-    path, headers = urlretrieve(url)
+    path, _ = urlretrieve(url)
     try:
         unpacker(name, component, Path(path))
         print(f'Installed {name}')
@@ -116,7 +121,7 @@ def main():
     local_xcconfig = MYDIR / 'Local.xcconfig'
 
     if not local_xcconfig.exists():
-        local_xcconfig.write_text('''
+        local_xcconfig.write_text('''\
 // Local configuration settings. Do not commit to source control
 //
 // Configuration settings file format documentation can be found at:
@@ -127,7 +132,7 @@ def main():
 //NOTARIZE_USER=...
 //NOTARIZE_PWD=...
 //CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO
-'''.lstrip())
+''')
 
     EXTERNAL_DIR.mkdir(parents=True, exist_ok=True)
     for name, component in components.items():
