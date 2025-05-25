@@ -4,5 +4,6 @@ xcuserdata/
 DerivedData
 External
 Local.xcconfig
+notes.md
 Translit/generated
 Translit/tests/PerfData

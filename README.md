@@ -35,7 +35,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
 ## Features
 
 - Type normally in any window without copy/pasting from a separate app/browser
-- Supports multiple languages: currently Russian, Ukrainian and Belarusian and Hebrew with an easy way to add more, if desired.
+- Supports multiple languages: currently Russian, Ukrainian, Belarusian and Hebrew with an easy way to add more, if desired.
 - Supports modern macOS versions
 - Distributed as signed and notarized installer - you don't need to build it yourself (but you can, if you want to).
 - Reliable installation and uninstallation on recent versions of macOS.<br/> 
@@ -63,19 +63,19 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
   no way to avoid this.
 * After you log back in launch `System Preferences ⇒ Keyboard`
 * In the `Text Input` section press `Edit...` button for `Input Sources`<br/><br/>
-  <img src="doc/Edit.png" width="500px"><br/>
+  <img src="doc/images/Edit.png" width="500px"><br/>
 * Press the `+` button to add an input source<br/><br/>
-  <img src="doc/Plus.png" width="500px"><br/>
+  <img src="doc/images/Plus.png" width="500px"><br/>
 * Navigate to the desired target language (e.g. `Russian` or `Hebrew`) and select `Russian Translit` or `Hebrew Translit` etc. 
   as desired. If you wish to multiple languages press the `+` again after adding one.
 
 You are all set. If you have enabled `Show Input menu in menu bar` setting
 
-<img src="doc/ShowMenu.png" width="600px">
+<img src="doc/images/ShowMenu.png" width="600px">
 
 you should see something like this in it
 
-<img src="doc/LangMenu.png" width="200px">
+<img src="doc/images/LangMenu.png" width="200px">
 
 Select the newly added input method and you can start typing in it anywhere.
 
@@ -88,19 +88,19 @@ If these aren't working navigate to `System Preferences ⇒ Keyboard ⇒ Keyboar
 
 It is also possible to make Caps Lock key switch between default and Translit input source. See
 the following toggle in the `Input Sources` screen.<br/>
-<img src="doc/CapsLock.png" width="500px">
+<img src="doc/images/CapsLock.png" width="500px">
 <br/>
 
 ### Viewing/Configuring transliteration mappings
 
 When a transliteration input mode is selected the pop-up system menu will show addition entries like these
 
-<img src="doc/TranslitMenu.png" width="200px">
+<img src="doc/images/TranslitMenu.png" width="200px">
 
 Select `Mappings` to display which Latin characters and combination map to which letters of the target language.
 If multiple transliteration schemes are supported for the target language you can also change the scheme.
 
-<img src="doc/Mapping.png" width="400px">
+<img src="doc/images/Mapping.png" width="400px">
 
 
 ### Uninstallation
@@ -126,7 +126,7 @@ to Apple's bugs.
 
 ## Mappings
 
-The character mappings can be found in the following documents
+Currently supported character mappings can be found in the following documents
 
 * 🇧🇾 [Belarusian](doc/mapping-be.md)
 * 🇮🇱 [Hebrew](doc/mapping-he.md)
