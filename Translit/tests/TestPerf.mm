@@ -3,7 +3,7 @@
 
 #import <XCTest/XCTest.h>
 
-#include "../src/TableRU.hpp"
+#include "../tables/TableRU.hpp"
 
 @interface TestPerf : XCTestCase
 
