@@ -112,7 +112,6 @@
 		442D25CD2B0CC9C200204800 /* Uninstall.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Uninstall.hpp; sourceTree = "<group>"; };
 		444998F52DE0527000E851CE /* be.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = be.png; sourceTree = "<group>"; };
 		4449BEF12DE2E49B000B18DF /* be.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = be.toml; sourceTree = "<group>"; };
-		4449BEF22DE2E49B000B18DF /* config.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.toml; sourceTree = "<group>"; };
 		4449BEF32DE2E49B000B18DF /* generate-tables */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = "generate-tables"; sourceTree = "<group>"; };
 		4449BEF42DE2E49B000B18DF /* he.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = he.toml; sourceTree = "<group>"; };
 		4449BEF52DE2E49B000B18DF /* ru.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = ru.toml; sourceTree = "<group>"; };
@@ -265,7 +264,6 @@
 		4449BEF82DE2E49B000B18DF /* mappings */ = {
 			isa = PBXGroup;
 			children = (
-				4449BEF22DE2E49B000B18DF /* config.toml */,
 				4449BEF12DE2E49B000B18DF /* be.toml */,
 				4449BEF42DE2E49B000B18DF /* he.toml */,
 				4449BEF52DE2E49B000B18DF /* ru.toml */,

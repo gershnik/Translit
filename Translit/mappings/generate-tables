@@ -3,10 +3,12 @@
 # Copyright (c) 2023, Eugene Gershnik
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import sys
 import tomllib
 import unicodedata
 import re
 import textwrap
+import plistlib
 from pathlib import Path
 from typing import Any
 
@@ -227,6 +229,8 @@ def generate_html(config: dict[str, Any]):
                 <meta name="viewport" content="initial-scale=1">
                 <meta name="color-scheme" content="light dark">
                 <meta name="supported-color-schemes" content="light dark">
+                         
+                <title>{config['name']} Mappings</title>
                 
                 <style>
                     {indent_insert(style, 20)}
@@ -392,23 +396,31 @@ def generate_implementation(impl: dict[str, Any]):
     write_file_if_different(MYDIR.parent / 'src/Languages.mm', content)
 
 def main():
-    config_file = MYDIR / 'config.toml'
-    with open(config_file, 'rb') as f:
-        config = tomllib.load(f)
+    with open(MYDIR.parent / 'Info.plist', 'rb') as f:
+        info = plistlib.load(f, fmt=plistlib.FMT_XML)
+
+    languages = []
+    for mode in info['ComponentInputModeDict']['tsInputModeListKey'].values():
+        languages.append(mode['TISIntendedLanguage'])
+        icon = mode['tsInputModePaletteIconFileKey']
+        if not (MYDIR.parent / 'res' / icon).exists():
+            print(f'Icon {icon} does not exist, please add', file=sys.stderr)
+            return 1
 
     impl = {}
     
-    for lang_file in config['languages']:
+    for language in languages:
+        lang_file = f'{language}.toml'
         print(f'Processing {lang_file}')
         lang_config = MYDIR / lang_file
         with open(lang_config, 'rb') as f:
             config = tomllib.load(f)
+        config['language'] = language
 
         generate_mapping_header(config)
         generate_html(config)
         generate_markdown(config)
 
-        language: str = config['language']
         impl.setdefault('headers', []).append(f'../tables/Table{language.upper()}.hpp')
         impl_table = []
         for varname, varinfo in config['variants'].items():
@@ -416,7 +428,8 @@ def main():
         impl.setdefault('languages', {})[config['language']] = impl_table
 
     generate_implementation(impl)
+    return 0
     
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
