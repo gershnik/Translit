@@ -11,7 +11,7 @@ mydir = Path(__file__).parent
 
 exp = re.compile(r'\s*MARKETING_VERSION\s*=\s*(\d+(?:.\d+)*)\s*')
 
-with open(mydir.parent / 'Version.xcconfig', 'r') as verFile:
+with open(mydir.parent / 'Version.xcconfig', 'r', encoding='utf-8') as verFile:
     for line in verFile:
         m = re.match(exp, line)
         if m:

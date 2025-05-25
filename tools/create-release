@@ -7,7 +7,6 @@
 import sys
 import re
 import subprocess
-import datetime
 
 from pathlib import Path
 from datetime import date
@@ -22,7 +21,7 @@ NEW_VER_NUM = components[0]*100 + components[1]
 
 unreleased_link_pattern = re.compile(r"^\[Unreleased\]: (.*)$", re.DOTALL)
 lines = []
-with open(ROOT / "CHANGELOG.md", "rt") as change_log:
+with open(ROOT / "CHANGELOG.md", "rt", encoding='utf-8') as change_log:
     for line in change_log.readlines():
         # Move Unreleased section to new version
         if re.fullmatch(r"^## Unreleased.*$", line, re.DOTALL):
@@ -35,17 +34,17 @@ with open(ROOT / "CHANGELOG.md", "rt") as change_log:
             lines.append(line)
     lines.append(f'[{NEW_VER}]: https://github.com/gershnik/Translit/releases/v{NEW_VER}\n')
 
-with open(ROOT / "CHANGELOG.md", "wt") as change_log:
+with open(ROOT / "CHANGELOG.md", "wt", encoding='utf-8') as change_log:
     change_log.writelines(lines)
 
 lines = []
-with open(ROOT / 'Version.xcconfig', 'r') as verFile:
+with open(ROOT / 'Version.xcconfig', 'r', encoding='utf-8') as verFile:
     for line in verFile:
         line = re.sub(r'^(\s*CURRENT_PROJECT_VERSION\s*=\s*)\d+(?:.\d+)*(\s*)$', fr'\g<1>{NEW_VER_NUM}\2', line)
         line = re.sub(r'^(\s*MARKETING_VERSION\s*=\s*)\d+(?:.\d+)*(\s*)$', fr'\g<1>{NEW_VER}\2', line)
         lines.append(line)
 
-with open(ROOT / 'Version.xcconfig', "wt") as verFile:
+with open(ROOT / 'Version.xcconfig', "wt", encoding='utf-8') as verFile:
     verFile.writelines(lines)
 
 subprocess.run(['git', 'add',

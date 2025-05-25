@@ -11,27 +11,27 @@ import json
 from pathlib import Path
 
 
-def callNotaryTool(cmd):
-    fullCmd = ['xcrun', 'notarytool'] + cmd + ['-f', 'json']
-    output = subprocess.run(fullCmd, check=True, stdout=subprocess.PIPE).stdout.decode('utf-8')
+def call_notary_tool(cmd):
+    full_cmd = ['xcrun', 'notarytool'] + cmd + ['-f', 'json']
+    output = subprocess.run(full_cmd, check=True, stdout=subprocess.PIPE).stdout.decode('utf-8')
     print(output)
     return json.loads(output)
 
 
 def notarize(package, username, team, password):
     print("Starting...")
-    workDir = package.parent
-    print(f"Uploading to Apple to notarize")
-    submission = callNotaryTool(['submit', str(package),
+    work_dir = package.parent
+    print("Uploading to Apple to notarize")
+    submission = call_notary_tool(['submit', str(package),
                                  '--apple-id', username, '--team-id', team, '--password', password, 
                                  '--wait'])
-    success = (submission['status'] == 'Accepted')
-    submissionId = submission['id']
+    success = submission['status'] == 'Accepted'
+    submission_id = submission['id']
     print("Downloading log file")
-    callNotaryTool(['log', submissionId, 
-                    '--apple-id', username, '--team-id', team, '--password', password, 
-                    workDir/'notarization-log.json'])
-    log = (workDir/'notarization-log.json').read_text()
+    call_notary_tool(['log', submission_id, 
+                      '--apple-id', username, '--team-id', team, '--password', password, 
+                     work_dir/'notarization-log.json'])
+    log = (work_dir/'notarization-log.json').read_text()
     print(f"Notarization log:\n{log}")
     if not success:    
         sys.exit(1) 
@@ -44,7 +44,7 @@ def main():
 Notarize Mac software
 ''')
     parser.add_argument(dest='package', 
-                        help=f'Package to notarize')
+                        help='Package to notarize')
     parser.add_argument('--user', dest='username', type=str, required = True,
                         help='Username')
     parser.add_argument('--password', dest='password', type=str, required = True,

@@ -1,0 +1,10 @@
+[MAIN]
+
+disable=
+    missing-module-docstring,
+    missing-function-docstring,
+    line-too-long,
+    trailing-whitespace
+
+
+module-naming-style=any

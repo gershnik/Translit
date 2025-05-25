@@ -3,7 +3,12 @@
 # Copyright (c) 2023, Eugene Gershnik
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+# pylint: disable=wrong-import-position
+
 import sys
+if sys.version_info < (3, 11):
+    raise RuntimeError('Python 3.11 or greater is required to build this project')
+
 import shutil
 import subprocess
 from pathlib import Path
@@ -23,42 +28,41 @@ components = {
 }
 
 
-mydir = Path(sys.argv[0]).parent
-externalDir = mydir / 'External'
+MYDIR = Path(__file__).parent
+EXTERNAL_DIR = MYDIR / 'External'
 
-externalDir.mkdir(parents=True, exist_ok=True)
 
-def verToList(ver):
+def ver_to_list(ver):
     return [int(i) for i in ver.split('.')]
     
-def getVersionFromFile(path):
-    existingVer = None
+def get_version_from_file(path):
+    existing_ver = None
     if path.is_file():
-        existingVer = verToList(path.read_text().rstrip())
-    return existingVer
+        existing_ver = ver_to_list(path.read_text().rstrip())
+    return existing_ver
 
-def checkUpToDate(name, component):
-    directory = externalDir / component['dir']
-    upToDate = False
+def check_up_to_date(name, component):
+    directory = EXTERNAL_DIR / component['dir']
+    up_to_date = False
     
     if component.get('verFile'):
-        verFile = directory / component['verFile']
-        requiredVer = verToList(component['ver'])
-        existingVer = getVersionFromFile(verFile)
-        if existingVer == requiredVer:
-            upToDate = True
+        ver_file = directory / component['verFile']
+        required_ver = ver_to_list(component['ver'])
+        existing_ver = get_version_from_file(ver_file)
+        if existing_ver == required_ver:
+            up_to_date = True
     else:
         print(f"Dont know how to detect version of {name}", file=sys.stderr)
         sys.exit(1)
         
-    if not upToDate:
-        print(f'{name} not up to date, required {requiredVer}, existing {existingVer}')
+    if not up_to_date:
+        print(f'{name} not up to date, required {required_ver}, existing {existing_ver}')
     else:
         print(f'{name} is up to date')
-    return upToDate
+    return up_to_date
     
 def untar(name, component, archive):
-    directory = externalDir / component['dir']
+    directory = EXTERNAL_DIR / component['dir']
     if archive.suffix in ('.tgz', '.gz'):
         comp = 'z'
     elif archive.suffix in ('.tbz', '.bz'):
@@ -72,12 +76,12 @@ def untar(name, component, archive):
         command += ['-s', subst]
     subprocess.run(command, check=True)
 
-def fetchUrl(name, component, unpacker):
-    directory = externalDir / component['dir']
+def fetch_url(name, component, unpacker):
+    directory = EXTERNAL_DIR / component['dir']
     
     shutil.rmtree(directory, ignore_errors=True)
     if directory.exists():
-        print(f'Unable to remove {name} directory', file=sys.stderr);
+        print(f'Unable to remove {name} directory', file=sys.stderr)
         sys.exit(1)
     directory.mkdir()
     url = component['url'].format(ver = component['ver'])
@@ -87,31 +91,32 @@ def fetchUrl(name, component, unpacker):
         print(f'Installed {name}')
     finally:
         Path(path).unlink()
-    generateVerFile = component.get('generateVerFile', False)
-    if generateVerFile:
-        verFile = directory / component['verFile']
-        verFile.write_text(component['ver'])
+    generate_ver_file = component.get('generateVerFile', False)
+    if generate_ver_file:
+        ver_file = directory / component['verFile']
+        ver_file.write_text(component['ver'])
 
 
-def getFetcher(name, component):
+def get_fetcher(name, component):
     if component.get('url'):
-        return fetchUrl
-    else:
-        print(f"Dont know how to download {name}", file=sys.stderr)
-        sys.exit(1)
+        return fetch_url
+    
+    print(f"Dont know how to download {name}", file=sys.stderr)
+    sys.exit(1)
         
-def getUnpacker(name, component):
-    type = component['unpacker']['type']
-    if type == 'tar':
+def get_unpacker(name, component):
+    component_type = component['unpacker']['type']
+    if component_type == 'tar':
         return untar
-    else:
-        print(f"Dont know how to unpack {name}", file=sys.stderr)
-        sys.exit(1)
+    
+    print(f"Dont know how to unpack {name}", file=sys.stderr)
+    sys.exit(1)
 
-localXcconfig = mydir / 'Local.xcconfig'
+def main():
+    local_xcconfig = MYDIR / 'Local.xcconfig'
 
-if not localXcconfig.exists():
-    localXcconfig.write_text('''
+    if not local_xcconfig.exists():
+        local_xcconfig.write_text('''
 // Local configuration settings. Do not commit to source control
 //
 // Configuration settings file format documentation can be found at:
@@ -124,9 +129,14 @@ if not localXcconfig.exists():
 //CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO
 '''.lstrip())
 
-for name, component in components.items():
-    if checkUpToDate(name, component):
-        continue
-    fetcher = getFetcher(name, component)
-    unpacker = getUnpacker(name, component)
-    fetcher(name, component, unpacker)
+    EXTERNAL_DIR.mkdir(parents=True, exist_ok=True)
+    for name, component in components.items():
+        if check_up_to_date(name, component):
+            continue
+        fetcher = get_fetcher(name, component)
+        unpacker = get_unpacker(name, component)
+        fetcher(name, component, unpacker)
+
+
+if __name__ == '__main__':
+    main()
