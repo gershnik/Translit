@@ -1,0 +1,94 @@
+language = 'be'
+name = 'Belarusian'
+
+variants.default.display = 'default'
+variants.'translit-ru'.display = 'translit.net'
+
+[[mappings]]
+
+'А' = 'A'                                               #  1
+'а' = 'a'
+'Б' = 'B'                                               #  2
+'б' = 'b'
+'В' = 'V'                                               #  3
+'в' = 'v'
+'Г' = 'G'                                               #  4
+'г' = "g"
+'Д' = "D"                                               #  5
+'д' = "d"
+'Е' = "E"                                               #  6
+'е' = "e"
+'Ё' = [["Jo", "JO"], ["Yo", "YO"], "Ö", "Ë"]            #  7
+'ё' = ["jo", "yo", "ö", "ë"]
+'Ж' = [["Zh", "ZH"]]                                    #  8
+'ж' = "zh"
+
+[[mappings]]
+
+'З' = "Z"                                               #  9
+'з' = "z"
+'І' = "I"                                               # 10
+'і' = "i"
+'Й' = "J"                                               # 11
+'й' = "j"
+'К' = "K"                                               # 12
+'к' = "k"
+'Л' = "L"                                               # 13
+'л' = "l"
+'М' = "M"                                               # 14
+'м' = "m"
+'Н' = "N"                                               # 15
+'н' = "n"
+'О' = "O"                                               # 16
+'о' = "o"
+
+[[mappings]]
+
+'П' = "P"                                               # 17
+'п' = "p"
+'Р' = "R"                                               # 18
+'р' = "r"
+'С' = "S"                                               # 19
+'с' = "s"
+'Т' = "T"                                               # 20
+'т' = "t"
+'У' = "U"                                               # 21
+'у' = "u"
+'Ў' = "W"                                               # 22
+'ў' = "w"
+'Ф' = "F"                                               # 23
+'ф' = "f"
+'Х' = ["H", "X"]                                        # 24
+'х' = ["h", "x"]
+
+
+[[mappings]]
+
+'Ц' = "C"                                               # 25
+'ц' = "c"
+'Ч' = [["Ch", "CH"]]                                    # 26
+'ч' = "ch"
+'Ш' = [["Sh", "SH"]]                                    # 27
+'ш' = "sh"
+'Ы' = "Y"                                               # 28
+'ы' = "y"
+
+'Ь'.default = "Q"                                       # 29
+'Ь'.'translit-ru' = '""' 
+'ь'.default = "q"
+'ь'.'translit-ru' = '"'
+
+'Э' = [["Je", "JE"], "Ä"]                               # 30
+'э' = ["je", "ä"]
+'Ю' = [["Ju", "JU"], ["Yu", "YU"], "Ü"]                 # 31
+'ю' = ["ju", "yu", "ü"]
+'Я' = [["Ja", "JA"], ["Ya", "YA"]]                      # 32
+'я' = ["ja", "ya"]
+
+[footer]
+
+content = """
+❗️To enter combinations such as <code>сх</code> press <code>ESC</code>
+after the first letter to stop recognition. That is <code>s\u00A0ESC\u00A0h</code> will
+produce <code>сх</code>.
+"""

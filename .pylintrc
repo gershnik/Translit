@@ -8,3 +8,4 @@ disable=
 
 
 module-naming-style=any
+py-version = 3.11.0

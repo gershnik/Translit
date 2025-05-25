@@ -1,5 +1,7 @@
 // Copyright (c) 2023, Eugene Gershnik
 // SPDX-License-Identifier: GPL-3.0-or-later
+             
+// THIS FILE IS AUTO-GENERATED. DO NOT EDIT.
 
 #ifndef TRANSLIT_HEADER_TABLE_HE_HPP_INCLUDED
 #define TRANSLIT_HEADER_TABLE_HE_HPP_INCLUDED
@@ -7,7 +9,7 @@
 #include "Mapper.hpp"
 
 template<std::ranges::forward_range Range>
-constexpr auto g_mapperHe = makePrefixMapper<Range,
+constexpr auto g_mapperHeDefault = makePrefixMapper<Range,
     Mapping{u'א', u"a"},
     Mapping{u'ב', u"b"},
     Mapping{u'ב', u"v"},

@@ -1,0 +1,113 @@
+language = 'uk'
+name = 'Ukrainian'
+
+variants.default.display = 'default'
+variants.'translit-ru'.display = 'translit.net'
+
+[[mappings]]
+
+'А' = 'A'                                               #  1
+'а' = 'a'
+'Б' = 'B'                                               #  2
+'б' = 'b'
+'В' = 'V'                                               #  3
+'в' = 'v'
+'Г' = 'G'                                               #  4
+'г' = "g"
+
+'Ґ'.default = "GG"                                      #  5
+'Ґ'.'translit-ru' = "G'"
+'ґ'.default = "gg"
+'ґ'.'translit-ru' = "g'"
+
+'Д' = "D"                                               #  6
+'д' = "d"
+'Е' = "E"                                               #  7
+'е' = "e"
+'Є' = [["Je", "JE"], ["Ye", "YE"]]                      #  8
+'є' = ["je", "ye"]
+
+
+[[mappings]]
+
+'Ж' = [["Zh", "ZH"]]                                    #  9
+'ж' = "zh"
+'З' = "Z"                                               # 10
+'з' = "z"
+'И' = "Y"                                               # 11
+'и' = "y"
+'І' = "I"                                               # 12
+'і' = "i"
+
+'Ї'.default = [["Ji", "JI"]]                            # 13
+'Ї'.'translit-ru' = ["I'", ["Ji", "JI"]]
+'ї'.default = "ji"
+'ї'.'translit-ru' = ["i'", "ji"]
+
+'Й' = "J"                                               # 14
+'й' = "j"
+'К' = "K"                                               # 15
+'к' = "k"
+'Л' = "L"                                               # 16
+'л' = "l"
+'М' = "M"                                               # 17
+'м' = "m"
+
+
+[[mappings]]
+
+
+'Н' = "N"                                               # 18
+'н' = "n"
+'О' = "O"                                               # 19
+'о' = "o"
+'П' = "P"                                               # 20
+'п' = "p"
+'Р' = "R"                                               # 21
+'р' = "r"
+'С' = "S"                                               # 22
+'с' = "s"
+'Т' = "T"                                               # 23
+'т' = "t"
+'У' = "U"                                               # 24
+'у' = "u"
+'Ф' = "F"                                               # 25
+'ф' = "f"
+'Х' = ["H", "X"]                                        # 26
+'х' = ["h", "x"]
+
+[[mappings]]
+
+'Ц' = "C"                                               # 27
+'ц' = "c"
+'Ч' = [["Ch", "CH"]]                                    # 28
+'ч' = "ch"
+
+'Ш'.default = [["Sh", "SH"]]                            # 29
+'Ш'.'translit-ru' = [["Sh", "SH"], "W"]
+'ш'.default = "sh"
+'ш'.'translit-ru' = ["sh", "w"]
+
+'Щ'.default = ["W", ["Shh", "SHh", "SHH"]]              # 30
+'Щ'.'translit-ru' = [["Shh", "SHh", "SHH"], "Q"]
+'щ'.default = ["w", "shh"]
+'щ'.'translit-ru' = ["shh", "q"]
+
+'Ь'.default = "Q"                                       # 31
+'Ь'.'translit-ru' = "''" 
+'ь'.default = "q"
+'ь'.'translit-ru' = ["'"]
+
+'Ю' = [["Ju", "JU"], ["Yu", "YU"], "Ü"]                 # 32
+'ю' = ["ju", "yu", "ü"]
+
+'Я' = [["Ja", "JA"], ["Ya", "YA"]]                      # 33
+'я' = ["ja", "ya"]
+
+[footer]
+
+content = """
+❗️To enter combinations such as <code>сх</code> or <code>шх</code> press <code>ESC</code>
+after the first letter to stop recognition. That is <code>s\u00A0ESC\u00A0h</code> will
+produce <code>сх</code> and <code>sh\u00A0ESC\u00A0h</code> will produce <code>шх</code>.
+"""

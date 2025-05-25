@@ -5,6 +5,7 @@
 #define TRANSLIT_HEADER_TEST_COMMON_HPP_INCLUDED
 
 #include "../src/Transliterator.hpp"
+#include "../src/Languages.hpp"
 
 #include <objc-helpers/XCTestUtil.h>
 

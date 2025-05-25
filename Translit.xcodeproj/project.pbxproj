@@ -38,6 +38,7 @@
 		442D25CA2B0B93D500204800 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 442D25C82B0B93D500204800 /* InfoPlist.strings */; };
 		442D25CC2B0CC97100204800 /* Uninstall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 442D25CB2B0CC97100204800 /* Uninstall.mm */; };
 		444998F62DE0527000E851CE /* be.png in Resources */ = {isa = PBXBuildFile; fileRef = 444998F52DE0527000E851CE /* be.png */; };
+		4449BEEF2DE29654000B18DF /* Languages.mm in Sources */ = {isa = PBXBuildFile; fileRef = 447848842DDFE16E008E6E36 /* Languages.mm */; };
 		445D1E4C2AFE2C6C00FA1C07 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */; };
 		445D1E4E2AFE2C6F00FA1C07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 445D1E4D2AFE2C6F00FA1C07 /* Assets.xcassets */; };
 		445D1E532AFE2C6F00FA1C07 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 445D1E522AFE2C6F00FA1C07 /* main.mm */; };
@@ -85,7 +86,7 @@
 		4428E4102DDDCCD7006C1285 /* mapping-he.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "mapping-he.html"; sourceTree = "<group>"; };
 		4428E4112DDDCCD7006C1285 /* mapping-ru.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "mapping-ru.html"; sourceTree = "<group>"; };
 		4428E4122DDDCCD7006C1285 /* mapping-ru.translit-ru.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "mapping-ru.translit-ru.html"; sourceTree = "<group>"; };
-		442D25802B044EE000204800 /* MappingsWindowController.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = MappingsWindowController.hpp; sourceTree = "<group>"; };
+		442D25802B044EE000204800 /* MappingsWindowController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MappingsWindowController.hpp; sourceTree = "<group>"; };
 		442D25812B044EE000204800 /* MappingsWindowController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MappingsWindowController.mm; sourceTree = "<group>"; };
 		442D25872B04AEA200204800 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		442D258A2B05F4D200204800 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
@@ -106,7 +107,7 @@
 		442D25A62B062EBA00204800 /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 		442D25A72B06349800204800 /* Installer.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Installer.xcconfig; sourceTree = "<group>"; };
 		442D25A92B07BFB600204800 /* pch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pch.hpp; sourceTree = "<group>"; };
-		442D25AA2B08339F00204800 /* AboutWindowController.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = AboutWindowController.hpp; sourceTree = "<group>"; };
+		442D25AA2B08339F00204800 /* AboutWindowController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AboutWindowController.hpp; sourceTree = "<group>"; };
 		442D25AB2B08339F00204800 /* AboutWindowController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AboutWindowController.mm; sourceTree = "<group>"; };
 		442D25AD2B088B5700204800 /* about.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		442D25B12B089F2F00204800 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -126,7 +127,7 @@
 		442D25CD2B0CC9C200204800 /* Uninstall.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Uninstall.hpp; sourceTree = "<group>"; };
 		444998F52DE0527000E851CE /* be.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = be.png; sourceTree = "<group>"; };
 		445D1E472AFE2C6C00FA1C07 /* Translit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Translit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		445D1E4A2AFE2C6C00FA1C07 /* AppDelegate.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = AppDelegate.hpp; sourceTree = "<group>"; };
+		445D1E4A2AFE2C6C00FA1C07 /* AppDelegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AppDelegate.hpp; sourceTree = "<group>"; };
 		445D1E4B2AFE2C6C00FA1C07 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		445D1E4D2AFE2C6F00FA1C07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		445D1E522AFE2C6F00FA1C07 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
@@ -163,7 +164,7 @@
 		44C675BA2B026F43003A5BDE /* preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = preferences.xib; sourceTree = "<group>"; };
 		44C675BC2B028225003A5BDE /* menu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = menu.xib; sourceTree = "<group>"; };
 		44C675BE2B028713003A5BDE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		44C675C62B034E17003A5BDE /* MenuProtocol.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = MenuProtocol.hpp; sourceTree = "<group>"; };
+		44C675C62B034E17003A5BDE /* MenuProtocol.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MenuProtocol.hpp; sourceTree = "<group>"; };
 		44C675C72B03515B003A5BDE /* mappings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mappings.xib; sourceTree = "<group>"; };
 		44C675CA2B03E176003A5BDE /* ru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ru.png; sourceTree = "<group>"; };
 		44C675CC2B040B87003A5BDE /* he.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = he.png; sourceTree = "<group>"; };
@@ -542,6 +543,7 @@
 				"$SRCROOT/Installer/build.py \"$BUILT_PRODUCTS_DIR\" \"$TARGET_TEMP_DIR\"",
 				"",
 				"",
+				"",
 			);
 		};
 		442D25C22B0B8D8200204800 /* Generate Info.plist */ = {
@@ -561,6 +563,7 @@
 				"$SRCROOT/tools/format-file $SRCROOT/Translit/Info.plist $SRCROOT/Translit/generated/Info.plist",
 				"mkdir -p $SRCROOT/Translit/generated/Base.lproj",
 				"$SRCROOT/tools/format-file $SRCROOT/Translit/res/Base.lproj/InfoPlist.strings $SRCROOT/Translit/generated/Base.lproj/InfoPlist.strings",
+				"",
 				"",
 				"",
 			);
@@ -588,6 +591,7 @@
 				4475AD322B11F97F008DA122 /* TestPrefixMapper.mm in Sources */,
 				442D25B42B0A2E1B00204800 /* Transliterator.mm in Sources */,
 				44B947D12B469B4C00B68C7E /* TestMapper.mm in Sources */,
+				4449BEEF2DE29654000B18DF /* Languages.mm in Sources */,
 				44B947CF2B4698E500B68C7E /* TestPerf.mm in Sources */,
 				44C675842B02153F003A5BDE /* TestRu.mm in Sources */,
 			);

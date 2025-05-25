@@ -14,7 +14,7 @@
 
 This macOS keyboard _[input source][input_sources]_ allows a user familiar only with Latin alphabet keyboard to 
 type in other languages by using common Latin transliteration of the target language letters. 
-Currently supported target languages are Hebrew and Russian. 
+Currently supported target languages are Hebrew, Russian, Ukrainian and Belarusian. 
 To give an example, typing `privet` in Russian mode will produce `привет` and typing `hi` in Hebrew mode will produce `הי`.
 
 
@@ -35,7 +35,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
 ## Features
 
 - Type normally in any window without copy/pasting from a separate app/browser
-- Supports multiple languages: currently Russian and Hebrew with an easy way to add more, if desired.
+- Supports multiple languages: currently Russian, Ukrainian and Belarusian and Hebrew with an easy way to add more, if desired.
 - Supports modern macOS versions
 - Distributed as signed and notarized installer - you don't need to build it yourself (but you can, if you want to).
 - Reliable installation and uninstallation on recent versions of macOS.<br/> 
@@ -50,7 +50,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
   and `qq` for `ъ` makes typing much smoother.
 - Support for multiple transliteration schemes. Since some people would prefer to use familiar transliteration schemes
   from elsewhere, this application allows you to choose which scheme to use.
-  Currently the default or [translit.ru][translit_ru] schemes are supported for Russian. More can be added, if desired.
+  Currently the default or [translit.ru/translit.net][translit_ru] schemes are supported for Russian, Ukrainian and Belarusian. More can be added, if desired.
 
   There are existing macOS transliteration projects on Github such as [cyrillic-transliterator][cyrillic-transliterator] 
   and its forks but none of them supports all the features above.
@@ -66,8 +66,8 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
   <img src="doc/Edit.png" width="500px"><br/>
 * Press the `+` button to add an input source<br/><br/>
   <img src="doc/Plus.png" width="500px"><br/>
-* Navigate to `Russian` or `Hebrew` language and select `Russian Translit` or `Hebrew Translit` as desired. If you wish 
-  to use both press the `+` again after adding one.
+* Navigate to the desired target language (e.g. `Russian` or `Hebrew`) and select `Russian Translit` or `Hebrew Translit` etc. 
+  as desired. If you wish to multiple languages press the `+` again after adding one.
 
 You are all set. If you have enabled `Show Input menu in menu bar` setting
 
@@ -126,72 +126,17 @@ to Apple's bugs.
 
 ## Mappings
 
-The default character mappings for Russian and Hebrew are given in the following tables
+The character mappings can be found in the following documents
 
-### Russian
+* 🇧🇾 [Belarusian](doc/mapping-be.md)
+* 🇮🇱 [Hebrew](doc/mapping-he.md)
+* 🇷🇺 [Russian](doc/mapping-ru.md)
+* 🇺🇦 [Ukrainian](doc/mapping-uk.md)
 
-<table><tr>
-<td>А</td><td>а</td><td>Б</td><td>б</td><td>В</td><td>в</td><td>Г</td><td>г</td>
-<td>Д</td><td>д</td><td>Е</td><td>е</td><td>Ё</td><td>ё</td><td>Ж</td><td>ж</td>
-</tr><tr>
-<td>A</td><td>a</td><td>B</td><td>b</td><td>V</td><td>v</td><td>G</td><td>g</td>
-<td>D</td><td>d</td><td>E</td><td>e</td><td>Jo<br>Yo<br>Ö<br>Ë</td><td>jo<br>yo<br>ö<br>ë</td><td>Zh</td><td>zh</td>
-</tr></table>
-<table><tr>
-<td>З</td><td>з</td><td>И</td><td>и</td><td>Й</td><td>й</td><td>К</td><td>к</td>
-<td>Л</td><td>л</td><td>М</td><td>м</td><td>Н</td><td>н</td><td>О</td><td>о</td>
-</tr><tr>
-<td>Z</td><td>z</td><td>I</td><td>i</td><td>J</td><td>j</td><td>K</td><td>k</td>
-<td>L</td><td>l</td><td>M</td><td>m</td><td>N</td><td>n</td><td>O</td><td>o</td>
-</tr></table>
-<table><tr>
-<td>П</td><td>п</td><td>Р</td><td>р</td><td>С</td><td>с</td><td>Т</td><td>т</td>
-<td>У</td><td>у</td><td>Ф</td><td>ф</td><td>Х</td><td>х</td><td>Ц</td><td>ц</td>
-</tr><tr>
-<td>P</td><td>p</td><td>R</td><td>r</td><td>S</td><td>s</td><td>T</td><td>t</td>
-<td>U</td><td>u</td><td>F</td><td>f</td><td>H<br>X</td><td>h<br>x</td><td>C</td><td>c</td>
-</tr></table>
-
-<table><tr>
-<td>Ч</td><td>ч</td><td>Ш</td><td>ш</td><td>Щ</td><td>щ</td><td>Ъ</td><td>ъ</td><td>Ы</td><td>ы</td>
-<td>Ь</td><td>ь</td><td>Э</td><td>э</td><td>Ю</td><td>ю</td><td>Я</td><td>я</td>
-</tr><tr>
-<td>Ch</td><td>ch</td><td>Sh</td><td>sh</td><td>W<br>Shh</td><td>w<br>shh</td><td>QQ</td><td>qq</td><td>Y</td><td>y</td>
-<td>Q</td><td>q</td><td>Je<br>Ä</td><td>je<br>ä</td><td>Ju<br>Yu<br>Ü</td><td>ju<br>yu<br>ü</td><td>Ja<br>Ya</td><td>ja<br>ya</td>
-</tr></table>
-
-### Hebrew
-
-<div dir="rtl">
-<table dir="rtl"><tr>
-<td>א</td><td>ב</td><td>ג</td><td>ד</td><td>ה</td><td>ו</td><td>ז</td><td>ח</td>
-<td>ט</td><td>י</td><td>כ</td><td>ך</td><td>ל</td><td>מ</td><td>ם</td>
-</tr><tr>
-<td>a</td><td>b<br>v</td><td>g</td><td>d</td><td>h</td><td>o<br>u</td><td>z</td><td>x</td>
-<td>T</td><td>i<br>j</td><td>k</td><td>K</td><td>l</td><td>m</td><td>M</td>
-</tr></table>
-<table dir="rtl"><tr>
-<td>נ</td><td>ן</td><td>ס</td><td>ע</td><td>פ</td><td>ף</td>
-<td>צ</td><td>ץ</td><td>ק</td><td>ר</td><td>ש</td><td>ת</td>
-</tr><tr>
-<td>n</td><td>N</td><td>s</td><td>y</td><td>f<br>p</td><td>F<br>P</td>
-<td>c</td><td>C</td><td>q</td><td>r</td><td>w</td><td>t</td>
-</tr></table>
-<table dir="rtl"><tr>
-<td>◌ְ</td><td>◌ֵ</td><td>◌ֶ</td><td>◌ֱ</td><td>◌ַ</td><td>◌ָ</td><td>◌ֲ</td><td>◌ֳ</td>
-</tr><tr>
-<td>E</td><td>EE</td><td>EEE</td><td>EEEE</td><td>EA</td><td>EAA</td><td>EAE</td><td>EAAE</td>
-</tr></table>
-<table dir="rtl"><tr>
-<td>◌ִ</td><td>◌ֹ</td><td>◌ֻ</td><td>◌ּ</td><td>שׂ</td><td>שׁ</td><td>׳</td><td>״</td>
-</tr><tr>
-<td>EI</td><td>EO</td><td>EU</td><td>ED</td><td>wES</td><td>wEW</td><td>G</td><td>GG</td>
-</tr></table>
-</div>
 
 ## Building
 
-Xcode 16.3 or above and Python 3 are the only requirements to build Translit.
+Xcode 16.3 or above and Python 3.11 or above are the only requirements to build Translit.
 
 * Download/clone the repo
 * Run `fetch` script from the top-level directory (current directory doesn't matter). This will fetch external dependencies

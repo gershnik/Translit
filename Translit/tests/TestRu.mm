@@ -17,7 +17,8 @@ using namespace std::literals::string_view_literals;
 }
 
 - (void)setUp {
-    _tr = std::make_unique<Transliterator>(NSStringCharAccess(@"ru"));
+    auto mapper = getMapperFor(@"ru", @"");
+    _tr = std::make_unique<Transliterator>(mapper);
 }
 
 - (void)tearDown {

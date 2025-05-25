@@ -1,0 +1,61 @@
+html {
+    overflow: hidden;
+}
+body {
+    margin: 0px;
+    font-family:-apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    -webkit-overflow-scrolling: touch;
+}
+table{
+    table-layout: auto;
+    margin: 0px;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+tr {
+    margin: 0px;
+}
+table.main td {
+    margin: 0px;
+    border: 1px solid #E5E5E5;
+    white-space: nowrap;
+}
+
+table.main td.combining {
+    font-size: 24px;
+}
+
+table.multi td {
+    margin: 0px;
+    border: 0px;
+    white-space: nowrap;
+}
+
+tr.headerRow {
+    font-weight:bold;
+}
+tr.contentRow {
+    background-color: #F0F0F0
+}
+@media (prefers-color-scheme: dark) {
+    tr.contentRow {
+        background-color: #303030
+    }
+}
+
+code {
+    background-color: #F0F0F0
+}
+
+@media (prefers-color-scheme: dark) {
+    code {
+        background-color: #303030
+    }
+}
+
+.footer {
+    padding-left:4px;
+    padding-right:4px
+}

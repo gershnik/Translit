@@ -14,7 +14,18 @@ struct LanguageVariant {
 };
 
 auto getVariantsForLanguage(NSString * name) -> std::span<const LanguageVariant>;
-auto getMapperFor(NSString * language, NSString * variant) -> Transliterator::MappingFunc *;
+
+inline auto getMapperFor(NSString * language, NSString * variant) -> Transliterator::MappingFunc * {
+    
+    auto variants = getVariantsForLanguage(language);
+    if (!variant)
+        variant = @"";
+    for (auto & current: variants) {
+        if ([current.name isEqualToString:variant])
+            return current.mapper;
+    }
+    return variants[0].mapper;
+}
 
 #endif
 

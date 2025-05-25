@@ -1,0 +1,401 @@
+#! /usr/bin/env -S python3 -u
+
+# Copyright (c) 2023, Eugene Gershnik
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+import tomllib
+import unicodedata
+import re
+import textwrap
+from pathlib import Path
+from typing import Any
+
+MYDIR = Path(__file__).parent
+ROOTDIR = MYDIR.parent.parent
+
+def make_macro_from_filename(filename: str):
+    filename = filename.replace('.', '_').replace('-', '_')
+    converted = ""
+    prev_lower = False
+    for c in filename:
+        if c.isupper() and prev_lower:
+            converted += '_'
+            converted += c
+        elif c in ['.', '-', '+']:
+            converted += '_'
+        else:
+            converted += c.upper()
+        prev_lower = c.islower()
+    return converted
+
+def quote_cpp_string(text: str):
+    ret = ''
+    for c in text:
+        if c == '"':
+            c = '\\"'
+        ret += c
+    return ret
+
+def make_mapper_name(language: str, variant: str):
+    prefix = f'g_mapper{language.title()}'
+    words = re.split(r'[-_]', variant)
+    words = [w.title() for w in words]
+    suffix = ''.join(words)
+    return prefix + suffix
+
+def write_file_if_different(path: Path, content: str):
+    bin_content = content.encode('utf-8')
+    if path.is_file():
+        existing = path.read_bytes()
+        if existing == bin_content:
+            print(f'  {path.relative_to(ROOTDIR)} - up to date')
+            return
+    path.write_bytes(bin_content)
+    print(f'  {path.relative_to(ROOTDIR)} - written')
+
+def get_execution_mappings(varname: str, section: dict[str, Any]):
+    for dst, data in section.items():
+        if isinstance(data, dict):
+            data = data[varname]
+        
+        if isinstance(data, str):
+            yield dst, data
+        elif isinstance(data, list):
+            for srcitem in data:
+                if isinstance(srcitem, str):
+                    yield dst, srcitem
+                elif isinstance(srcitem, list):
+                    for srcsubitem in srcitem:
+                        if isinstance(srcsubitem, str):
+                            yield dst, srcsubitem
+                        else:
+                            raise RuntimeError(f'invalid mapping structure for {dst}')
+                else:
+                    raise RuntimeError(f'invalid mapping structure for {dst}')
+        else:
+            raise RuntimeError(f'invalid mapping structure for {dst}')
+
+def get_presentation_destinations(varname: str, section: dict[str, Any], overrides: dict[str, Any]):
+    for dst in section:
+        override = overrides.get(dst)
+        if override is not None:
+            if isinstance(override, dict):
+                override = override[varname]
+            dst = override[0]
+        if len(dst) > 1:
+            yield dst, None
+        elif unicodedata.combining(dst) != 0:
+            yield '◌' + dst, 'combining'
+        else:
+            yield dst, None
+
+def get_presentation_mappings(varname: str, section: dict[str, Any], overrides: dict[str, Any]):
+    for dst, data in section.items():
+        override = overrides.get(dst)
+        if override is not None:
+            if isinstance(override, dict):
+                override = override[varname]
+            data = override[1]
+
+        if isinstance(data, dict):
+            data = data[varname]
+
+        if isinstance(data, str):
+            yield data
+        elif isinstance(data, list):
+            if len(data) == 1:
+                if isinstance(data[0], str):
+                    yield data[0]
+                elif isinstance(data[0], list):
+                    yield data[0][0]
+            else:
+                res = []
+                for srcitem in data:
+                    if isinstance(srcitem, str):
+                        res.append(srcitem)
+                    elif isinstance(srcitem, list):
+                        res.append(srcitem[0])
+                yield res
+
+def dedent(text: str):
+    max_common_spaces = 2**32
+    lines = text.splitlines()
+    if len(lines) == 0:
+        return text
+    for line in lines:
+        if len(line) == 0:
+            continue
+        spaces = 0
+        for c in line:
+            if not c.isspace():
+                break
+            spaces += 1
+        max_common_spaces = min(spaces, max_common_spaces)
+    ret = ''
+    for line in lines[:-1]:
+        ret += line[max_common_spaces:] + '\n'
+    ret += lines[-1][max_common_spaces:]
+    if text[-1] == '\n':
+        ret += '\n'
+    return ret
+    
+def indent_insert(text: str, count: int):
+    ret = textwrap.indent(text, ' ' * count, lambda line: True).lstrip()
+    return ret
+        
+
+def generate_mapping_header(config: dict[str, Any]):
+    language: str = config['language']
+    header = f'Table{language.upper()}.hpp'
+
+    macro = make_macro_from_filename(header)
+    content = dedent(f'''\
+        // Copyright (c) 2023, Eugene Gershnik
+        // SPDX-License-Identifier: GPL-3.0-or-later
+                     
+        // THIS FILE IS AUTO-GENERATED. DO NOT EDIT.
+
+        #ifndef TRANSLIT_HEADER_{macro}_INCLUDED
+        #define TRANSLIT_HEADER_{macro}_INCLUDED
+
+        #include "Mapper.hpp"
+
+        ''')
+    
+    variants: dict[str, Any] = config['variants']
+    mappings: list[dict[str, Any]] = config['mappings']
+
+    
+    for varidx, varname in enumerate(variants):
+        if varidx > 0:
+            content += '\n'
+
+        variable_name = make_mapper_name(language, varname)
+
+        content += dedent(f'''\
+            template<std::ranges::forward_range Range>
+            constexpr auto {variable_name} = makePrefixMapper<Range,
+            ''')
+        line_count = 0
+        for section in mappings:
+            for dst, src in get_execution_mappings(varname, section):
+                if line_count > 0:
+                    content += ',\n'
+                content += f"    Mapping{{u'{dst}', u\"{quote_cpp_string(src)}\"}}"
+                line_count += 1
+        content += '\n>();\n'
+
+    content += '\n#endif\n'
+    write_file_if_different(MYDIR.parent / 'src' / header, content)
+
+def generate_html(config: dict[str, Any]):
+
+    style = (MYDIR / 'style.css').read_text(encoding='utf-8')
+    
+    variants: dict[str, Any] = config['variants']
+    mappings: list[dict[str, Any]] = config['mappings']
+    overrides: dict[str, Any] = config.get('display_override', {})
+
+    if config.get('rtl', False):
+        rtl = ' dir="rtl"'
+    else:
+        rtl = ''
+
+    for varname in variants:
+        content = dedent(f'''\
+            <!DOCTYPE html>
+            <!-- THIS FILE IS AUTO-GENERATED. DO NOT EDIT. -->
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width">
+                <meta name="viewport" content="initial-scale=1">
+                <meta name="color-scheme" content="light dark">
+                <meta name="supported-color-schemes" content="light dark">
+                
+                <style>
+                    {indent_insert(style, 20)}
+                </style>
+            </head>
+            <body{rtl}>
+                <div id="table-holder" style="width:100%">
+            ''')
+        for section_idx, section in enumerate(mappings):
+            if section_idx > 0:
+                content += '        <br>\n'
+            content += dedent('''\
+                    <table class="main">
+                        <tr class="headerRow">
+            ''')
+            for idx, (dst, clazz) in enumerate(get_presentation_destinations(varname, section, overrides)):
+                if idx > 0:
+                    content += '\n'
+                if clazz is not None:
+                    content += f'                <td class="{clazz}">{dst}</td>'
+                else:
+                    content += f'                <td>{dst}</td>'
+            content += dedent('''
+                        </tr>
+                        <tr class="contentRow">
+            ''')
+            for idx, data in enumerate(get_presentation_mappings(varname, section, overrides)):
+                if idx > 0:
+                    content += '\n'
+                
+                if isinstance(data, str):
+                    content += f'                <td>{data}</td>'
+                elif isinstance(data, list):
+                    content += '                <td><table class="multi">'
+                    for srcitem in data:
+                        content += f'<tr><td>{srcitem}</td></tr>'
+                    content += '</table></td>'
+            content += dedent('''
+                        </tr>
+                    </table>
+            ''')
+        
+        footer = config.get('footer', {}).get('content')
+        if footer is not None:
+            footer = footer.rstrip()
+            content += dedent(f'''\
+                    <br>
+                    <div class="footer">
+                    <span>
+                    {indent_insert(footer, 20)}
+                    </span>
+                    </div>
+            ''')
+        content += dedent('''\
+                </div>
+            </body>
+            </html>
+            ''')
+
+        language: str = config['language']
+        filename = f'mapping-{language}'
+        if varname != 'default':
+            filename += f'.{varname}'
+        filename += '.html'
+        write_file_if_different(MYDIR.parent / 'res' / filename, content)
+
+def generate_markdown(config):
+
+    variants: dict[str, Any] = config['variants']
+    mappings: list[dict[str, Any]] = config['mappings']
+    overrides: dict[str, Any] = config.get('display_override', {})
+
+    content = dedent(f'''\
+        <!-- THIS FILE IS AUTO-GENERATED. DO NOT EDIT. -->
+        # {config["name"]} Mappings
+        ''')
+    for varname, vardata in variants.items():
+        content += f'''
+
+## {vardata['display']}
+
+'''
+        for section_idx, section in enumerate(mappings):
+            if section_idx > 0:
+                content += '\n'
+            content += '<table><tr>\n'
+            for dst, _ in get_presentation_destinations(varname, section, overrides):
+                content += f'<td>{dst}</td>'
+            content += '\n</tr><tr>\n'
+            for data in get_presentation_mappings(varname, section, overrides):
+                if isinstance(data, str):
+                    content += f'<td>{data}</td>'
+                elif isinstance(data, list):
+                    content += '<td>' + '<br>'.join(data) + '</td>'
+
+            content += '\n</tr></table>'
+    
+    language: str = config['language']
+    filename = f'mapping-{language}.md'
+    write_file_if_different(ROOTDIR / 'doc' / filename, content)
+
+def generate_implementation(impl: dict[str, Any]):
+    content = dedent('''\
+        // Copyright (c) 2023, Eugene Gershnik
+        // SPDX-License-Identifier: GPL-3.0-or-later
+                     
+        // THIS FILE IS AUTO-GENERATED. DO NOT EDIT.
+
+        #include "Languages.hpp"
+
+        ''')
+    content += '\n'.join([f'#include "{header}"' for header in impl['headers']])
+    content += dedent('''
+
+        using MappingFunc = Transliterator::MappingFunc;
+        using Range = Transliterator::Range;
+
+        static const LanguageVariant g_defaultEntries[] = {
+            { @"",              @"default",         Transliterator::nullMapper },
+        };
+        static constexpr std::span<const LanguageVariant> g_default{g_defaultEntries};
+        ''')
+
+    for lang, variants in impl['languages'].items():
+        content += f'\nstatic const LanguageVariant g_{lang}Entries[] = {{\n'
+        for variant in variants:
+            varname = variant[0]
+            varinfo = variant[1]
+            variable = make_mapper_name(lang, varname)
+            display = varinfo['display']
+            if varname == 'default':
+                varname = ''
+            content += f'    {{ @"{varname}", @"{display}", {variable}<Range> }},\n'
+        content += dedent(f'''\
+            }};
+            static constexpr std::span<const LanguageVariant> g_{lang}{{g_{lang}Entries}};
+            ''')
+        
+    content += dedent('''
+        auto getVariantsForLanguage(NSString * name) -> std::span<const LanguageVariant> {
+            static constexpr auto mapper = makeMapper<NSStringCharAccess,
+                //default
+                &g_default,
+                //mappings
+        ''')
+    for idx, lang in enumerate(impl['languages']):
+        if idx > 0:
+            content += ',\n'
+        content += f'        Mapping{{&g_{lang},     u"{lang}"}}'
+
+    content += dedent('''
+            >();
+            
+            return *mapper(name);
+        }
+        ''')
+    write_file_if_different(MYDIR.parent / 'src/Languages.mm', content)
+
+def main():
+    config_file = MYDIR / 'config.toml'
+    with open(config_file, 'rb') as f:
+        config = tomllib.load(f)
+
+    impl = {}
+    
+    for lang_file in config['languages']:
+        print(f'Processing {lang_file}')
+        lang_config = MYDIR / lang_file
+        with open(lang_config, 'rb') as f:
+            config = tomllib.load(f)
+
+        generate_mapping_header(config)
+        generate_html(config)
+        generate_markdown(config)
+
+        language: str = config['language']
+        impl.setdefault('headers', []).append(f'Table{language.upper()}.hpp')
+        impl_table = []
+        for varname, varinfo in config['variants'].items():
+            impl_table.append((varname, varinfo))
+        impl.setdefault('languages', {})[config['language']] = impl_table
+
+    generate_implementation(impl)
+    
+
+if __name__ == '__main__':
+    main()
