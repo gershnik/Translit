@@ -151,13 +151,11 @@
 		44C675B72B025FEB003A5BDE /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		44C675BA2B026F43003A5BDE /* preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = preferences.xib; sourceTree = "<group>"; };
 		44C675BC2B028225003A5BDE /* menu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = menu.xib; sourceTree = "<group>"; };
-		44C675BE2B028713003A5BDE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		44C675C62B034E17003A5BDE /* MenuProtocol.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MenuProtocol.hpp; sourceTree = "<group>"; };
 		44C675C72B03515B003A5BDE /* mappings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mappings.xib; sourceTree = "<group>"; };
 		44C675CA2B03E176003A5BDE /* ru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ru.png; sourceTree = "<group>"; };
 		44C675CC2B040B87003A5BDE /* he.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = he.png; sourceTree = "<group>"; };
 		44E971362B4D37D50032961E /* objc-helpers-Exports.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "objc-helpers-Exports.xcconfig"; sourceTree = "<group>"; };
-		6D87255C09E91CF960D5DC68 /* libPods-Translit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Translit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -418,10 +416,8 @@
 			children = (
 				442D25B12B089F2F00204800 /* WebKit.framework */,
 				442D25872B04AEA200204800 /* Carbon.framework */,
-				44C675BE2B028713003A5BDE /* AppKit.framework */,
 				44C675B52B021B0F003A5BDE /* Cocoa.framework */,
 				445D1E652AFFA1F700FA1C07 /* InputMethodKit.framework */,
-				6D87255C09E91CF960D5DC68 /* libPods-Translit.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -537,6 +533,7 @@
 				"",
 				"",
 				"",
+				"",
 			);
 		};
 		442D25C22B0B8D8200204800 /* Generate Info.plist */ = {
@@ -556,6 +553,7 @@
 				"$SRCROOT/tools/format-file $SRCROOT/Translit/Info.plist $SRCROOT/Translit/generated/Info.plist",
 				"mkdir -p $SRCROOT/Translit/generated/Base.lproj",
 				"$SRCROOT/tools/format-file $SRCROOT/Translit/res/Base.lproj/InfoPlist.strings $SRCROOT/Translit/generated/Base.lproj/InfoPlist.strings",
+				"",
 				"",
 				"",
 				"",
