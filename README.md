@@ -9,6 +9,7 @@
 [translit_ru]: https://translit.ru
 [releases]: https://github.com/gershnik/Translit/releases
 [cyrillic-transliterator]: https://github.com/archagon/cyrillic-transliterator
+[wintranslit]: https://github.com/gershnik/TranslitForWindows
 
 <!-- End Links -->
 
@@ -16,6 +17,12 @@ This macOS keyboard _[input source][input_sources]_ allows a user familiar only 
 type in other languages by using common Latin transliteration of the target language letters. 
 Currently supported target languages are Russian, Hebrew, Ukrainian and Belarusian. 
 To give an example, typing `privet` in Russian mode will produce `привет` and typing `hi` in Hebrew mode will produce `הי`.
+
+> [!NOTE]
+> This software is for macOS only. A Windows version is available [here][wintranslit]
+
+
+<hr>
 
 <!-- TOC depthfrom:2-->
 
