@@ -302,12 +302,18 @@ def generate_markdown(config):
     mappings: list[dict[str, Any]] = config['mappings']
     overrides: dict[str, Any] = config.get('display_override', {})
 
+    if config.get('rtl', False):
+        rtl = ' dir="rtl"'
+    else:
+        rtl = ''
+
     content = dedent(f'''\
         <!-- THIS FILE IS AUTO-GENERATED. DO NOT EDIT. -->
         # {config["name"]} Mappings
         ''')
     for varname, vardata in variants.items():
-        content += f'''
+        if len(variants) > 1:
+            content += f'''
 
 ## {vardata['display']}
 
@@ -315,7 +321,7 @@ def generate_markdown(config):
         for section_idx, section in enumerate(mappings):
             if section_idx > 0:
                 content += '\n'
-            content += '<table><tr>\n'
+            content += f'<div{rtl}><table><tr>\n'
             for dst, _ in get_presentation_destinations(varname, section, overrides):
                 content += f'<td>{dst}</td>'
             content += '\n</tr><tr>\n'
@@ -325,7 +331,7 @@ def generate_markdown(config):
                 elif isinstance(data, list):
                     content += '<td>' + '<br>'.join(data) + '</td>'
 
-            content += '\n</tr></table>'
+            content += '\n</tr></table></div>'
     
     language: str = config['language']
     filename = f'mapping-{language}.md'
