@@ -14,11 +14,11 @@ on:
       - 'tools/create-release'
       
 env:
-  DEVELOPER_DIR: /Applications/Xcode_16.3.0.app
+  DEVELOPER_DIR: /Applications/Xcode_26.2.0.app
       
 jobs:
   main:
-    runs-on: macOS-15
+    runs-on: macOS-26
     
     steps:
     - name: Checkout
