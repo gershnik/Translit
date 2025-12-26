@@ -40,7 +40,7 @@ jobs:
         tools/set-github-keychain
         xcodebuild build \
                    -workspace Translit.xcworkspace \
-                   -destination "platform=macOS,variant=macos,name=Any Mac" \
+                   -destination "generic/platform=macOS,variant=macos,name=Any Mac" \
                    -scheme Installer \
                    -derivedDataPath DerivedData \
                    TRANSLIT_SIGN_PACKAGE=true \
