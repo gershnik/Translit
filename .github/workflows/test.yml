@@ -39,7 +39,7 @@ jobs:
       shell: bash
       run: |
         xcodebuild test -workspace Translit.xcworkspace \
-                        -destination "platform=macOS,name=Any Mac" \
+                        -destination "platform=macOS,variant=macos,name=Any Mac" \
                         -scheme Translit \
                         -config Release \
                         -testPlan Main \
@@ -57,7 +57,7 @@ jobs:
         tools/set-github-keychain
         xcodebuild build \
                    -workspace Translit.xcworkspace \
-                   -destination "platform=macOS,name=Any Mac" \
+                   -destination "platform=macOS,variant=macos,name=Any Mac" \
                    -scheme Installer \
                    -derivedDataPath DerivedData \
                    TRANSLIT_SIGN_PACKAGE=true CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO
