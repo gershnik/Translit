@@ -13,7 +13,7 @@
 
 <!-- End Links -->
 
-This macOS keyboard _[input source][input_sources]_ allows a user familiar only with Latin alphabet keyboard to 
+This macOS keyboard _[input source][input_sources]_ allows a user familiar only with the Latin alphabet keyboard to 
 type in other languages by using common Latin transliteration of the target language letters. 
 Currently supported target languages are Russian, Hebrew, Ukrainian and Belarusian. 
 To give an example, typing `privet` in Russian mode will produce `привет` and typing `hi` in Hebrew mode will produce `הי`.
@@ -52,7 +52,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
   designated transliteration app) switching between input modes is more complicated - you cannot just press `ESC` like
   [translit.ru][translit_ru] does. This makes typing text with lots of punctuation annoying. Additionally hijacking `'`
   interferes with macOS "smart quotes" if you use this feature. Avoiding punctuation, such  as using `q` for `ь` 
-  and `qq` for `ъ` can make typing much smoother.
+  and `qq` for `ъ`, can make typing much smoother.
 - Support for multiple transliteration schemes. Since many people would prefer to use familiar transliteration schemes
   from elsewhere, this application allows you to choose which scheme to use.
   Currently, in addition to the default, [translit.ru/translit.net][translit_ru] schemes are supported for Russian,
@@ -70,11 +70,12 @@ and its forks but none of them supports all the features above.
 * You will be prompted to log off at the end of the installation. This is, unfortunately, necessary. Apple provides
   no way to avoid this.
 * After you log back in launch `System Preferences ⇒ Keyboard`
-* In the `Text Input` section press `Edit...` button for `Input Sources`<br/><br/>
+* In the `Text Input` section, press the `Edit...` button for `Input Sources`<br/><br/>
   <img src="doc/images/Edit.png" width="500px"><br/>
 * Press the `+` button to add an input source<br/><br/>
   <img src="doc/images/Plus.png" width="500px"><br/>
-* Navigate to the desired target language (e.g. `Russian`, `Hebrew` etc.) and select `<Langage> Translit` (for example  `Hebrew Translit`). If you wish to add multiple languages press the `+` again after that.
+* Navigate to the desired target language (e.g. `Russian`, `Hebrew` etc.) and select `<Langage> Translit` (for example  `Hebrew Translit`).
+  If you wish to add multiple languages press the `+` again after that.
 
 You are all set. If you have enabled `Show Input menu in menu bar` setting
 
@@ -95,9 +96,9 @@ input sources.
 
 Either of these can be far more convenient than using the menu bar when typing mixed language text.
 
-If shortcuts aren't working navigate to `System Preferences ⇒ Keyboard ⇒ Keyboard Shortcuts ⇒ Input Sources` and enable or change them.
+If shortcuts aren't working, navigate to `System Preferences ⇒ Keyboard ⇒ Keyboard Shortcuts ⇒ Input Sources` and enable or change them.
 
-It is also possible to make Caps Lock key switch between default and Translit input source. See
+It is also possible to make the Caps Lock key switch between the default and Translit input sources. See
 the following toggle in the `Input Sources` screen.<br/>
 <img src="doc/images/CapsLock.png" width="500px">
 <br/>
@@ -132,7 +133,7 @@ To completely uninstall Translit issue the following commands in Terminal
 
 You can also see the exact command for your installation in `About` menu with a translit mode selected.
 
-Just like with installation, you will be prompted for a logoff at the end. This, unfortunately, is also necessary due
+Just like with installation, you will be prompted for a logoff at the end. This is, unfortunately, also necessary due
 to Apple's bugs. 
 
 ## Mappings
