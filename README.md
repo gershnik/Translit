@@ -13,7 +13,7 @@
 
 <!-- End Links -->
 
-This macOS keyboard _[input source][input_sources]_ allows a user familiar only with the Latin alphabet keyboard to 
+This macOS keyboard _[input source][input_sources]_ allows a user familiar only with a Latin alphabet keyboard to 
 type in other languages by using common Latin transliteration of the target language letters. 
 Currently supported target languages are Russian, Hebrew, Ukrainian and Belarusian. 
 To give an example, typing `privet` in Russian mode will produce `привет` and typing `hi` in Hebrew mode will produce `הי`.
