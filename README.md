@@ -74,7 +74,7 @@ and its forks but none of them supports all the features above.
   <img src="doc/images/Edit.png" width="500px"><br/>
 * Press the `+` button to add an input source<br/><br/>
   <img src="doc/images/Plus.png" width="500px"><br/>
-* Navigate to the desired target language (e.g. `Russian`, `Hebrew` etc.) and select `<Langage> Translit` (for example  `Hebrew Translit`).
+* Navigate to the desired target language (e.g. `Russian`, `Hebrew` etc.) and select `<Language> Translit` (for example  `Hebrew Translit`).
   If you wish to add multiple languages press the `+` again after that.
 
 You are all set. If you have enabled `Show Input menu in menu bar` setting
@@ -89,7 +89,7 @@ Select the newly added input method and you can start typing in it anywhere.
 
 ### Keyboard shortcuts
 
-On newer Macs there is a dedicated 🌐 key that lets you switch between input sources.
+On newer Macs, there is a dedicated 🌐 key that lets you switch between input sources.
 
 In addition, on all Macs, by default macOS sets `⌃Space` and `⌃⌥Space` to switch between different 
 input sources.
@@ -105,7 +105,7 @@ the following toggle in the `Input Sources` screen.<br/>
 
 ### Viewing/Configuring transliteration mappings
 
-When a transliteration input mode is selected the pop-up system menu will show addition entries like these
+When a transliteration input mode is selected, the pop-up system menu will show additional entries like these:
 
 <img src="doc/images/TranslitMenu.png" width="200px">
 
@@ -117,7 +117,7 @@ If multiple transliteration schemes are supported for the target language you ca
 
 ### Uninstallation
 
-To completely uninstall Translit issue the following commands in Terminal
+To completely uninstall Translit issue the following commands in Terminal:
 
 * If you installed Translit only for yourself
 
@@ -131,14 +131,14 @@ To completely uninstall Translit issue the following commands in Terminal
 /Library/Input\ Methods/Translit.app/Contents/MacOS/Translit --uninstall
 ```
 
-You can also see the exact command for your installation in `About` menu with a translit mode selected.
+You can also see the exact command for your installation in the `About` menu with a Translit mode selected.
 
 Just like with installation, you will be prompted for a logoff at the end. This is, unfortunately, also necessary due
 to Apple's bugs. 
 
 ## Mappings
 
-Currently supported character mappings can be found in the following documents
+Currently supported character mappings can be found in the following documents:
 
 * 🇧🇾 [Belarusian](doc/mapping-be.md)
 * 🇮🇱 [Hebrew](doc/mapping-he.md)
@@ -151,7 +151,7 @@ Currently supported character mappings can be found in the following documents
 Xcode 16.3 or above and Python 3.11 or above are the only requirements to build Translit.
 
 * Download/clone the repo
-* Run `fetch` script from the top-level directory (current directory doesn't matter). This will fetch external dependencies
+* Run the `fetch` script from the top-level directory (current directory doesn't matter). This will fetch external dependencies
 * Open `Translit.workspace` and build the `Translit` or `Installer` scheme
 
 
