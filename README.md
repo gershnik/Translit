@@ -47,18 +47,19 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
   Starting roughly with macOS Ventura, Apple has introduced various bugs into its keyboard input sources architecture 
   that make adding and removing them unreliable, error prone and require log off. The installer and uninstaller for this
   application makes the whole process reliable and simple for the user.
-- Not having to use punctuation like `'` or `#` for transliteration.<br/>
+- Having an option not to use punctuation like `'` or `#` for transliteration.<br/>
   When typing normally on macOS (as opposed to some 
   designated transliteration app) switching between input modes is more complicated - you cannot just press `ESC` like
   [translit.ru][translit_ru] does. This makes typing text with lots of punctuation annoying. Additionally hijacking `'`
   interferes with macOS "smart quotes" if you use this feature. Avoiding punctuation, such  as using `q` for `ь` 
-  and `qq` for `ъ` makes typing much smoother.
-- Support for multiple transliteration schemes. Since some people would prefer to use familiar transliteration schemes
+  and `qq` for `ъ` can make typing much smoother.
+- Support for multiple transliteration schemes. Since many people would prefer to use familiar transliteration schemes
   from elsewhere, this application allows you to choose which scheme to use.
-  Currently, in addition to the default, [translit.ru/translit.net][translit_ru] schemes are supported for Russian, Ukrainian and Belarusian. More can be added, if desired.
+  Currently, in addition to the default, [translit.ru/translit.net][translit_ru] schemes are supported for Russian,
+  Ukrainian and Belarusian. More can be added, if desired.
 
-  There are existing macOS transliteration projects on Github such as [cyrillic-transliterator][cyrillic-transliterator] 
-  and its forks but none of them supports all the features above.
+There are existing macOS transliteration projects on Github such as [cyrillic-transliterator][cyrillic-transliterator] 
+and its forks but none of them supports all the features above.
 
 ## Installation
 
@@ -87,10 +88,14 @@ Select the newly added input method and you can start typing in it anywhere.
 
 ### Keyboard shortcuts
 
-By default macOS sets `⌃Space` and `⌃⌥Space` to switch between different input sources. 
-This can be far more convenient than using the menu bar when typing mixed language text.
+On newer Macs there is a dedicated 🌐 key that lets you switch between input sources.
 
-If these aren't working navigate to `System Preferences ⇒ Keyboard ⇒ Keyboard Shortcuts ⇒ Input Sources` and enable or change them.
+In addition, on all Macs, by default macOS sets `⌃Space` and `⌃⌥Space` to switch between different 
+input sources.
+
+Either of these can be far more convenient than using the menu bar when typing mixed language text.
+
+If shortcuts aren't working navigate to `System Preferences ⇒ Keyboard ⇒ Keyboard Shortcuts ⇒ Input Sources` and enable or change them.
 
 It is also possible to make Caps Lock key switch between default and Translit input source. See
 the following toggle in the `Input Sources` screen.<br/>
