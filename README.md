@@ -74,7 +74,7 @@ and its forks but none of them supports all the features above.
   <img src="doc/images/Edit.png" width="500px"><br/>
 * Press the `+` button to add an input source<br/><br/>
   <img src="doc/images/Plus.png" width="500px"><br/>
-* Navigate to the desired target language (e.g. `Russian`, `Hebrew` etc.) and select `<Language> Translit` (for example  `Hebrew Translit`).
+* Navigate to the desired target language (e.g. `Russian`, `Hebrew` etc.) and select `<Language> Translit` (for example `Hebrew Translit`).
   If you wish to add multiple languages press the `+` again after that.
 
 You are all set. If you have enabled `Show Input menu in menu bar` setting
@@ -109,7 +109,7 @@ When a transliteration input mode is selected, the pop-up system menu will show 
 
 <img src="doc/images/TranslitMenu.png" width="200px">
 
-Select `Mappings` to display which Latin characters and combination map to which letters of the target language.
+Select `Mappings` to display which Latin characters and combinations map to which letters of the target language.
 If multiple transliteration schemes are supported for the target language you can also change the scheme.
 
 <img src="doc/images/Mapping.png" width="400px">
