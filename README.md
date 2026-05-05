@@ -1,8 +1,8 @@
 # Translit
 
 ![macOS][mac-badge]
-[![License][license-badge]](https://opensource.org/license/gpl-3-0/)
-[![Tests][tests-badge]](https://github.com/gershnik/Translit/actions/workflows/test.yml)
+[![License][license-badge]][license]
+[![Tests][tests-badge]][tests]
 
 
 This macOS keyboard _[input source][input_sources]_ allows a user familiar only with a Latin alphabet keyboard to 
@@ -37,7 +37,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
 - Distributed as a signed and notarized installer - you don't need to build it yourself (but you can, if you want to).
 - Reliable installation and uninstallation on recent versions of macOS.<br/> 
   Starting roughly with macOS Ventura, Apple has introduced various bugs into its keyboard input sources architecture 
-  that make adding and removing them unreliable, error-prone and require a log off. The installer and uninstaller for this
+  that make adding and removing them unreliable, error-prone and require a logoff. The installer and uninstaller for this
   application make the whole process reliable and simple for the user.
 - Having an option not to use punctuation like `'` or `#` for transliteration.<br/>
   When typing normally on macOS (as opposed to some 
@@ -50,7 +50,7 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
   Currently, in addition to the default, [translit.ru/translit.net][translit_ru] schemes are supported for Russian,
   Ukrainian and Belarusian. More can be added, if desired.
 
-There are existing macOS transliteration projects on Github such as [cyrillic-transliterator][cyrillic-transliterator] 
+There are existing macOS transliteration projects on GitHub such as [cyrillic-transliterator][cyrillic-transliterator] 
 and its forks, but none of them supports all the features above.
 
 ## Installation
@@ -59,14 +59,14 @@ and its forks, but none of them supports all the features above.
   
 * Navigate to the [Releases][releases] page and download the `Translit-x.y.pkg` package installer. 
 * Run it and install the app.
-* You will be prompted to logoff at the end of the installation. This is, unfortunately, necessary. Apple provides
+* You will be prompted to log off at the end of the installation. This is, unfortunately, necessary. Apple provides
   no way to avoid this.
 * After you log back in, launch `System Preferences ⇒ Keyboard`.
 * In the `Text Input` section, press the `Edit...` button for `Input Sources`.<br/><br/>
   <img src="doc/images/Edit.png" width="500px"><br/>
 * Press the `+` button to add an input source.<br/><br/>
   <img src="doc/images/Plus.png" width="500px"><br/>
-* Navigate to the desired target language (e.g. `Russian`, `Hebrew` etc.) and select `<Language> Translit` (for example `Hebrew Translit`).
+* Navigate to the desired target language (e.g. `Russian`, `Hebrew`, etc.) and select `<Language> Translit` (for example `Hebrew Translit`).
   If you wish to add multiple languages, press the `+` again after that.
 
 You are all set. If you have enabled the `Show Input menu in menu bar` setting
@@ -156,6 +156,8 @@ Xcode 16.3 or above and Python 3.11 or above are the only requirements to build 
 
 [mac-badge]: https://img.shields.io/badge/macOS-10.13_and_above-blue?style=flat&logo=apple&logoColor=F0F0F0&labelColor=black
 [license-badge]: https://img.shields.io/badge/license-GPLv3-red.svg
+[license]: https://opensource.org/license/gpl-3-0/
 [tests-badge]: https://github.com/gershnik/Translit/actions/workflows/test.yml/badge.svg
+[tests]: https://github.com/gershnik/Translit/actions/workflows/test.yml
 
 <!-- End Links -->
