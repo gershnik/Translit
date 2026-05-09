@@ -33,7 +33,7 @@
             if (res.payload) {
                 //m_matchedSomething = true;
                 //m_translit += res.payload;
-                sink = *res.payload;
+                sink = (*res.payload)[0];
                 //if the result is not definite we don't know if a longer match is possible so bail out
                 if (!res.definite)
                     break;

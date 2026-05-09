@@ -21,7 +21,7 @@ void Transliterator::append(const NSStringCharAccess & str) {
                 break;
             //otherwise mark it as completed and continue
             start = res.next;
-            ++m_translitCompletedSize;
+            m_translitCompletedSize += res.payload->size();
             completed = start;
         } else if (!res.definite) {
             //no match but could be with more input, bail out

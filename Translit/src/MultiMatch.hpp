@@ -20,25 +20,32 @@ struct CTString {
 
     Char chars[N + 1];
 
-    constexpr CTString(const Char (&src)[N + 1]) noexcept
-    {
-        std::copy(src, src + N + 1, chars);
+    constexpr CTString(const Char (&src)[N + 1]) noexcept {
+        std::copy(src, src + N + 1, this->chars);
     }
-
+    
     constexpr auto size() const -> size_t { return N; }
 
-    constexpr auto operator[](size_t i) const -> Char { return chars[i]; }
+    constexpr auto operator[](size_t i) const -> Char { return this->chars[i]; }
 
     friend constexpr bool operator==(const CTString & lhs, const CTString & rhs) {
         return std::equal(lhs.chars, lhs.chars + N, rhs.chars);
     }
 
-    constexpr auto begin() const { return chars; }
-    constexpr auto end() const { return chars + N; }
+    constexpr auto begin() const { return this->chars; }
+    constexpr auto end() const { return this->chars + N; }
 };
 
 template<class Char, size_t N>
 CTString(const Char (&src)[N]) -> CTString<Char, N - 1>;
+
+template<class Char, size_t LN, size_t RN>
+constexpr auto operator+(const CTString<Char, LN> & lhs, const CTString<Char, RN> & rhs) -> CTString<Char, LN+RN> {
+    Char ret[LN+RN+1];
+    std::copy(lhs.chars, lhs.chars + LN, ret);
+    std::copy(rhs.chars, rhs.chars + RN + 1, ret + LN);
+    return CTString<Char, LN+RN>(ret);
+}
 
 
 template<CTString First, CTString... Rest>

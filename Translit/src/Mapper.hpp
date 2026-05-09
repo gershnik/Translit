@@ -6,28 +6,36 @@
 
 #include "MultiMatch.hpp"
 
-template<class T, class Char, size_t N>
+template<class DstChar, class SrcChar, size_t N, size_t M>
 struct Mapping {
-    const T dst;
-    const CTString<Char, N> src;
+    const CTString<DstChar, M> dst;
+    const CTString<SrcChar, N> src;
     
-    constexpr Mapping(T c, const Char (&arr)[N + 1]) noexcept:
-        dst(c),
-        src(arr)
+    constexpr Mapping(DstChar dst_, const SrcChar (&src_)[N + 1]) noexcept:
+        dst{{dst_, 0}},
+        src(src_)
+    {}
+    constexpr Mapping(const DstChar (&dst_)[M + 1], const SrcChar (&src_)[N + 1]) noexcept:
+        dst(dst_),
+        src(src_)
     {}
 };
 
-template<class T, class Char, size_t N>
-Mapping(T c, const Char (&arr)[N]) -> Mapping<T, Char, N - 1>;
+template<class DstChar, class SrcChar, size_t N>
+Mapping(DstChar dst, const SrcChar (&src)[N]) -> Mapping<DstChar, SrcChar, N - 1, 1>;
 
-template<class T>
-struct Value {
-    const T value;
-    
-    constexpr Value(T v) noexcept:
-        value(v)
-    {}
-};
+template<class DstChar, class SrcChar, size_t N, size_t M>
+Mapping(const DstChar (&dst)[M], const SrcChar (&src)[N]) -> Mapping<DstChar, SrcChar, N - 1, M - 1>;
+
+
+template<CTString... Str>
+constexpr auto combinedIndices() {
+    static_assert((0 + ... + Str.size()) <= std::numeric_limits<uint8_t>::max(), "combined string length cannot fit in uint8_t");
+    std::array<uint8_t, sizeof...(Str) + 1> ret = {0, Str.size()...};
+    for (int i = 1; i < std::size(ret); ++i)
+        ret[i] += ret[i - 1];
+    return ret;
+}
 
 
 template<class Payload, class It>
@@ -43,53 +51,62 @@ struct PrefixMappingResult {
     bool definite;
 };
 
-template<class Payload, std::ranges::forward_range Range>
+template<class DstChar, std::ranges::forward_range Range>
 constexpr auto nullPrefixMapper(const Range & range) {
+    using Payload = std::basic_string_view<DstChar>;
     return PrefixMappingResult<Payload, std::ranges::iterator_t<const Range>>{std::ranges::begin(range), std::nullopt, true};
 }
 
 template<std::ranges::forward_range Range, Mapping First, Mapping... Rest>
 requires(SameCharType<First.src, Rest.src...> &&
-         (std::is_same_v<decltype(First.dst), decltype(Rest.dst)> && ...) &&
+         SameCharType<First.dst, Rest.dst...> &&
          std::is_same_v<typename std::ranges::range_value_t<Range>, CharTypeOf<First.src>>)
 constexpr auto makePrefixMapper() {
     
-    using Payload = std::remove_const_t<decltype(First.dst)>;
-    using Char = CharTypeOf<First.src>;
+    using Char = CharTypeOf<First.dst>;
+    using StringView = std::basic_string_view<Char>;
+    using Iterator = std::ranges::iterator_t<const Range>;
+    using ReturnType = PrefixMappingResult<StringView, Iterator>;
     
-    auto func = [](const Range & range) {
-        using Iterator = std::ranges::iterator_t<const Range>;
-        
-        static constexpr auto multiMatch = makeMultiMatch<First.src, Rest.src...>();
-        static constexpr Payload mappings[1 + sizeof...(Rest)] = {First.dst, Rest.dst...};
+    static constexpr auto multiMatch = makeMultiMatch<First.src, Rest.src...>();
+    static constexpr auto combined = (First.dst + ... + Rest.dst);
+    static constexpr auto mappings = combinedIndices<First.dst, Rest.dst...>();
+    
+    auto func = [](const Range & range) -> ReturnType {
         
         auto res = prefixMatch(multiMatch, range);
-        if (res.index != multiMatch.noMatch)
-            return PrefixMappingResult<Payload, Iterator>{res.next, mappings[res.index], res.definite};
-        return PrefixMappingResult<Payload, Iterator>{res.next, std::nullopt, res.definite};
+        if (res.index != multiMatch.noMatch) {
+            auto offset = mappings[res.index];
+            auto len = mappings[res.index + 1] - offset;
+            return {res.next, StringView(combined.chars + offset, len), res.definite};
+        }
+        return {res.next, std::nullopt, res.definite};
     };
     
     return func;
 }
 
-template<std::ranges::forward_range Range, Value Default, Mapping First, Mapping... Rest>
+template<std::ranges::forward_range Range, CTString Default, Mapping First, Mapping... Rest>
 requires(SameCharType<First.src, Rest.src...> &&
-         std::is_same_v<decltype(Default.value), decltype(First.dst)> &&
-         (std::is_same_v<decltype(First.dst), decltype(Rest.dst)> && ...) &&
+         SameCharType<Default, First.dst> &&
+         SameCharType<First.dst, Rest.dst...> &&
          std::is_same_v<typename std::ranges::range_value_t<Range>, CharTypeOf<First.src>>)
 constexpr auto makeMapper() {
     
-    using Payload = std::remove_const_t<decltype(First.dst)>;
-    using Char = CharTypeOf<First.src>;
+    using Char = CharTypeOf<First.dst>;
+    using StringView = std::basic_string_view<Char>;
+    
+    static constexpr auto multiMatch = makeMultiMatch<First.src, Rest.src...>();
+    static constexpr auto combined = (First.dst + ... + Rest.dst) + Default;
+    static constexpr auto mappings = combinedIndices<First.dst, Rest.dst..., Default>();
     
     auto func = [](const Range & range) {
-        using Iterator = std::ranges::iterator_t<const Range>;
-        
-        static constexpr auto multiMatch = makeMultiMatch<First.src, Rest.src...>();
-        static constexpr Payload mappings[2 + sizeof...(Rest)] = {First.dst, Rest.dst..., Default.value};
         
         auto res = match(multiMatch, range);
-        return mappings[res];
+        auto offset = mappings[res];
+        auto len = mappings[res + 1] - offset;
+        
+        return StringView(combined.chars + offset, len);
     };
     
     return func;

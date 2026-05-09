@@ -36,55 +36,55 @@ using namespace std::literals;
 }
 
 - (void)testOnlyEmptyString {
-    auto mapper = makePrefixMapper<std::u16string, Mapping{0, u""}>();
-    XCTAssertPrefixMap(mapper, u""s, 0, true, 0);
-    XCTAssertPrefixMap(mapper, u"a"s, 0, true, 0);
+    auto mapper = makePrefixMapper<std::u16string, Mapping{"0", u""}>();
+    XCTAssertPrefixMap(mapper, u""s, "0", true, 0);
+    XCTAssertPrefixMap(mapper, u"a"s, "0", true, 0);
 }
 
 - (void)testDisjointStrings {
     {
-        auto mapper = makePrefixMapper<std::u16string, Mapping{0, u"b"}, Mapping{1, u"c"}, Mapping{2, u"a"}>();
+        auto mapper = makePrefixMapper<std::u16string, Mapping{"0", u"b"}, Mapping{"1", u"c"}, Mapping{"2", u"a"}>();
         XCTAssertPrefixMap(mapper, u""s, std::nullopt, false, 0);
-        XCTAssertPrefixMap(mapper, u"a"s, 2, true, 1);
-        XCTAssertPrefixMap(mapper, u"b"s, 0, true, 1);
-        XCTAssertPrefixMap(mapper, u"c"s, 1, true, 1);
+        XCTAssertPrefixMap(mapper, u"a"s, "2", true, 1);
+        XCTAssertPrefixMap(mapper, u"b"s, "0", true, 1);
+        XCTAssertPrefixMap(mapper, u"c"s, "1", true, 1);
         XCTAssertPrefixMap(mapper, u" "s, std::nullopt, true, 0);
     }
     
     {
-        auto mapper = makePrefixMapper<std::u16string, Mapping{0, u"ef"}, Mapping{1, u"cd"}, Mapping{2, u"ab"}>();
+        auto mapper = makePrefixMapper<std::u16string, Mapping{"0", u"ef"}, Mapping{"1", u"cd"}, Mapping{"2", u"ab"}>();
         XCTAssertPrefixMap(mapper, u""s, std::nullopt, false, 0);
         XCTAssertPrefixMap(mapper, u"a"s, std::nullopt, false, 0);
         XCTAssertPrefixMap(mapper, u"b"s, std::nullopt, true, 0);
-        XCTAssertPrefixMap(mapper, u"cd"s, 1, true, 2);
+        XCTAssertPrefixMap(mapper, u"cd"s, "1", true, 2);
     }
     
 }
 
 - (void)testOverlappingStrings {
     {
-        auto mapper = makePrefixMapper<std::u16string, Mapping{0, u"b"}, Mapping{1, u"bcd"}>();
-        XCTAssertPrefixMap(mapper, u"b"s, 0, false, 1);
-        XCTAssertPrefixMap(mapper, u"bc"s, 0, false, 1);
-        XCTAssertPrefixMap(mapper, u"bcd"s, 1, true, 3);
+        auto mapper = makePrefixMapper<std::u16string, Mapping{"0", u"b"}, Mapping{"1", u"bcd"}>();
+        XCTAssertPrefixMap(mapper, u"b"s, "0", false, 1);
+        XCTAssertPrefixMap(mapper, u"bc"s, "0", false, 1);
+        XCTAssertPrefixMap(mapper, u"bcd"s, "1", true, 3);
     }
     {
-        auto mapper = makePrefixMapper<std::u16string, Mapping{0, u"bc"}, Mapping{1, u"bd"}, Mapping{2, u"bdd"}>();
+        auto mapper = makePrefixMapper<std::u16string, Mapping{"0", u"bc"}, Mapping{"1", u"bd"}, Mapping{"2", u"bdd"}>();
         XCTAssertPrefixMap(mapper, u"b"s, std::nullopt, false, 0);
-        XCTAssertPrefixMap(mapper, u"bc"s, 0, true, 2);
-        XCTAssertPrefixMap(mapper, u"bd"s, 1, false, 2);
-        XCTAssertPrefixMap(mapper, u"bdd"s, 2, true, 3);
+        XCTAssertPrefixMap(mapper, u"bc"s, "0", true, 2);
+        XCTAssertPrefixMap(mapper, u"bd"s, "1", false, 2);
+        XCTAssertPrefixMap(mapper, u"bdd"s, "2", true, 3);
     }
     {
-        auto mapper = makePrefixMapper<std::string, Mapping{0, "bd"}, Mapping{1, "bddq"}>();
-        XCTAssertPrefixMap(mapper, "bddc"s, 0, true, 2);
+        auto mapper = makePrefixMapper<std::string, Mapping{"0", "bd"}, Mapping{"1", "bddq"}>();
+        XCTAssertPrefixMap(mapper, "bddc"s, "0", true, 2);
     }
 }
 
 - (void)testRepeatedStrings {
-    constexpr auto mapper = makePrefixMapper<std::string_view, Mapping{0, "ab"}, Mapping{1, "cd"}, Mapping{2, "ab"}>();
-    XCTAssertPrefixMap(mapper, "ab"sv, 2, true, 2);
-    XCTAssertPrefixMap(mapper, "cd"sv, 1, true, 2);
+    constexpr auto mapper = makePrefixMapper<std::string_view, Mapping{"0", "ab"}, Mapping{"1", "cd"}, Mapping{"2", "ab"}>();
+    XCTAssertPrefixMap(mapper, "ab"sv, "2", true, 2);
+    XCTAssertPrefixMap(mapper, "cd"sv, "1", true, 2);
 }
 
 

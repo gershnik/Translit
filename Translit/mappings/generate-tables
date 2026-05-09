@@ -197,7 +197,10 @@ def generate_mapping_header(config: dict[str, Any]):
             for dst, src in get_execution_mappings(varname, section):
                 if line_count > 0:
                     content += ',\n'
-                content += f"    Mapping{{u'{dst}', u\"{quote_cpp_string(src)}\"}}"
+                if len(dst) == 1:
+                    content += f"    Mapping{{u'{dst}', u\"{quote_cpp_string(src)}\"}}"
+                else:
+                    content += f"    Mapping{{u\"{dst}\", u\"{quote_cpp_string(src)}\"}}"
                 line_count += 1
         content += '\n>();\n'
 
@@ -384,20 +387,29 @@ def generate_implementation(impl: dict[str, Any]):
         
     content += dedent('''
         auto getVariantsForLanguage(NSString * name) -> std::span<const LanguageVariant> {
-            static constexpr auto mapper = makeMapper<NSStringCharAccess,
-                //default
-                &g_default,
-                //mappings
+            static constexpr auto multiMatch = makeMultiMatch<
         ''')
     for idx, lang in enumerate(impl['languages']):
         if idx > 0:
             content += ',\n'
-        content += f'        Mapping{{&g_{lang},     u"{lang}"}}'
+        content += f'        u"{lang}"'
 
     content += dedent('''
             >();
+            static constexpr const std::span<const LanguageVariant> * mappings[] = {
+        ''')
+    for idx, lang in enumerate(impl['languages']):
+        if idx > 0:
+            content += ',\n'
+        content += f'        &g_{lang}'
+    
+    content += ','
+    content += dedent('''
+                &g_default
+            };
             
-            return *mapper(name);
+            auto res = match(multiMatch, NSStringCharAccess(name));
+            return *mappings[res];
         }
         ''')
     write_file_if_different(MYDIR.parent / 'src/Languages.mm', content)

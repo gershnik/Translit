@@ -14,7 +14,7 @@ private:
     using Iterator = String::const_iterator;
 public:
     using Range = std::ranges::subrange<Iterator>;
-    using MappingFunc = PrefixMappingResult<Char, Iterator> (const Range &);
+    using MappingFunc = PrefixMappingResult<StringView, Iterator> (const Range &);
     
     static constexpr MappingFunc * nullMapper = nullPrefixMapper<Char, Range>;
 public:

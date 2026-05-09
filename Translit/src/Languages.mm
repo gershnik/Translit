@@ -65,15 +65,20 @@ static const LanguageVariant g_heEntries[] = {
 static constexpr std::span<const LanguageVariant> g_he{g_heEntries};
 
 auto getVariantsForLanguage(NSString * name) -> std::span<const LanguageVariant> {
-    static constexpr auto mapper = makeMapper<NSStringCharAccess,
-        //default
-        &g_default,
-        //mappings
-        Mapping{&g_ru,     u"ru"},
-        Mapping{&g_uk,     u"uk"},
-        Mapping{&g_be,     u"be"},
-        Mapping{&g_he,     u"he"}
+    static constexpr auto multiMatch = makeMultiMatch<
+        u"ru",
+        u"uk",
+        u"be",
+        u"he"
     >();
+    static constexpr const std::span<const LanguageVariant> * mappings[] = {
+        &g_ru,
+        &g_uk,
+        &g_be,
+        &g_he,
+        &g_default
+    };
     
-    return *mapper(name);
+    auto res = match(multiMatch, NSStringCharAccess(name));
+    return *mappings[res];
 }
