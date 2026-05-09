@@ -309,8 +309,10 @@ def generate_markdown(config):
 
     if config.get('rtl', False):
         rtl = ' dir="rtl"'
+        ltr = ' dir="ltr"'
     else:
         rtl = ''
+        ltr = ''
 
     content = dedent(f'''\
         <!-- THIS FILE IS AUTO-GENERATED. DO NOT EDIT. -->
@@ -332,9 +334,9 @@ def generate_markdown(config):
             content += '\n</tr><tr>\n'
             for data in get_presentation_mappings(varname, section, overrides):
                 if isinstance(data, str):
-                    content += f'<td>{data}</td>'
+                    content += f'<td{ltr}>{data}</td>'
                 elif isinstance(data, list):
-                    content += '<td>' + '<br>'.join(data) + '</td>'
+                    content += f'<td{ltr}>' + '<br>'.join(data) + '</td>'
 
             content += '\n</tr></table></div>'
     
