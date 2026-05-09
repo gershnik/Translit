@@ -7,7 +7,7 @@ on:
         - 'v*'
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_26.2.0.app
+  DEVELOPER_DIR: /Applications/Xcode_26.4.app
 
 jobs:
   main:
@@ -15,7 +15,7 @@ jobs:
     permissions: write-all
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Get Version
       shell: bash
@@ -57,7 +57,7 @@ jobs:
                                s3://translit-symbols/Translit-${{ env.GH_BUILD_VERSION }}.dSYM.tgz
       
     - name: Make release
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v3
       with:
         draft: true
         prerelease: false
