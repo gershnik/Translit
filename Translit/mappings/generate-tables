@@ -218,8 +218,10 @@ def generate_html(config: dict[str, Any]):
 
     if config.get('rtl', False):
         rtl = ' dir="rtl"'
+        ltr = ' dir="ltr"'
     else:
         rtl = ''
+        ltr = ''
 
     for varname in variants:
         content = dedent(f'''\
@@ -265,9 +267,9 @@ def generate_html(config: dict[str, Any]):
                     content += '\n'
                 
                 if isinstance(data, str):
-                    content += f'                <td>{data}</td>'
+                    content += f'                <td{ltr}>{data}</td>'
                 elif isinstance(data, list):
-                    content += '                <td><table class="multi">'
+                    content += f'                <td{ltr}><table class="multi">'
                     for srcitem in data:
                         content += f'<tr><td>{srcitem}</td></tr>'
                     content += '</table></td>'

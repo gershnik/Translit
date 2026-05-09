@@ -36,6 +36,10 @@ variants.default.display = 'default'
 'ר' = "r"
 'ש' = "w"
 'ת' = "t"
+'־' = "e-"
+'׳' = ["G", "e'"]
+'״' = ["GG", 'e"']
+'﬩' = "e+"
 
 [[mappings]]
 
@@ -43,19 +47,25 @@ variants.default.display = 'default'
 'ֵ' = "EE"
 'ֶ' = "EEE"
 'ֱ' = "EEEE"
-'ַ' = "EA"
-'ָ' = "EAA"
-'ֲ' = "EAE"
-'ֳ' = "EAAE"
-'ִ' = "EI"
-'ֹ' = "EO"
-'ֻ' = "EU"
-'ּ' = "ED"
-'ׂ' = "ES"
-'ׁ' = "EW"
-'׳' = "G"
-'״' = "GG"
+'ַ' = "A"
+'ָ' = "AA"
+'ֲ' = "AE"
+'ֳ' = "AAE"
+'ִ' = "I"
+'ֹ' = "O"
+'וֺ' = ["oeo", "ueo"]
+'ֻ' = "U"
+'ּ' = "D"
+'שׁ' = "W"
+'שׂ' = "S"
 
 [display_override]
-'ׂ' = ['שׂ', ["wES"]]
-'ׁ' = ['שׁ', ["wEW"]]
+#'וֺ' = ['וֺ', ["oeo", "ueo", "<small><font size=\"0.3em\">(see below)</font></small>"]]
+
+[footer]
+
+content = """<div dir="ltr">
+❗️Use <code>O</code> to add <i>holam</i> to all letters. To use <i>holam haser</i> with <code>ו</code>
+type <code>oeo</code> or <code>ueo</code>. This produces <code>וֺ</code>, as opposed to normal <code>וֹ</code>.
+</div>
+"""
