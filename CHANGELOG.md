@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [1.5] - 2026-05-09
+
 ### Added
 - Hebrew: support for `־` (_maqaf_), `﬩` and `וֺ` (_vav_ with _holam haser_) characters
 - Hebrew: Additional mappings for _geresh_ and _gershayim_ characters
@@ -62,3 +64,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 [1.2]: https://github.com/gershnik/Translit/releases/v1.2
 [1.3]: https://github.com/gershnik/Translit/releases/v1.3
 [1.4]: https://github.com/gershnik/Translit/releases/v1.4
+[1.5]: https://github.com/gershnik/Translit/releases/v1.5
