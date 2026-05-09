@@ -5,8 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+### Added
+- Hebrew: support for `־` (_maqaf_), `﬩` and `וֺ` (_vav_ with _holam haser_) characters
+- Hebrew: Additional mappings for _geresh_ and _gershayim_ characters
+
 ### Changed
-- Updated external dependencies. 
+- Updated external dependencies.
+- Hebrew: simplfied typing _niqqud_ characters
+- Internal: transliteration machinery now supports producing more than one destination charatcer as
+  output (for example to produce grapheme clusters).
 
 ## [1.4] - 2025-05-25
 
