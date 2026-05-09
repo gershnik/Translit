@@ -38,6 +38,7 @@ jobs:
     - name: Test
       shell: bash
       run: |
+        export MACOSX_TEST_DEPLOYMENT_TARGET=$(sw_vers -productVersion | cut -d. -f1-2)
         xcodebuild test -workspace Translit.xcworkspace \
                         -destination "platform=macOS,name=My Mac" \
                         -scheme Translit \
