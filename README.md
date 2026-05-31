@@ -37,15 +37,15 @@ To give an example, typing `privet` in Russian mode will produce `привет` 
 - Distributed as a signed and notarized installer - you don't need to build it yourself (but you can, if you want to).
 - Reliable installation and uninstallation on recent versions of macOS.<br/> 
   Starting roughly with macOS Ventura, Apple has introduced various bugs into its keyboard input sources architecture 
-  that make adding and removing them unreliable, error-prone and require a logoff. The installer and uninstaller for this
+  that make adding and removing them unreliable and error-prone, and require a logoff. The installer and uninstaller for this
   application make the whole process reliable and simple for the user.
-- Having an option not to use punctuation like `'` or `#` for transliteration.<br/>
+- An option not to use punctuation like `'` or `#` for transliteration.<br/>
   When typing normally on macOS (as opposed to some 
-  designated transliteration app), switching between input modes is more complicated - you cannot just press `ESC` like
+  dedicated transliteration app), switching between input modes is more complicated - you cannot just press `ESC` like
   [translit.ru][translit_ru] does. This makes typing text with lots of punctuation annoying. Additionally, hijacking `'`
   interferes with macOS "smart quotes" if you use this feature. Avoiding punctuation, such as using `q` for `ь` 
   and `qq` for `ъ`, can make typing much smoother.
-- Support for multiple transliteration schemes. Since many people would prefer to use familiar transliteration schemes
+- Support for multiple transliteration schemes. Since many people may prefer to use familiar transliteration schemes
   from elsewhere, this application allows you to choose which scheme to use.
   Currently, in addition to the default, [translit.ru/translit.net][translit_ru] schemes are supported for Russian,
   Ukrainian and Belarusian. More can be added, if desired.
@@ -61,13 +61,13 @@ and its forks, but none of them supports all the features above.
 * Run it and install the app.
 * You will be prompted to log off at the end of the installation. This is, unfortunately, necessary. Apple provides
   no way to avoid this.
-* After you log back in, launch `System Preferences ⇒ Keyboard`.
+* After you log back in, launch `System Settings ⇒ Keyboard`.
 * In the `Text Input` section, press the `Edit...` button for `Input Sources`.<br/><br/>
   <img src="doc/images/Edit.png" width="500px"><br/>
 * Press the `+` button to add an input source.<br/><br/>
   <img src="doc/images/Plus.png" width="500px"><br/>
-* Navigate to the desired target language (e.g. `Russian`, `Hebrew`, etc.) and select `<Language> Translit` (for example `Hebrew Translit`).
-  If you wish to add multiple languages, press the `+` again after that.
+* Navigate to the desired target language (`Russian`, `Hebrew`, etc.) and select `<Language> Translit` (for example `Hebrew Translit`).
+  If you wish to add multiple languages, press the `+` again.
 
 You are all set. If you have enabled the `Show Input menu in menu bar` setting
 
@@ -77,7 +77,7 @@ you should see something like this in the menu bar
 
 <img src="doc/images/LangMenu.png" width="200px">
 
-Select the newly added input method and you can start typing in it anywhere.
+Select the newly added input method and you can start typing using it anywhere.
 
 ### Keyboard shortcuts
 
@@ -109,7 +109,7 @@ If multiple transliteration schemes are supported for the target language, you c
 
 ### Uninstallation
 
-To completely uninstall Translit, issue the following commands in Terminal:
+To completely uninstall Translit, issue one of the following commands in Terminal:
 
 * If you installed Translit only for yourself
 
@@ -123,7 +123,7 @@ To completely uninstall Translit, issue the following commands in Terminal:
 /Library/Input\ Methods/Translit.app/Contents/MacOS/Translit --uninstall
 ```
 
-You can also see the exact command for your installation in the `About` menu with a Translit mode selected.
+You can also see the exact command for your installation in the `About` menu while a Translit input source is active.
 
 Just like with installation, you will be prompted for a logoff at the end. This is, unfortunately, also necessary due
 to Apple's bugs. 
