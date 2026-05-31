@@ -1,0 +1,4 @@
+Translit/tables/mapping-*.html      linguist-generated=true
+Translit/tables/Table*.hpp          linguist-generated=true
+doc/mapping-*.md                    linguist-generated=true
+**/*.hpp                            linguist-language=objc++
