@@ -144,7 +144,7 @@ Xcode 16.3 or above and Python 3.11 or above are the only requirements to build 
 
 * Download/clone the repo
 * Run the `fetch` script from the top-level directory (current directory doesn't matter). This will fetch external dependencies.
-* Open `Translit.workspace` and build the `Translit` or `Installer` scheme.
+* Open `Translit.xcworkspace` and build the `Translit` or `Installer` scheme.
 
 
 <!-- Links -->
