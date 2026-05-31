@@ -88,7 +88,7 @@ input sources.
 
 Either of these can be far more convenient than using the menu bar when typing mixed-language text.
 
-If shortcuts aren't working, navigate to `System Preferences ⇒ Keyboard ⇒ Keyboard Shortcuts ⇒ Input Sources` and enable or change them.
+If shortcuts aren't working, navigate to `System Settings ⇒ Keyboard ⇒ Keyboard Shortcuts ⇒ Input Sources` and enable or change them.
 
 It is also possible to make the Caps Lock key switch between the default and Translit input sources. See
 the following toggle in the `Input Sources` screen.<br/>
