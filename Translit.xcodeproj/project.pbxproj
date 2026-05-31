@@ -41,6 +41,10 @@
 		4475AD322B11F97F008DA122 /* TestPrefixMapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4475AD312B11F97F008DA122 /* TestPrefixMapper.mm */; };
 		447848812DDFA9D0008E6E36 /* uk.png in Resources */ = {isa = PBXBuildFile; fileRef = 447848802DDFA9D0008E6E36 /* uk.png */; };
 		447848852DDFE178008E6E36 /* Languages.mm in Sources */ = {isa = PBXBuildFile; fileRef = 447848842DDFE16E008E6E36 /* Languages.mm */; };
+		44A146142FCC17A000BCF702 /* TestUk.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A146132FCC17A000BCF702 /* TestUk.mm */; };
+		44A146152FCC17A000BCF702 /* TestBe.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A146102FCC17A000BCF702 /* TestBe.mm */; };
+		44A146162FCC17A000BCF702 /* TestHe.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A146112FCC17A000BCF702 /* TestHe.mm */; };
+		44A146172FCC17A000BCF702 /* TestLanguages.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44A146122FCC17A000BCF702 /* TestLanguages.mm */; };
 		44B947CF2B4698E500B68C7E /* TestPerf.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44B947CE2B4698E500B68C7E /* TestPerf.mm */; };
 		44B947D12B469B4C00B68C7E /* TestMapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44B947D02B469B4C00B68C7E /* TestMapper.mm */; };
 		44C675842B02153F003A5BDE /* TestRu.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44C675832B02153F003A5BDE /* TestRu.mm */; };
@@ -144,6 +148,10 @@
 		448D57372B58F6A300A135E9 /* CoDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoDispatch.h; sourceTree = "<group>"; };
 		448D57382B58F6A300A135E9 /* NSStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringUtil.h; sourceTree = "<group>"; };
 		449738F62B44FA4300C7FAA9 /* MultiMatch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MultiMatch.hpp; sourceTree = "<group>"; };
+		44A146102FCC17A000BCF702 /* TestBe.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBe.mm; sourceTree = "<group>"; };
+		44A146112FCC17A000BCF702 /* TestHe.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestHe.mm; sourceTree = "<group>"; };
+		44A146122FCC17A000BCF702 /* TestLanguages.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLanguages.mm; sourceTree = "<group>"; };
+		44A146132FCC17A000BCF702 /* TestUk.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestUk.mm; sourceTree = "<group>"; };
 		44B947CE2B4698E500B68C7E /* TestPerf.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestPerf.mm; sourceTree = "<group>"; };
 		44B947D02B469B4C00B68C7E /* TestMapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestMapper.mm; sourceTree = "<group>"; };
 		44C675832B02153F003A5BDE /* TestRu.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRu.mm; sourceTree = "<group>"; };
@@ -347,7 +355,11 @@
 			children = (
 				4475AD312B11F97F008DA122 /* TestPrefixMapper.mm */,
 				44B947D02B469B4C00B68C7E /* TestMapper.mm */,
+				44A146122FCC17A000BCF702 /* TestLanguages.mm */,
 				44C675832B02153F003A5BDE /* TestRu.mm */,
+				44A146102FCC17A000BCF702 /* TestBe.mm */,
+				44A146132FCC17A000BCF702 /* TestUk.mm */,
+				44A146112FCC17A000BCF702 /* TestHe.mm */,
 				44B947CE2B4698E500B68C7E /* TestPerf.mm */,
 				442D25BD2B0B2D2C00204800 /* TestCommon.hpp */,
 				4475AD332B131F80008DA122 /* Main.xctestplan */,
@@ -582,6 +594,10 @@
 				4475AD322B11F97F008DA122 /* TestPrefixMapper.mm in Sources */,
 				442D25B42B0A2E1B00204800 /* Transliterator.mm in Sources */,
 				44B947D12B469B4C00B68C7E /* TestMapper.mm in Sources */,
+				44A146142FCC17A000BCF702 /* TestUk.mm in Sources */,
+				44A146152FCC17A000BCF702 /* TestBe.mm in Sources */,
+				44A146162FCC17A000BCF702 /* TestHe.mm in Sources */,
+				44A146172FCC17A000BCF702 /* TestLanguages.mm in Sources */,
 				4449BEEF2DE29654000B18DF /* Languages.mm in Sources */,
 				44B947CF2B4698E500B68C7E /* TestPerf.mm in Sources */,
 				44C675842B02153F003A5BDE /* TestRu.mm in Sources */,
