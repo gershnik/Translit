@@ -104,7 +104,7 @@
                                                               options:NSAnchoredSearch range:{0, val.length}];
             
             auto del = (AppDelegate *)NSApp.delegate;
-            auto variant = [del getVariantForLanguage:_currentLanguage];
+            auto variant = [del getVariantForLanguage:language];
             [self resetLanguage:language variant:variant];
             [del setMappingsLanguage:_currentLanguage];
         }
