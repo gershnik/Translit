@@ -39,12 +39,14 @@ jobs:
       shell: bash
       run: |
         export MACOSX_TEST_DEPLOYMENT_TARGET=$(sw_vers -productVersion | cut -d. -f1-2)
+        set -o pipefail && \
         xcodebuild test -workspace Translit.xcworkspace \
                         -destination "platform=macOS,name=My Mac" \
                         -scheme Translit \
                         -config Release \
                         -testPlan Main \
-                        -derivedDataPath DerivedData
+                        -derivedDataPath DerivedData \
+          | xcbeautify --renderer github-actions
     
     - name: Build
       shell: bash
@@ -56,12 +58,14 @@ jobs:
         NOTARIZE_PWD: ${{ secrets.NOTARIZE_PWD }}
       run: |
         tools/set-github-keychain
+        set -o pipefail && \
         xcodebuild build \
                    -workspace Translit.xcworkspace \
                    -destination "generic/platform=macOS,variant=macos,name=Any Mac" \
                    -scheme Installer \
                    -derivedDataPath DerivedData \
-                   TRANSLIT_SIGN_PACKAGE=true CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO
+                   TRANSLIT_SIGN_PACKAGE=true CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO \
+          | xcbeautify --renderer github-actions
                    
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v7
