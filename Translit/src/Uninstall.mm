@@ -60,11 +60,10 @@ static auto execute(NSString * exe, NSArray<NSString *> * args, bool sudo = fals
     rawArgs.push_back(nullptr);
     
     pid_t pid;
-    int spawnRes = posix_spawn(&pid, path.c_str(), &fileActions, &attr, (char **)rawArgs.data(), nullptr);
-    int err = errno;
+    int err = posix_spawn(&pid, path.c_str(), &fileActions, &attr, (char **)rawArgs.data(), nullptr);
     posix_spawn_file_actions_destroy(&fileActions);
     posix_spawnattr_destroy(&attr);
-    if (spawnRes) {
+    if (err) {
         return {err, 0};
     }
     int stat;
