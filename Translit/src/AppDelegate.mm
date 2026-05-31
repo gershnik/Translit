@@ -35,7 +35,7 @@ static void bundleWatchCallback(ConstFSEventStreamRef streamRef,
                                 const FSEventStreamEventId * eventIds) {
  
     for(size_t i = 0; i < numEvents; ++i) {
-        if (eventFlags[i] == kFSEventStreamEventFlagRootChanged) {
+        if (eventFlags[i] & kFSEventStreamEventFlagRootChanged) {
             exit(0);
         }
     }
