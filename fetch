@@ -16,7 +16,7 @@ from urllib.request import urlretrieve
 
 components = {
     'objc-helpers': {
-        'ver': 'v3.5',
+        'ver': 'v3.8.0',
         'url': 'https://github.com/gershnik/objc-helpers/tarball/{ver}',
         'unpacker': {
             'type': 'tar',
@@ -121,7 +121,17 @@ def main():
     local_xcconfig = MYDIR / 'Local.xcconfig'
 
     if not local_xcconfig.exists():
-        local_xcconfig.write_text('''\
+        min_ver = ''
+        try:
+            sdk = subprocess.run(['xcrun', '--sdk', 'macosx', '--show-sdk-path'], stdout=subprocess.PIPE,
+                                encoding='utf-8', check=True).stdout.strip()
+            min_ver = subprocess.run(['/usr/libexec/PlistBuddy', '-c',
+                                    'Print :SupportedTargets:macosx:MinimumDeploymentTarget',
+                                    f'{sdk}/SDKSettings.plist'], stdout=subprocess.PIPE,
+                                    encoding='utf-8', check=True).stdout.strip()
+        except subprocess.SubprocessError:
+            pass
+        local_xcconfig.write_text(f'''\
 // Local configuration settings. Do not commit to source control
 //
 // Configuration settings file format documentation can be found at:
@@ -132,6 +142,9 @@ def main():
 //NOTARIZE_USER=...
 //NOTARIZE_PWD=...
 //CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO
+
+// Uncomment the following to set min supported macOS version different from the default
+//MACOSX_DEPLOYMENT_TARGET = {min_ver}
 ''')
 
     EXTERNAL_DIR.mkdir(parents=True, exist_ok=True)
