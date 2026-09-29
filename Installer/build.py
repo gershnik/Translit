@@ -37,7 +37,7 @@ def build(builddir: Path, tempdir: Path, should_sign: bool):
 
     ignore_crap = shutil.ignore_patterns('.DS_Store')
     shutil.copytree(builddir / "Translit.app", input_methods_dir / "Translit.app", ignore=ignore_crap)
-    subprocess.run(['/usr/bin/strip', '-no_code_signature_warning', '-u', '-r',
+    subprocess.run(['xcrun', 'strip', '-no_code_signature_warning', '-u', '-r',
                     input_methods_dir / "Translit.app/Contents/MacOS/Translit"],
                    check=True)
 
@@ -47,11 +47,11 @@ def build(builddir: Path, tempdir: Path, should_sign: bool):
     })
 
     if should_sign:
-        subprocess.run(['codesign', '--force', '--sign', 'Developer ID Application', '-o', 'runtime', '--timestamp',
+        subprocess.run(['xcrun', 'codesign', '--force', '--sign', 'Developer ID Application', '-o', 'runtime', '--timestamp',
                         '--preserve-metadata=entitlements',
                         input_methods_dir / "Translit.app"], check=True)
     else:
-        subprocess.run(['codesign', '--force', '--sign', '-', '-o', 'runtime', '--timestamp=none',
+        subprocess.run(['xcrun', 'codesign', '--force', '--sign', '-', '-o', 'runtime', '--timestamp=none',
                         '--preserve-metadata=entitlements',
                         input_methods_dir / "Translit.app"], check=True)
 
@@ -59,7 +59,7 @@ def build(builddir: Path, tempdir: Path, should_sign: bool):
     packagesdir = workdir / 'packages'
     packagesdir.mkdir()
 
-    subprocess.run(['pkgbuild', 
+    subprocess.run(['xcrun', 'pkgbuild', 
                     '--analyze', 
                     '--root', str(rootdir),
                     str(packagesdir/'component.plist')
@@ -70,7 +70,7 @@ def build(builddir: Path, tempdir: Path, should_sign: bool):
         component['BundleIsRelocatable'] = False
     with open(packagesdir/'component.plist', "wb") as dest:
         plistlib.dump(components, dest, fmt=plistlib.FMT_XML)
-    subprocess.run(['pkgbuild', 
+    subprocess.run(['xcrun', 'pkgbuild', 
                     '--root',       str(rootdir),
                     '--component-plist', str(packagesdir/'component.plist'),
                     #'--scripts',    str(mydir / 'scripts'),
@@ -80,7 +80,7 @@ def build(builddir: Path, tempdir: Path, should_sign: bool):
                     str(packagesdir/'output.pkg')
                 ], check=True)
 
-    subprocess.run(['productbuild', 
+    subprocess.run(['xcrun', 'productbuild', 
                     '--distribution', workdir / 'distribution.xml',
                     '--package-path', str(packagesdir),
                     '--resources',    str(MYDIR / 'html'),
@@ -95,7 +95,7 @@ def build(builddir: Path, tempdir: Path, should_sign: bool):
 
 def sign_product(builddir: Path, prod_version: str):
     installer = builddir / f'Translit-{prod_version}.pkg'
-    subprocess.run(['productsign', '--sign', 'Developer ID Installer', 
+    subprocess.run(['xcrun', 'productsign', '--sign', 'Developer ID Installer', 
                     builddir / 'Translit.pkg', installer], check=True)
     
     sig_output = subprocess.run(['pkgutil', '--check-signature', installer], 

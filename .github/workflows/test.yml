@@ -14,7 +14,8 @@ on:
       - 'tools/create-release'
       
 env:
-  DEVELOPER_DIR: /Applications/Xcode_26.4.app
+  DEVELOPER_DIR: /Applications/Xcode_26.6.app
+  MACOSX_DEPLOYMENT_TARGET: "10.13"
       
 jobs:
   main:
@@ -46,6 +47,7 @@ jobs:
                         -config Release \
                         -testPlan Main \
                         -derivedDataPath DerivedData \
+                        MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET \
           | xcbeautify --renderer github-actions
     
     - name: Build
@@ -64,7 +66,9 @@ jobs:
                    -destination "generic/platform=macOS,variant=macos,name=Any Mac" \
                    -scheme Installer \
                    -derivedDataPath DerivedData \
-                   TRANSLIT_SIGN_PACKAGE=true CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO \
+                   MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET \
+                   TRANSLIT_SIGN_PACKAGE=true \
+                   CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO \
           | xcbeautify --renderer github-actions
                    
     - name: 'Upload Artifact'
