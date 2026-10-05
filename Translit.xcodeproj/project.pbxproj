@@ -80,8 +80,6 @@
 		442D25872B04AEA200204800 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		442D258A2B05F4D200204800 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		442D258C2B05F60900204800 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
-		442D258D2B05F74200204800 /* Project_Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project_Debug.xcconfig; sourceTree = "<group>"; };
-		442D258E2B05F75000204800 /* Project_Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project_Release.xcconfig; sourceTree = "<group>"; };
 		442D258F2B05FB9C00204800 /* Translit.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Translit.xcconfig; sourceTree = "<group>"; };
 		442D25922B06016600204800 /* TranslitTests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TranslitTests.xcconfig; sourceTree = "<group>"; };
 		442D259A2B06043800204800 /* distribution.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = distribution.xml; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 		44C675C72B03515B003A5BDE /* mappings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mappings.xib; sourceTree = "<group>"; };
 		44C675CA2B03E176003A5BDE /* ru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ru.png; sourceTree = "<group>"; };
 		44C675CC2B040B87003A5BDE /* he.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = he.png; sourceTree = "<group>"; };
-		44E971362B4D37D50032961E /* objc-helpers-Exports.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "objc-helpers-Exports.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -196,11 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				442D258C2B05F60900204800 /* Project.xcconfig */,
-				442D258D2B05F74200204800 /* Project_Debug.xcconfig */,
-				442D258E2B05F75000204800 /* Project_Release.xcconfig */,
 				442D258F2B05FB9C00204800 /* Translit.xcconfig */,
 				442D25922B06016600204800 /* TranslitTests.xcconfig */,
-				44E971362B4D37D50032961E /* objc-helpers-Exports.xcconfig */,
 				442D25A72B06349800204800 /* Installer.xcconfig */,
 			);
 			path = config;
@@ -478,7 +472,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1630;
+				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					442D25932B0603B200204800 = {
 						CreatedOnToolsVersion = 15.0;
@@ -654,14 +648,14 @@
 		};
 		445D1E552AFE2C6F00FA1C07 /* Debug configuration for PBXProject "Translit" */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 442D258D2B05F74200204800 /* Project_Debug.xcconfig */;
+			baseConfigurationReference = 442D258C2B05F60900204800 /* Project.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
 		445D1E562AFE2C6F00FA1C07 /* Release configuration for PBXProject "Translit" */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 442D258E2B05F75000204800 /* Project_Release.xcconfig */;
+			baseConfigurationReference = 442D258C2B05F60900204800 /* Project.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;

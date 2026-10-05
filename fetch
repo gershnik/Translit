@@ -11,6 +11,7 @@ if sys.version_info < (3, 11):
 
 import shutil
 import subprocess
+import json
 from pathlib import Path
 from urllib.request import urlretrieve
 
@@ -125,11 +126,10 @@ def main():
         try:
             sdk = subprocess.run(['xcrun', '--sdk', 'macosx', '--show-sdk-path'], stdout=subprocess.PIPE,
                                 encoding='utf-8', check=True).stdout.strip()
-            min_ver = subprocess.run(['/usr/libexec/PlistBuddy', '-c',
-                                    'Print :SupportedTargets:macosx:MinimumDeploymentTarget',
-                                    f'{sdk}/SDKSettings.plist'], stdout=subprocess.PIPE,
-                                    encoding='utf-8', check=True).stdout.strip()
-        except subprocess.SubprocessError:
+            with open(f'{sdk}/SDKSettings.json', 'rb') as f:
+                data = json.load(f)
+            min_ver = str(data['SupportedTargets']['macosx']['MinimumDeploymentTarget'])
+        except (subprocess.SubprocessError, OSError, json.JSONDecodeError, UnicodeDecodeError, KeyError):
             pass
         local_xcconfig.write_text(f'''\
 // Local configuration settings. Do not commit to source control
