@@ -74,6 +74,11 @@
     [del displayMappingsForLanguage:_currentLanguage];
 }
 
+-(void) displayAbout:(id)sender {
+    auto del = (AppDelegate *)NSApp.delegate;
+    [del displayAbout];
+}
+
 //InputControllerProtocol
 
 - (NSString *) currentLanguage {

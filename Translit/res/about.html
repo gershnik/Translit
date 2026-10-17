@@ -6,55 +6,115 @@ SPDX-License-Identifier: GPL-3.0-or-later
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width = device-width">
         <meta name="color-scheme" content="light dark">
-        <meta name="supported-color-schemes" content="light dark">
         <style>
+            :root {
+                --fg-secondary: #6e6e73;
+                --accent: #3d74e6;
+                --code-bg: #f2f2f4;
+                --code-border: #e0e0e4;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --fg-secondary: #a1a1a6;
+                    --accent: #7aa2f7;
+                    --code-bg: #2a2a2e;
+                    --code-border: #3a3a3f;
+                }
+            }
+
             html {
                 overflow: hidden;
             }
+
             body {
-                margin: 5px;
-                font-family:-apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
-                font-size: 14px;
-                -webkit-overflow-scrolling: touch;
+                margin: 0px;
+                font-family: -apple-system, 'Helvetica Neue', sans-serif;
+                font-size: 13px;
+                line-height: 1.35;
+                -webkit-user-select: none;
+                cursor: default;
             }
-            .code-holder {
-                background-color:#f0f0f0;
-                padding-top:4px;
-                padding-bottom: 4px
+
+            #content {
+                padding: 16px 20px;
             }
-            @media (prefers-color-scheme: dark) {
-                .code-holder {
-                    background-color:#292a2f;
-                    padding-top:4px;
-                    padding-bottom: 4px
-                }
+
+            #header {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+            }
+
+            #header img {
+                flex: none;
+                border-radius: 10%;
+            }
+
+            #name {
+                font-size: 28px;
+                font-weight: 600;
+                line-height: 1.15;
+            }
+
+            #version, #copyright {
+                margin-top: 2px;
+                padding-left: 2px;
+            }
+
+            #copyright {
+                font-size: 11px;
+                color: var(--fg-secondary);
+            }
+
+            p {
+                margin: 16px 0 0 0;
+            }
+
+            #uninstall p {
+                margin-top: 10px;
+            }
+
+            #command {
+                margin-top: 6px;
+                padding: 6px 10px;
+                border: 1px solid var(--code-border);
+                border-radius: 6px;
+                background-color: var(--code-bg);
+                font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+                font-size: 11px;
+                line-height: 1.5;
+                white-space: nowrap;
+                overflow-x: auto;
+                -webkit-user-select: text;
+                cursor: text;
+            }
+
+            a {
+                color: var(--accent);
+                cursor: pointer;
             }
         </style>
     </head>
     <body>
-        <table style="border: 0px;margin: 0px;">
-        <tr>
-        <td>
-            <img width=64 height=64 style="border-radius: 10%;" src="%ICONURL%">
-        </td>
-        <td style="vertical-align: top;margin-left:10px">
-            <div style="font-size: 30px;font-weight=bold;">Translit</div>
-            <div style="font-size: 12px;">Version: %VERSION%</div>
-            <p style="font-size: 8px;">%COPYRIGHT%</p>
-        </td>
-        </tr>
-        </table>
-        <div style="visibility:%COMMAND_VISIBILITY%">
+        <div id="content">
+            <div id="header">
+                <img width="64" height="64" src="%ICONURL%" alt="">
+                <div>
+                    <div id="name">Translit</div>
+                    <div id="version">Version %VERSION%</div>
+                    <div id="copyright">%COPYRIGHT%</div>
+                </div>
+            </div>
             <p>
-            More information and updates can be found at the <a href="https://github.com/gershnik/Translit">Github homepage</a>
+                More information and updates can be found at the <a href="https://github.com/gershnik/Translit">GitHub homepage</a>.
             </p>
-            <p>
-            To uninstall this application execute the following commands in the Terminal
-            </p>
-            <div class="code-holder">
-                <code style="font-size: 12px;font-weight:bold">%COMMAND%</code>
+            <div id="uninstall" style="visibility:%COMMAND_VISIBILITY%">
+                <p>
+                    To uninstall this application, run the following commands in Terminal:
+                </p>
+                <div id="command">%COMMAND%</div>
             </div>
         </div>
     </body>

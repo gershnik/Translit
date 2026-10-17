@@ -6,7 +6,7 @@
 
 @protocol MenuProtocol
 
--(void) showPreferences:(id)sender;
+-(void) displayAbout:(id)sender;
 -(void) displayMappings:(id)sender;
 
 @end

@@ -244,9 +244,7 @@ def generate_html(config: dict[str, Any]):
             <body{rtl}>
                 <div id="table-holder" style="width:100%">
             ''')
-        for section_idx, section in enumerate(mappings):
-            if section_idx > 0:
-                content += '        <br>\n'
+        for section in mappings:
             content += dedent('''\
                     <table class="main">
                         <tr class="headerRow">
@@ -284,9 +282,7 @@ def generate_html(config: dict[str, Any]):
             footer = footer.rstrip()
             content += dedent(f'''\
                     <div class="footer">
-                    <span>
                     {indent_insert(footer, 20)}
-                    </span>
                     </div>
                     <div style="height:0.5em"></div>
             ''')

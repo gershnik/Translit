@@ -24,6 +24,7 @@
 //    _text.wantsLayer = YES;
 //    _text.layer.cornerRadius = 5;
 //    _text.layer.masksToBounds = YES;
+    [self.window makeFirstResponder:nil];
     _text.navigationDelegate = self;
     _firstLoad = true;
     [self showLanguage:_language];

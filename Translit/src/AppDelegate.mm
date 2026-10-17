@@ -4,14 +4,15 @@
 #import "AppDelegate.hpp"
 #import "MenuProtocol.hpp"
 #import "InputControllerProtocol.hpp"
-#include "MappingsWindowController.hpp"
+#import "MappingsWindowController.hpp"
+#import "AboutWindowController.hpp"
 
 @interface AppDelegate () {
     NSWindow * _window;
     IBOutlet NSMenu * _menu;
     MappingsWindowController * _mappingsController;
-    id<InputControllerProtocol> __weak _inputController;
-    NSWindowController * __weak _aboutController;
+    AboutWindowController * _aboutController;
+    NSString * _lastMappingsLanguage;
 }
 
 @end
@@ -20,7 +21,7 @@
 
 -(void) awakeFromNib {
     if (NSMenuItem * preferences = [_menu itemWithTag:1]) {
-        [preferences setAction:@selector(showPreferences:)];
+        [preferences setAction:@selector(displayAbout:)];
     }
     if (NSMenuItem * displayMappings = [_menu itemWithTag:2]) {
         [displayMappings setAction:@selector(displayMappings:)];
@@ -33,7 +34,7 @@ static void bundleWatchCallback(ConstFSEventStreamRef streamRef,
                                 void * eventPaths,
                                 const FSEventStreamEventFlags * eventFlags,
                                 const FSEventStreamEventId * eventIds) {
- 
+    
     for(size_t i = 0; i < numEvents; ++i) {
         if (eventFlags[i] & kFSEventStreamEventFlagRootChanged) {
             exit(0);
@@ -59,19 +60,33 @@ static void bundleWatchCallback(ConstFSEventStreamRef streamRef,
 -(void) applicationDidFinishLaunching:(NSNotification *)aNotification {
 }
 
+- (void) application:(NSApplication *)app openURLs:(NSArray<NSURL *> *)urls {
+    bool showMappings = false;
+    bool showAbout = false;
+    for(NSURL * url in urls) {
+        auto * components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:false];
+        if ([components.scheme isEqualToString:@"translit"]) {
+            if ([components.host isEqualToString:@"show-mappings"])
+                showMappings = true;
+            else if ([components.host isEqualToString:@"about"])
+                showAbout = true;
+        }
+    }
+    
+    if (showMappings) {
+        if (_lastMappingsLanguage)
+            [self displayMappingsForLanguage:_lastMappingsLanguage];
+    }
+    if (showAbout) {
+        [self displayAbout];
+    }
+}
+
 -(void) applicationWillTerminate:(NSNotification *)aNotification {
 }
 
 -(NSMenu *) menu {
     return _menu;
-}
-
--(void) setCurrentInputController:(id<InputControllerProtocol>)controller {
-    _inputController = controller;
-}
-
--(void) setCurrentAboutController:(NSWindowController *)controller {
-    _aboutController = controller;
 }
 
 -(NSString *) getVariantForLanguage:(NSString *)language {
@@ -85,12 +100,6 @@ static void bundleWatchCallback(ConstFSEventStreamRef streamRef,
     auto defs = NSUserDefaults.standardUserDefaults;
     auto variantKey = [language stringByAppendingString:@"_variant"];
     [defs setObject:variant forKey:variantKey];
-    
-    if (auto inputController = makeStrong(_inputController)) {
-        auto currentLanguage = inputController.currentLanguage;
-        if (currentLanguage && [currentLanguage isEqualToString:language])
-            [inputController changeVariant:variant];
-    }
 }
 
 -(void) displayMappingsForLanguage:(NSString *)language {
@@ -103,18 +112,44 @@ static void bundleWatchCallback(ConstFSEventStreamRef streamRef,
     [_mappingsController.window orderFrontRegardless];
 }
 
+-(void) displayAbout {
+    if (!_aboutController) {
+        _aboutController = [[AboutWindowController alloc] initWithWindowNibName:@"preferences"];
+        [_aboutController.window setLevel:NSMainMenuWindowLevel];
+        [NSNotificationCenter.defaultCenter addObserver:self
+                                               selector:@selector(aboutControllerWindowClosed:)
+                                                   name:NSWindowWillCloseNotification
+                                                 object:_aboutController.window];
+    }
+    [_aboutController showWindow:self];
+    [_aboutController.window orderFrontRegardless];
+}
+
+- (void) aboutControllerWindowClosed:(NSNotification *)notification {
+    auto window = (NSWindow *)notification.object;
+    auto controller = window.windowController;
+    [NSNotificationCenter.defaultCenter removeObserver:self name:NSWindowWillCloseNotification object:window];
+    
+    if (_aboutController == controller) {
+        _aboutController = nil;
+    }
+}
+
 -(void) setMappingsLanguage:(NSString *)language {
+    _lastMappingsLanguage = language;
     if (_mappingsController)
         [_mappingsController showLanguage:language];
 }
 
 -(void) deactivateUI {
+    _lastMappingsLanguage = nil;
     if (_mappingsController) {
         [_mappingsController close];
         _mappingsController = nil;
     }
-    if (auto aboutController = makeStrong(_aboutController)) {
-        [aboutController close];
+    if (_aboutController) {
+        [_aboutController close];
+        _aboutController = nil;
     }
 }
 

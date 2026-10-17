@@ -11,10 +11,8 @@
 
 @property (nonatomic, readonly) NSMenu * menu;
 
--(void) setCurrentInputController:(id<InputControllerProtocol>)controller;
--(void) setCurrentAboutController:(NSWindowController *)controller;
-
 -(void) displayMappingsForLanguage:(NSString *)language;
+-(void) displayAbout;
 -(void) setMappingsLanguage:(NSString *)language;
 -(NSString *) getVariantForLanguage:(NSString *)language;
 -(void) setVariant:(NSString *)variant forLanguage:(NSString *)language;

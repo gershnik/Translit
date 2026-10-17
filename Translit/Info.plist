@@ -49,52 +49,52 @@
 				<key>tsInputModeScriptKey</key>
 				<string>smCyrillic</string>
 			</dict>
-            <key>{PRODUCT_BUNDLE_IDENTIFIER}.uk</key>
-            <dict>
-                <key>TISInputSourceID</key>
-                <string>$(PRODUCT_BUNDLE_IDENTIFIER).uk</string>
-                <key>TISIntendedLanguage</key>
-                <string>uk</string>
-                <key>TISDoubleSpaceSubstitution</key>
-                <string>. </string>
-                <key>tsInputModeIsVisibleKey</key>
-                <true/>
-                <key>tsInputModePrimaryInScriptKey</key>
-                <false/>
-                <key>tsInputModeMenuIconFileKey</key>
-                <string>uk.png</string>
-                <key>tsInputModePaletteIconFileKey</key>
-                <string>uk.png</string>
-                <key>tsInputMethodCharacterRepertoireKey</key>
-                <array>
-                    <string>Cyrl</string>
-                </array>
-                <key>tsInputModeScriptKey</key>
-                <string>smCyrillic</string>
-            </dict>
-            <key>{PRODUCT_BUNDLE_IDENTIFIER}.be</key>
-            <dict>
-                <key>TISInputSourceID</key>
-                <string>$(PRODUCT_BUNDLE_IDENTIFIER).be</string>
-                <key>TISIntendedLanguage</key>
-                <string>be</string>
-                <key>TISDoubleSpaceSubstitution</key>
-                <string>. </string>
-                <key>tsInputModeIsVisibleKey</key>
-                <true/>
-                <key>tsInputModePrimaryInScriptKey</key>
-                <false/>
-                <key>tsInputModeMenuIconFileKey</key>
-                <string>be.png</string>
-                <key>tsInputModePaletteIconFileKey</key>
-                <string>be.png</string>
-                <key>tsInputMethodCharacterRepertoireKey</key>
-                <array>
-                    <string>Cyrl</string>
-                </array>
-                <key>tsInputModeScriptKey</key>
-                <string>smCyrillic</string>
-            </dict>
+			<key>{PRODUCT_BUNDLE_IDENTIFIER}.uk</key>
+			<dict>
+				<key>TISInputSourceID</key>
+				<string>$(PRODUCT_BUNDLE_IDENTIFIER).uk</string>
+				<key>TISIntendedLanguage</key>
+				<string>uk</string>
+				<key>TISDoubleSpaceSubstitution</key>
+				<string>. </string>
+				<key>tsInputModeIsVisibleKey</key>
+				<true/>
+				<key>tsInputModePrimaryInScriptKey</key>
+				<false/>
+				<key>tsInputModeMenuIconFileKey</key>
+				<string>uk.png</string>
+				<key>tsInputModePaletteIconFileKey</key>
+				<string>uk.png</string>
+				<key>tsInputMethodCharacterRepertoireKey</key>
+				<array>
+					<string>Cyrl</string>
+				</array>
+				<key>tsInputModeScriptKey</key>
+				<string>smCyrillic</string>
+			</dict>
+			<key>{PRODUCT_BUNDLE_IDENTIFIER}.be</key>
+			<dict>
+				<key>TISInputSourceID</key>
+				<string>$(PRODUCT_BUNDLE_IDENTIFIER).be</string>
+				<key>TISIntendedLanguage</key>
+				<string>be</string>
+				<key>TISDoubleSpaceSubstitution</key>
+				<string>. </string>
+				<key>tsInputModeIsVisibleKey</key>
+				<true/>
+				<key>tsInputModePrimaryInScriptKey</key>
+				<false/>
+				<key>tsInputModeMenuIconFileKey</key>
+				<string>be.png</string>
+				<key>tsInputModePaletteIconFileKey</key>
+				<string>be.png</string>
+				<key>tsInputMethodCharacterRepertoireKey</key>
+				<array>
+					<string>Cyrl</string>
+				</array>
+				<key>tsInputModeScriptKey</key>
+				<string>smCyrillic</string>
+			</dict>
 			<key>{PRODUCT_BUNDLE_IDENTIFIER}.he</key>
 			<dict>
 				<key>TISInputSourceID</key>
@@ -122,8 +122,8 @@
 		<key>tsVisibleInputModeOrderedArrayKey</key>
 		<array>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).ru</string>
-            <string>$(PRODUCT_BUNDLE_IDENTIFIER).uk</string>
-            <string>$(PRODUCT_BUNDLE_IDENTIFIER).be</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).uk</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).be</string>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).he</string>
 		</array>
 	</dict>
@@ -147,5 +147,18 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>menu</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).mappings</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>translit</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+		</dict>
+	</array>
 </dict>
 </plist>
