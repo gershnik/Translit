@@ -161,6 +161,13 @@
 		44C675C72B03515B003A5BDE /* mappings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mappings.xib; sourceTree = "<group>"; };
 		44C675CA2B03E176003A5BDE /* ru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ru.png; sourceTree = "<group>"; };
 		44C675CC2B040B87003A5BDE /* he.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = he.png; sourceTree = "<group>"; };
+		44F39F8B308504D300829B14 /* apple_cf_ptr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = apple_cf_ptr.h; sourceTree = "<group>"; };
+		44F39F8C308504D300829B14 /* com_ptr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = com_ptr.h; sourceTree = "<group>"; };
+		44F39F8D308504D300829B14 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		44F39F8E308504D300829B14 /* intrusive_shared_ptr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = intrusive_shared_ptr.h; sourceTree = "<group>"; };
+		44F39F8F308504D300829B14 /* python_ptr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = python_ptr.h; sourceTree = "<group>"; };
+		44F39F90308504D300829B14 /* ref_counted.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ref_counted.h; sourceTree = "<group>"; };
+		44F39F91308504D300829B14 /* refcnt_ptr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = refcnt_ptr.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -412,9 +419,40 @@
 		44C675D02B04165C003A5BDE /* External */ = {
 			isa = PBXGroup;
 			children = (
+				44F39FAF308504D300829B14 /* isptr */,
 				448D572F2B58F67500A135E9 /* objc-helpers */,
 			);
 			path = External;
+			sourceTree = "<group>";
+		};
+		44F39F92308504D300829B14 /* intrusive_shared_ptr */ = {
+			isa = PBXGroup;
+			children = (
+				44F39F8B308504D300829B14 /* apple_cf_ptr.h */,
+				44F39F8C308504D300829B14 /* com_ptr.h */,
+				44F39F8D308504D300829B14 /* common.h */,
+				44F39F8E308504D300829B14 /* intrusive_shared_ptr.h */,
+				44F39F8F308504D300829B14 /* python_ptr.h */,
+				44F39F90308504D300829B14 /* ref_counted.h */,
+				44F39F91308504D300829B14 /* refcnt_ptr.h */,
+			);
+			path = intrusive_shared_ptr;
+			sourceTree = "<group>";
+		};
+		44F39F93308504D300829B14 /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				44F39F92308504D300829B14 /* intrusive_shared_ptr */,
+			);
+			path = inc;
+			sourceTree = "<group>";
+		};
+		44F39FAF308504D300829B14 /* isptr */ = {
+			isa = PBXGroup;
+			children = (
+				44F39F93308504D300829B14 /* inc */,
+			);
+			path = isptr;
 			sourceTree = "<group>";
 		};
 		584BD828FEB6DF6BB2BB37C1 /* Frameworks */ = {

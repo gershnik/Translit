@@ -23,7 +23,14 @@ public:
     Transliterator(MappingFunc * mapper): m_mapper(mapper)
     {}
     
-    void append(const NSStringCharAccess & str);
+    void append(const NSStringCharAccess & str) {
+        m_prefix.append(str.begin(), str.end());
+        doAppend();
+    }
+    void append(StringView str) {
+        m_prefix.append(str.begin(), str.end());
+        doAppend();
+    }
     
     auto result() const -> StringView
         { return m_translit; }
@@ -45,6 +52,9 @@ public:
         if (m_translit.empty())
             m_matchedSomething = false;
     }
+    
+private:
+    void doAppend();
     
 private:
     MappingFunc * m_mapper = nullMapper;

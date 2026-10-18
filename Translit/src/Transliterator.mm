@@ -4,8 +4,7 @@
 #include "Transliterator.hpp"
 
 
-void Transliterator::append(const NSStringCharAccess & str) {
-    m_prefix.append(str.begin(), str.end());
+void Transliterator::doAppend() {
     m_translit.erase(m_translit.begin() + m_translitCompletedSize, m_translit.end());
     
     const auto begin = m_prefix.cbegin();

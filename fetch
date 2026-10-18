@@ -26,6 +26,17 @@ components = {
         'dir': 'objc-helpers',
         'verFile': 'VERSION',
         'generateVerFile': True
+    },
+    'isptr': {
+        'ver': 'v1.13',
+        'url': 'https://github.com/gershnik/intrusive_shared_ptr/tarball/{ver}',
+        'unpacker': {
+            'type': 'tar',
+            'strip': 1
+        },
+        'dir': 'isptr',
+        'verFile': 'VERSION',
+        'generateVerFile': True
     }
 }
 

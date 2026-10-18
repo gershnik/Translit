@@ -7,6 +7,8 @@
 #include <objc-helpers/NSStringUtil.h>
 #include <objc-helpers/BlockUtil.h>
 
+#include <intrusive_shared_ptr/apple_cf_ptr.h>
+
 #include <memory>
 #include <array>
 #include <vector>
@@ -34,6 +36,11 @@
 
 #import <os/log.h>
 
+#ifndef NDEBUG
+    #define os_log_debug_only(log, format, ...) os_log_debug(log, format __VA_OPT__(,) __VA_ARGS__)
+#else
+    #define os_log_debug_only(log, format, ...)
+#endif
 
 #endif
 
