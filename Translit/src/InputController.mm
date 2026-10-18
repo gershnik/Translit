@@ -50,8 +50,7 @@ public:
         OSStatus err = UCKeyTranslate(m_keyboardLayout, keyCode, kUCKeyActionDown, (mods >> 8) & 0xFF,
                                       m_keyboardType, 0, &m_deadKeyState,
                                       std::size(buf), &len, buf);
-        os_log_debug_only(OS_LOG_DEFAULT, "UCKeyTranslate: %d %ld %d %d",
-                          err, len, m_deadKeyState, int(wasDead));
+        TRLOG_DEBUG_ONLY("UCKeyTranslate: %d %ld %d %d", err, len, m_deadKeyState, int(wasDead));
         if (err != noErr) {
             m_value.resize(m_completedSize);
             m_value.append(str.begin(), str.end());
@@ -145,8 +144,7 @@ private:
 
 
 -(BOOL)inputText:(NSString*)string key:(NSInteger)keyCode modifiers:(NSUInteger)flags client:(id)sender {
-    os_log_debug_only(OS_LOG_DEFAULT, "Receiving: '%{public}@', %ld, %lx",
-                      string, keyCode, flags);
+    TRLOG_DEBUG_ONLY("Receiving: '%{public}@', %ld, %lx", string, keyCode, flags);
     
     auto isCommandKey = [&](const NSStringCharAccess & access) {
         if (access.size() != 1)
@@ -206,13 +204,13 @@ private:
 //IMKStateSetting
 
 -(id) valueForTag:(long)tag client:(id)sender {
-    os_log_debug(OS_LOG_DEFAULT, "Get Value for tag %li", tag);
+    TRLOG_DEBUG("Get Value for tag %li", tag);
     return [super valueForTag:tag client:sender];
 }
 
 -(void) setValue:(id)value forTag:(long)tag client:(id)sender
 {
-    os_log_debug(OS_LOG_DEFAULT, "Set Value %{public}@ for tag %li", value, tag);
+    TRLOG_DEBUG("Set Value %{public}@ for tag %li", value, tag);
     constexpr long langTag = 1768778093; //kTSMDocumentInputModePropertyTag = 'imim' from TextServices.h
     
     switch(tag) {
@@ -241,7 +239,7 @@ private:
 
 -(void) resetLanguage:(NSString *)language variant:(NSString *)variant {
     _currentLanguage = language;
-    os_log_info(OS_LOG_DEFAULT, "Setting language to %{public}@, variant '%{public}@'", _currentLanguage, variant);
+    TRLOG_INFO("Setting language to %{public}@, variant '%{public}@'", _currentLanguage, variant);
     _compositor.init();
     auto mapper = getMapperFor(language, variant);
     _transliterator = std::make_unique<Transliterator>(mapper);
@@ -251,13 +249,13 @@ private:
     
     if (auto all = _transliterator->result(); !all.empty()) {
         auto text = makeNSString(all);
-        os_log_debug_only(OS_LOG_DEFAULT, "Sending forced transliteration: %{public}@", text);
+        TRLOG_DEBUG_ONLY("Sending forced transliteration: %{public}@", text);
         [sender insertText:text replacementRange:NSRange{NSNotFound, NSNotFound}];
         _transliterator->clear();
     }
     if (auto all = _compositor.result(); !all.empty()) {
         auto text = makeNSString(all);
-        os_log_debug_only(OS_LOG_DEFAULT, "Sending forced composition: %{public}@", text);
+        TRLOG_DEBUG_ONLY("Sending forced composition: %{public}@", text);
         [sender insertText:text replacementRange:NSRange{NSNotFound, NSNotFound}];
         _compositor.clear();
     }
@@ -268,7 +266,7 @@ private:
     _transliterator->append(input);
     
     if (!_transliterator->matchedSomething()) {
-        os_log_debug_only(OS_LOG_DEFAULT, "No transliteration");
+        TRLOG_DEBUG_ONLY("No transliteration");
         _transliterator->clear();
         if (didCompose) {
             auto text = makeNSString(input);
@@ -283,14 +281,14 @@ private:
     
     if (auto completedSize = _transliterator->completedSize()) {
         auto text = makeNSString(_transliterator->result().substr(0, completedSize));
-        os_log_debug_only(OS_LOG_DEFAULT, "Sending completed: '%{public}@'", text);
+        TRLOG_DEBUG_ONLY("Sending completed: '%{public}@'", text);
         [sender insertText:text replacementRange:NSRange{NSNotFound, NSNotFound}];
         _transliterator->clearCompleted();
     }
     //at this point the only remaining thing in impl is incomplete tail
     if (auto incomplete = _transliterator->result(); !incomplete.empty()) {
         auto text = makeNSString(incomplete);
-        os_log_debug_only(OS_LOG_DEFAULT, "Sending incomplete: '%{public}@'", text);
+        TRLOG_DEBUG_ONLY("Sending incomplete: '%{public}@'", text);
         auto attr = [self markForStyle:kTSMHiliteSelectedRawText atRange:{0, text.length}];
         auto attributed = [[NSMutableAttributedString alloc] initWithString:text attributes:attr];
         [sender setMarkedText:attributed
@@ -304,10 +302,10 @@ private:
 -(BOOL) commitPartialToSender:(id<IMKTextInput>)sender {
     
     if (!_compositor.done()) {
-        os_log_debug_only(OS_LOG_DEFAULT, "Dead key");
+        TRLOG_DEBUG_ONLY("Dead key");
         if (auto completedSize = _compositor.completedSize(); completedSize) {
             auto completed = _compositor.result().substr(0, completedSize);
-            os_log_debug_only(OS_LOG_DEFAULT, "Dispatching completed composition: '%{public}@'", makeNSString(completed));
+            TRLOG_DEBUG_ONLY("Dispatching completed composition: '%{public}@'", makeNSString(completed));
             bool res = [self dispatchToTransliterator:sender input:completed didCompose:true];
             assert(res); //we set didCompose to true, it means dispatchToTransliterator must send
             _compositor.clearCompleted();
@@ -317,7 +315,7 @@ private:
         composition.append(_compositor.result());
         if (!composition.empty()) {
             auto text = makeNSString(composition);
-            os_log_debug_only(OS_LOG_DEFAULT, "Sending composition: '%{public}@'", text);
+            TRLOG_DEBUG_ONLY("Sending composition: '%{public}@'", text);
             auto attr = [self markForStyle:kTSMHiliteSelectedRawText atRange:{0, text.length}];
             auto attributed = [[NSMutableAttributedString alloc] initWithString:text attributes:attr];
             [sender setMarkedText:attributed
@@ -328,7 +326,7 @@ private:
         return NO;
     }
     
-    os_log_debug_only(OS_LOG_DEFAULT, "Composed: '%{public}@'", makeNSString(_compositor.result()));
+    TRLOG_DEBUG_ONLY("Composed: '%{public}@'", makeNSString(_compositor.result()));
     auto didCompose = _compositor.didCompose();
     auto ret = [self dispatchToTransliterator:sender input:_compositor.result() didCompose:didCompose];
     _compositor.clear();

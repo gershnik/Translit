@@ -72,7 +72,7 @@
     
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
         auto url = navigationAction.request.URL;
-        os_log_debug(OS_LOG_DEFAULT, "Navigating to link:  %{public}@", url);
+        TRLOG_DEBUG("Navigating to link:  %{public}@", url);
         [NSWorkspace.sharedWorkspace openURL:url];
         decisionHandler(WKNavigationActionPolicyCancel);
     } else {

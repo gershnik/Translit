@@ -91,7 +91,7 @@
     [webView evaluateJavaScript:@"document.getElementById('table-holder').scrollHeight"
               completionHandler:^(id result, NSError * err){
         if (err) {
-            os_log_error(OS_LOG_DEFAULT, "Javascript failed: %{public}@", err);
+            TRLOG_ERROR("Javascript failed: %{public}@", err);
             return;
         }
         dispatch_async(dispatch_get_main_queue(), [weakSelf = makeWeak(self),result]() {
@@ -117,7 +117,7 @@
     
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
         auto url = navigationAction.request.URL;
-        os_log_debug(OS_LOG_DEFAULT, "Navigating to link:  %{public}@", url);
+        TRLOG_DEBUG("Navigating to link:  %{public}@", url);
         [NSWorkspace.sharedWorkspace openURL:url];
         decisionHandler(WKNavigationActionPolicyCancel);
     } else {

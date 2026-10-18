@@ -36,10 +36,13 @@
 
 #import <os/log.h>
 
+#define TRLOG_INFO(format, ...) os_log_info(OS_LOG_DEFAULT, format __VA_OPT__(,) __VA_ARGS__)
+#define TRLOG_ERROR(format, ...) os_log_error(OS_LOG_DEFAULT, format __VA_OPT__(,) __VA_ARGS__)
+#define TRLOG_DEBUG(format, ...) os_log_debug(OS_LOG_DEFAULT, format __VA_OPT__(,) __VA_ARGS__)
 #ifndef NDEBUG
-    #define os_log_debug_only(log, format, ...) os_log_debug(log, format __VA_OPT__(,) __VA_ARGS__)
+    #define TRLOG_DEBUG_ONLY(format, ...) os_log_debug(OS_LOG_DEFAULT, format __VA_OPT__(,) __VA_ARGS__)
 #else
-    #define os_log_debug_only(log, format, ...)
+    #define TRLOG_DEBUG_ONLY(format, ...)
 #endif
 
 #endif
