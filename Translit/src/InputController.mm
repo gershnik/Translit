@@ -306,7 +306,7 @@ private:
         if (auto completedSize = _compositor.completedSize(); completedSize) {
             auto completed = _compositor.result().substr(0, completedSize);
             TRLOG_DEBUG_ONLY("Dispatching completed composition: '%{public}@'", makeNSString(completed));
-            bool res = [self dispatchToTransliterator:sender input:completed didCompose:true];
+            [[maybe_unused]] bool res = [self dispatchToTransliterator:sender input:completed didCompose:true];
             assert(res); //we set didCompose to true, it means dispatchToTransliterator must send
             _compositor.clearCompleted();
         }
