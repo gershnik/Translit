@@ -9,9 +9,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Support for dead keys on keyboards that have them (e.g. German QWERTZ)
 
 ### Changed
-- Imporoved Mapping and About windows UI
+- Installer is now signed with a new Apple certificate. Old installers 
+  (1.5 and earlier) may stop working after Feb 1, 2027 
+  ([why](https://eclecticlight.co/2026/10/16/changing-developer-certificates-might-affect-installers-next-year/))
+- Improved Mappings and About windows UI
 - Xcode project no longer hardcodes minimum macOS version. This allows building
-  on Xcode 27 and later that bumped allowed minimum. You can control desired 
+  on Xcode 27 and later that the bumped allowed minimum. You can control the desired 
   minimum via Local.xcconfig
 
 ### Fixed
@@ -25,7 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 - Updated external dependencies.
-- Hebrew: simplfied typing _niqqud_ characters
+- Hebrew: simplified typing _niqqud_ characters
 - Internal: transliteration machinery now supports producing more than one destination charatcer as
   output (for example to produce grapheme clusters).
 
