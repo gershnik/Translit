@@ -5,17 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+### Added
+- Support for dead keys on keyboards that have them (e.g. German QWERTZ)
+
 ### Changed
 - Imporoved Mapping and About windows UI
-
-### Fixed
-- Dead keys now work properly on keyboards that have them (e.g. German QWERTZ)
-- Translit compositions in progress are now underlined in Terminal too
-
-### Changed
 - Xcode project no longer hardcodes minimum macOS version. This allows building
   on Xcode 27 and later that bumped allowed minimum. You can control desired 
   minimum via Local.xcconfig
+
+### Fixed
+- Translit compositions in progress are now underlined in Terminal too
 
 ## [1.5] - 2026-05-09
 
