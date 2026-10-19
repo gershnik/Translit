@@ -238,7 +238,7 @@
 			path = scripts;
 			sourceTree = "<group>";
 		};
-		442D25B52B0AC6EA00204800 /* tools */ = {
+		442D25B52B0AC6EA00204800 /* .tools */ = {
 			isa = PBXGroup;
 			children = (
 				442D25BB2B0ADC3A00204800 /* create-release */,
@@ -246,7 +246,7 @@
 				442D25B92B0ACCA000204800 /* get-version */,
 				442D25C12B0B8C6C00204800 /* format-file */,
 			);
-			path = tools;
+			path = .tools;
 			sourceTree = "<group>";
 		};
 		442D25B72B0AC75800204800 /* workflows */ = {
@@ -594,9 +594,9 @@
 			shellPath = /bin/sh;
 			shellScript = (
 				"mkdir -p $SRCROOT/Translit/generated",
-				"$SRCROOT/tools/format-file $SRCROOT/Translit/Info.plist $SRCROOT/Translit/generated/Info.plist",
+				"$SRCROOT/.tools/format-file $SRCROOT/Translit/Info.plist $SRCROOT/Translit/generated/Info.plist",
 				"mkdir -p $SRCROOT/Translit/generated/Base.lproj",
-				"$SRCROOT/tools/format-file $SRCROOT/Translit/res/Base.lproj/InfoPlist.strings $SRCROOT/Translit/generated/Base.lproj/InfoPlist.strings",
+				"$SRCROOT/.tools/format-file $SRCROOT/Translit/res/Base.lproj/InfoPlist.strings $SRCROOT/Translit/generated/Base.lproj/InfoPlist.strings",
 				"",
 				"",
 				"",

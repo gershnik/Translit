@@ -21,7 +21,7 @@ jobs:
     - name: Get Version
       shell: bash
       run: |
-        version=`tools/get-version`
+        version=`.tools/get-version`
         echo Version: $version
         echo "GH_BUILD_VERSION=$version" >> $GITHUB_ENV
     
@@ -38,7 +38,7 @@ jobs:
         NOTARIZE_USER: ${{ secrets.NOTARIZE_USER }}
         NOTARIZE_PWD: ${{ secrets.NOTARIZE_PWD }}
       run: |
-        tools/set-github-keychain
+        .tools/set-github-keychain
         xcodebuild build \
                    -workspace Translit.xcworkspace \
                    -destination "generic/platform=macOS,variant=macos,name=Any Mac" \

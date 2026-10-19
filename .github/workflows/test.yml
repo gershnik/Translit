@@ -11,7 +11,7 @@ on:
       - '.gitignore'
       - 'LICENSE'
       - '.github/workflows/publish.yml'
-      - 'tools/create-release'
+      - '.tools/create-release'
       
 env:
   DEVELOPER_DIR: /Applications/Xcode_26.6.app
@@ -28,7 +28,7 @@ jobs:
     - name: Get Version
       shell: bash
       run: |
-        version=`tools/get-version`
+        version=`.tools/get-version`
         echo Version: $version
         echo "GH_BUILD_VERSION=$version" >> $GITHUB_ENV
     
@@ -59,7 +59,7 @@ jobs:
         NOTARIZE_USER: ${{ secrets.NOTARIZE_USER }}
         NOTARIZE_PWD: ${{ secrets.NOTARIZE_PWD }}
       run: |
-        tools/set-github-keychain
+        .tools/set-github-keychain
         set -o pipefail && \
         xcodebuild build \
                    -workspace Translit.xcworkspace \
