@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [1.6] - 2026-10-19
+
 ### Added
 - Support for dead keys on keyboards that have them (e.g. German QWERTZ)
 
@@ -80,3 +82,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 [1.3]: https://github.com/gershnik/Translit/releases/v1.3
 [1.4]: https://github.com/gershnik/Translit/releases/v1.4
 [1.5]: https://github.com/gershnik/Translit/releases/v1.5
+[1.6]: https://github.com/gershnik/Translit/releases/v1.6
