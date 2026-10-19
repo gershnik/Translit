@@ -14,10 +14,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Installer is now signed with a new Apple certificate. Old installers 
   (1.5 and earlier) may stop working after Feb 1, 2027 
   ([why](https://eclecticlight.co/2026/10/16/changing-developer-certificates-might-affect-installers-next-year/))
-- Improved Mappings and About windows UI
+- Improved UI of Mappings and About windows
 - Xcode project no longer hardcodes minimum macOS version. This allows building
-  on Xcode 27 and later that the bumped allowed minimum. You can control the desired 
-  minimum via Local.xcconfig
+  on Xcode 27 and later that bumped the allowed minimum. You can control the desired 
+  minimum via `Local.xcconfig`
 
 ### Fixed
 - Translit compositions in progress are now underlined in Terminal too
