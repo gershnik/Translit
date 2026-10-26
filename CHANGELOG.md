@@ -6,9 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## Unreleased
 
 ### Fixed
-- When pressing `Esc` key during composition (which terminates it) the key is no longer 
-  **also** passed to the application. This allows to terminate a composition without
-  triggering the applications `Esc` actions.
+- When pressing the `Esc` key during composition (which terminates it) the key is no longer 
+  _also_ passed to the underlying application. This makes it possible to terminate a 
+  composition without triggering the application's `Esc` actions.
 
 ## [1.6] - 2026-10-19
 
