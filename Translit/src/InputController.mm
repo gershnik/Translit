@@ -155,7 +155,11 @@ private:
     
     NSStringCharAccess access(string);
     if ((flags & (NSEventModifierFlagCommand | NSEventModifierFlagControl)) || isCommandKey(access)) {
+        bool hadComposition = !_transliterator->result().empty() || !_compositor.result().empty();
         [self commitAllToSender:sender];
+        //Esc terminates an active composition (e.g. to type "сх" rather than "ш"); don't pass it on to the app
+        if (hadComposition && keyCode == kVK_Escape && !(flags & (NSEventModifierFlagCommand | NSEventModifierFlagControl)))
+            return YES;
         return NO;
     }
     _compositor.addKey(access, keyCode, flags);
